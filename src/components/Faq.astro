@@ -1,0 +1,110 @@
+---
+import Sekcja from './Sekcja.astro';
+import { DEMO } from '../config';
+
+const pytania = [
+  {
+    p: 'Czy dzwoniący pozna, że to nie człowiek?',
+    o: [
+      'Tak — i ma poznać. Agent na początku rozmowy przedstawia się jako asystent. Mówi płynną polszczyzną i brzmi naturalnie, ale nie udaje człowieka.',
+    ],
+  },
+  {
+    p: 'Co się stanie, jeśli agent nie będzie znał odpowiedzi?',
+    o: [
+      'Powie, że tego nie wie, i zaproponuje przekazanie sprawy dalej. Zbierze imię, numer i to, o co chodziło, a Ty dostaniesz podsumowanie mailem.',
+      'Nie zmyśla odpowiedzi. To pierwsza zasada w jego scenariuszu — lepiej, żeby klient usłyszał „sprawdzę i oddzwonimy”, niż żeby dostał wymyśloną cenę.',
+    ],
+  },
+  {
+    p: 'Czy muszę zmieniać operatora albo centralę telefoniczną?',
+    o: [
+      'Nie. Zostajesz przy swoim numerze, operatorze i aparatach. Ustawiasz jedno przekierowanie, najczęściej warunkowe — wchodzi dopiero wtedy, gdy nie odbierzesz. Cofniesz je w minutę.',
+    ],
+  },
+  {
+    p: 'Jak długo trwa wdrożenie?',
+    o: [
+      'Zwykle tydzień: rozmowa o firmie, budowa bazy wiedzy i scenariusza, Twoje testy, poprawki, przekierowanie numeru. Jeśli materiału do przerobienia jest dużo, powiemy o tym przed startem, a nie w trakcie.',
+    ],
+  },
+  {
+    p: 'Czy agent umie umawiać wizyty?',
+    o: [
+      'W wersji podstawowej zbiera zgłoszenie i przekazuje je Wam: kto dzwonił, w jakiej sprawie, kiedy mu pasuje. Wpisanie wizyty robi człowiek.',
+      'Wpięcie w kalendarz albo CRM, tak żeby termin wpadał do systemu sam, mieści się w wycenie indywidualnej.',
+    ],
+  },
+  {
+    p: 'Co z RODO i nagrywaniem rozmów?',
+    o: [
+      'Przed uruchomieniem podpisujemy umowę powierzenia przetwarzania danych. Dzwoniący jest informowany, że rozmawia z asystentem i że rozmowa jest przetwarzana.',
+      'Zakres nagrywania i czas przechowywania ustalamy z Tobą i zapisujemy w umowie. To Ty decydujesz, ile z tego zostaje.',
+    ],
+  },
+  {
+    p: 'Czy mogę zrezygnować?',
+    o: [
+      'Tak. Przez pierwsze 30 dni z pełnym zwrotem pieniędzy, bez pytania o powód. Umowne minimum to trzy miesiące, potem wypowiadasz w dowolnym momencie i bez kar.',
+    ],
+  },
+  {
+    p: 'Czy agent mówi po polsku naturalnie?',
+    o: [
+      `Zadzwoń pod ${DEMO.wyswietlany} i oceń sam. To jedyna odpowiedź na to pytanie, która cokolwiek znaczy — opis brzmienia głosu napisany na stronie internetowej nie jest dowodem.`,
+    ],
+  },
+  {
+    p: 'Co jeśli dzwoniący chce rozmawiać z człowiekiem?',
+    o: [
+      'Mówi o tym i agent kończy swoją część: zbiera dane i zaznacza w podsumowaniu, że ktoś czeka na kontakt. Jeśli macie numer, na który da się przełączyć w godzinach pracy, konfigurujemy przełączenie.',
+    ],
+  },
+];
+---
+
+<Sekcja numer="07" id="faq" tytul="Pytania, które padają najczęściej">
+  <div class="max-w-[64ch]">
+    {
+      pytania.map((q) => (
+        <details class="group border-t border-linia">
+          <summary class="flex cursor-pointer list-none items-start justify-between gap-5 py-5 font-display text-[1.0625rem] font-600 leading-snug tracking-[-0.01em]">
+            <span>{q.p}</span>
+            <span class="znak mt-0.5 shrink-0 font-mono text-xl leading-none text-notatka" aria-hidden="true" />
+          </summary>
+          <div class="space-y-3 pb-6 pr-8 text-centrala-80">
+            {q.o.map((p) => (
+              <p>{p}</p>
+            ))}
+          </div>
+        </details>
+      ))
+    }
+  </div>
+
+  {/* granica kompetencji agenta — wprost, nie drobnym drukiem */}
+  <div class="mt-10 max-w-[64ch] border-l-4 border-centrala bg-arkusz-glebszy p-5 sm:p-6">
+    <p class="maszynowa text-notatka">Czego agent nie robi</p>
+    <p class="mt-3">
+      Agent nie diagnozuje, nie doradza specjalistycznie i nie zastępuje eksperta.
+      Nie powie dzwoniącemu, co mu dolega, nie oceni szans w sprawie i nie wyceni
+      naprawy na słuch. Zbiera sprawę i przekazuje ją Wam — decyzja zawsze zostaje
+      po stronie człowieka.
+    </p>
+  </div>
+</Sekcja>
+
+<style>
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  summary::marker {
+    content: '';
+  }
+  .znak::after {
+    content: '+';
+  }
+  details[open] .znak::after {
+    content: '–';
+  }
+</style>

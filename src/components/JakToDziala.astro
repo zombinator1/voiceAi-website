@@ -1,0 +1,59 @@
+---
+import Sekcja from './Sekcja.astro';
+
+const kroki = [
+  {
+    numer: '1',
+    tytul: 'Rozmawiamy',
+    tresc: [
+      'Godzina rozmowy o Twojej firmie: o co pytają klienci, czego nigdy nie wiedzą, jak wygląda telefon, po którym zostaje zlecenie. Wychodzimy z tego z listą pytań i odpowiedzi, a nie z briefem.',
+    ],
+  },
+  {
+    numer: '2',
+    tytul: 'Budujemy agenta',
+    tresc: [
+      'Na tej podstawie powstaje baza wiedzy i scenariusz rozmowy napisany pod Twoją firmę — Twoje ceny, godziny, zasady, wyjątki. Zanim cokolwiek podłączysz, dzwonisz i słuchasz. Poprawiamy, aż zacznie brzmieć tak, jak sam byś odpowiedział.',
+    ],
+  },
+  {
+    numer: '3',
+    tytul: 'Przekierowujesz numer',
+    tresc: [
+      'Zostajesz przy swoim operatorze, swoim numerze i swojej centrali. Nie kupujesz sprzętu, nie wymieniasz aparatów, nie podpisujesz niczego nowego z operatorem.',
+      'Ustawiasz jedno przekierowanie — najczęściej warunkowe, czyli wchodzi dopiero wtedy, gdy nie odbierzesz. Kiedy masz czas, odbierasz jak zawsze. Kiedy nie masz, odbiera agent.',
+      'Przekierowanie cofniesz w każdej chwili, w minutę, tym samym sposobem, którym je ustawiłeś. Nic w firmie nie zostaje przestawione na stałe.',
+    ],
+  },
+];
+---
+
+<Sekcja numer="03" id="jak-to-dziala" tytul="Trzy kroki, tydzień roboty">
+  <ol class="max-w-[64ch]">
+    {
+      kroki.map((k, i) => (
+        <li
+          class:list={[
+            'grid gap-x-6 gap-y-3 py-7 sm:grid-cols-[3.5rem_minmax(0,1fr)] sm:py-9',
+            i > 0 ? 'border-t border-linia' : 'pt-0',
+          ]}
+        >
+          <span
+            class="font-display text-[2.25rem] font-700 leading-none tabular-nums text-notatka/80 sm:text-[3rem]"
+            aria-hidden="true"
+          >
+            {k.numer}
+          </span>
+          <div>
+            <h3 class="text-h3">{k.tytul}</h3>
+            <div class="mt-3 space-y-3 text-centrala-80">
+              {k.tresc.map((p) => (
+                <p>{p}</p>
+              ))}
+            </div>
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+</Sekcja>

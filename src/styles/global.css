@@ -1,0 +1,153 @@
+@import 'tailwindcss';
+
+@theme {
+  /* --- Paleta ---------------------------------------------------------
+     centrala     atrament: tekst i ciemne pasy
+     arkusz       papier: tło strony (chłodne, nie kremowe)
+     linia        linie tabel i obramowania
+     notatka      metadane, znaczniki czasu, tekst drugiego planu
+     sluchawka    zieleń przycisku „odbierz" — WYŁĄCZNIE tel: i submit
+     nieodebrane  czerwień nieodebranego — WYŁĄCZNIE sekcja Problem
+  */
+  --color-centrala: #16212b;
+  --color-centrala-80: #3a4550;
+  --color-arkusz: #f1f2f0;
+  --color-arkusz-glebszy: #e7e8e5;
+  --color-linia: #d4d7d3;
+  --color-notatka: #626962;
+  --color-sluchawka: #12704a;
+  --color-sluchawka-ciemna: #0d5738;
+  --color-nieodebrane: #b62e26;
+
+  --font-display: var(--font-archivo);
+  --font-sans: var(--font-plex-sans);
+  --font-mono: var(--font-plex-mono);
+
+  /* --- Skala typograficzna (płynna, od 360px) ------------------------- */
+  --text-h1: clamp(2rem, 7.5vw, 3.75rem);
+  --text-h1--line-height: 1.04;
+  --text-h2: clamp(1.625rem, 5vw, 2.5rem);
+  --text-h2--line-height: 1.1;
+  --text-h3: clamp(1.125rem, 2.6vw, 1.375rem);
+  --text-h3--line-height: 1.25;
+  --text-lead: clamp(1.0625rem, 2.4vw, 1.3125rem);
+  --text-lead--line-height: 1.55;
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.7;
+  --text-meta: 0.8125rem;
+  --text-meta--line-height: 1.5;
+
+  --breakpoint-xs: 26rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-arkusz);
+    color: var(--color-centrala);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    /* miejsce na mobilny pasek połączenia przyklejony do dołu */
+    padding-bottom: calc(4.5rem + env(safe-area-inset-bottom));
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media (min-width: 40rem) {
+    body {
+      padding-bottom: 0;
+    }
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  /* Widoczny focus klawiatury — jeden wzorzec na całej stronie.
+     Kolor dziedziczy się w dół, więc jasna kartka w ciemnej sekcji
+     (i odwrotnie) sama odzyskuje kontrastowy obrys. */
+  :root {
+    --kolor-focus: var(--color-centrala);
+  }
+
+  .na-ciemnym {
+    --kolor-focus: var(--color-arkusz);
+  }
+
+  .na-jasnym {
+    --kolor-focus: var(--color-centrala);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--kolor-focus);
+    outline-offset: 3px;
+    border-radius: 1px;
+  }
+
+  /* Nic na tej stronie nie musi się ruszać. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Kolumna papieru — jedna szerokość na całej stronie. */
+  .arkusz-kolumna {
+    width: 100%;
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 40rem) {
+    .arkusz-kolumna {
+      padding-inline: 2rem;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .arkusz-kolumna {
+      padding-inline: 3rem;
+    }
+  }
+
+  /* Etykieta maszynowa: znaczniki, statusy, numeracja. */
+  .maszynowa {
+    font-family: var(--font-mono);
+    font-size: var(--text-meta);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* Odstęp międzysekcyjny. */
+  .sekcja {
+    padding-block: clamp(3rem, 6.5vw, 5rem);
+  }
+
+  /* Numer demo skaluje się do szerokości SWOJEJ kolumny, nie do viewportu —
+     inaczej łamie się na dwie linie w układzie dwukolumnowym.
+     Wymaga `@container` na rodzicu. */
+  .numer-demo {
+    font-size: clamp(2.25rem, 13.5cqi, 4.5rem);
+    line-height: 0.95;
+  }
+}

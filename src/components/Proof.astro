@@ -1,0 +1,58 @@
+---
+import Sekcja from './Sekcja.astro';
+import { DEMO, TRANSKRYPT } from '../config';
+---
+
+<Sekcja numer="04" id="dowod" ciemna tytul="Nie mam logotypów. Mam działającego agenta.">
+  <div class="max-w-[58ch] space-y-5 text-arkusz/85">
+    <p class="font-display text-h3 font-600 text-arkusz">
+      Nie pokażę Ci ściany logotypów ani cudzych opinii, bo dopiero startuję i
+      jednego, i drugiego jeszcze nie mam. Zmyślać ich nie zamierzam.
+    </p>
+    <p>
+      Zostaje mi jeden dowód, za to taki, który możesz sprawdzić w minutę:
+      agent, który odbiera telefony mojej własnej firmy. Nie nagranie z prezentacji,
+      nie wideo z demem — numer, pod który dzwonisz teraz i zadajesz mu pytania,
+      jakie zadałby Twój klient.
+    </p>
+    <p>
+      Wolałbym pokazać Ci pięć wdrożeń. Nie mam ich. Mam za to coś, czego
+      logotyp na stronie nigdy nie da: możliwość sprawdzenia produktu przed
+      podjęciem decyzji.
+    </p>
+  </div>
+
+  <a
+    href={`tel:${DEMO.tel}`}
+    class="mt-8 inline-flex min-h-12 items-center gap-3 border-2 border-arkusz px-5 py-3 text-arkusz hover:bg-arkusz hover:text-centrala"
+  >
+    <span class="maszynowa">zadzwoń i oceń sam</span>{' '}
+    <span class="font-mono text-base font-500 tracking-[0.03em]">{DEMO.wyswietlany}</span>
+  </a>
+
+  <div class="mt-12 max-w-[58ch]">
+    <p class="maszynowa text-arkusz/55">Fragment rozmowy z agentem</p>
+
+    <div class="mt-4 border border-arkusz/25 p-5 sm:p-6">
+      {
+        TRANSKRYPT.length > 0 ? (
+          <dl class="space-y-4 font-mono text-[0.875rem] leading-relaxed">
+            {TRANSKRYPT.map((l) => (
+              <div class="grid gap-1 sm:grid-cols-[6.5rem_minmax(0,1fr)] sm:gap-4">
+                <dt class="maszynowa pt-0.5 text-arkusz/55">
+                  {l.mowca === 'agent' ? 'agent' : 'dzwoniący'}
+                </dt>
+                <dd class="text-arkusz/90">{l.tekst}</dd>
+              </div>
+            ))}
+          </dl>
+        ) : (
+          <p class="font-mono text-[0.875rem] leading-relaxed text-arkusz/60">
+            {'{{TRANSKRYPT — wklej tutaj prawdziwy fragment rozmowy spod numeru demo. '}
+            {'Uzupełnij tablicę TRANSKRYPT w src/config.ts}}'}
+          </p>
+        )
+      }
+    </div>
+  </div>
+</Sekcja>

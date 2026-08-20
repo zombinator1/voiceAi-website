@@ -1,0 +1,47 @@
+---
+import Base from '../layouts/Base.astro';
+import { FIRMA, DEMO } from '../config';
+---
+
+<Base
+  tytul={`Dziękujemy — ${FIRMA.nazwa}`}
+  opis="Zgłoszenie przyjęte. Oddzwonimy."
+  pasekMobilny={false}
+>
+  <section class="sekcja">
+    <div class="arkusz-kolumna">
+      <div class="@container max-w-[52ch]">
+        <p class="maszynowa text-sluchawka">zgłoszenie przyjęte</p>
+
+        <h1 class="text-h1 mt-4">Mamy Twój numer. Oddzwonimy.</h1>
+
+        <p class="mt-6 text-lead text-centrala-80">
+          Odzywamy się w godzinach pracy. Jeśli nie chcesz czekać, agent odbiera
+          od razu — o dowolnej porze.
+        </p>
+
+        <a
+          href={`tel:${DEMO.tel}`}
+          class="group mt-8 block border border-sluchawka border-l-4 bg-arkusz px-5 py-6 hover:bg-sluchawka focus-visible:bg-sluchawka"
+          aria-label={`Zadzwoń pod numer demo ${DEMO.wyswietlany}`}
+        >
+          <span class="maszynowa block text-sluchawka group-hover:text-arkusz group-focus-visible:text-arkusz">
+            numer demo
+          </span>
+          <span
+            class="numer-demo mt-2.5 block font-display font-700 tracking-[-0.015em] tabular-nums text-sluchawka group-hover:text-arkusz group-focus-visible:text-arkusz"
+          >
+            {DEMO.wyswietlany}
+          </span>
+        </a>
+
+        <a
+          href="/"
+          class="maszynowa mt-8 inline-flex min-h-11 items-center text-notatka hover:text-centrala"
+        >
+          ← powrót na stronę główną
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

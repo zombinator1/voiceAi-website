@@ -1,0 +1,59 @@
+---
+import { Font } from 'astro:assets';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MobilnyPasek from '../components/MobilnyPasek.astro';
+import CookieBanner from '../components/CookieBanner.astro';
+
+interface Props {
+  tytul: string;
+  opis: string;
+  /** Pasek połączenia przyklejony do dołu na mobile — zbędny np. na stronie „dziękujemy”. */
+  pasekMobilny?: boolean;
+}
+
+const { tytul, opis, pasekMobilny = true } = Astro.props;
+const kanoniczny = new URL(Astro.url.pathname, Astro.site).href;
+---
+
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{tytul}</title>
+    <meta name="description" content={opis} />
+    <link rel="canonical" href={kanoniczny} />
+    <meta property="og:title" content={tytul} />
+    <meta property="og:description" content={opis} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pl_PL" />
+    <meta name="theme-color" content="#16212b" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <Font cssVariable="--font-archivo" preload />
+    <Font cssVariable="--font-plex-sans" preload />
+    <Font cssVariable="--font-plex-mono" />
+  </head>
+
+  <body>
+    <a
+      href="#tresc"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-100 focus:bg-centrala focus:px-4 focus:py-3 focus:text-arkusz"
+    >
+      Przejdź do treści
+    </a>
+
+    <Header />
+
+    <main id="tresc">
+      <slot />
+    </main>
+
+    <Footer />
+
+    {pasekMobilny && <MobilnyPasek />}
+    <CookieBanner />
+  </body>
+</html>

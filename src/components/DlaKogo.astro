@@ -1,0 +1,56 @@
+---
+import Sekcja from './Sekcja.astro';
+
+const branze = [
+  {
+    nazwa: 'Warsztaty samochodowe',
+    kiedy:
+      'Dzwoni, kiedy leżysz pod samochodem albo jesteś na jeździe próbnej. Pytanie jest zawsze to samo: ile to będzie kosztować i na kiedy się zmieszczę.',
+  },
+  {
+    nazwa: 'Kancelarie prawne',
+    kiedy:
+      'Dzwoni w trakcie rozprawy albo spotkania. Kto dzwoni do kancelarii pierwszy raz, ten zwykle dzwoni tylko raz.',
+  },
+  {
+    nazwa: 'Firmy instalacyjne — hydraulicy, elektrycy, klimatyzacja',
+    kiedy:
+      'Dzwoni, kiedy jesteś na dachu, pod zlewem albo w rozdzielnicy. Awaria nie czeka, aż oddzwonisz po robocie.',
+  },
+  {
+    nazwa: 'Salony kosmetyczne i fryzjerskie',
+    kiedy:
+      'Dzwoni w środku koloryzacji. Albo przerywasz zabieg klientce, która siedzi przed Tobą, albo tracisz rezerwację tej, która dzwoni.',
+  },
+  {
+    nazwa: 'Biura nieruchomości',
+    kiedy:
+      'Dzwoni w trakcie prezentacji mieszkania. Ten sam kupujący dwie minuty później dzwoni do biura obok.',
+  },
+];
+---
+
+<Sekcja numer="02" id="dla-kogo" tytul="Firmy, w których telefon dzwoni w najgorszym momencie">
+  <p class="max-w-[58ch]">
+    Wspólny mianownik jest jeden: pracujesz rękami i odbierasz telefon tym samym
+    ciałem. Rozpoznaj siebie.
+  </p>
+
+  <dl class="mt-8 sm:mt-10">
+    {
+      branze.map((b) => (
+        <div class="grid gap-1.5 border-t border-linia py-5 lg:grid-cols-[17rem_minmax(0,1fr)] lg:gap-8 lg:py-6">
+          <dt class="font-display text-[1.0625rem] font-600 leading-snug tracking-[-0.01em]">
+            {b.nazwa}
+          </dt>
+          <dd class="max-w-[62ch] text-centrala-80">{b.kiedy}</dd>
+        </div>
+      ))
+    }
+  </dl>
+
+  <p class="mt-6 max-w-[58ch] text-meta text-centrala-80">
+    Twojej branży nie ma na liście? Jeśli klienci trafiają do Ciebie telefonicznie,
+    zasada jest ta sama.
+  </p>
+</Sekcja>

@@ -1,0 +1,43 @@
+---
+interface Props {
+  numer: string;
+  tytul: string;
+  id?: string;
+  /** Ciemny pas — używany oszczędnie, do zmiany rytmu strony. */
+  ciemna?: boolean;
+  class?: string;
+}
+
+const { numer, tytul, id, ciemna = false, class: klasa = '' } = Astro.props;
+---
+
+<section
+  id={id}
+  class:list={[
+    'sekcja',
+    ciemna ? 'na-ciemnym bg-centrala text-arkusz' : '',
+    klasa,
+  ]}
+>
+  <div class="arkusz-kolumna">
+    <div class="lg:grid lg:grid-cols-[7rem_minmax(0,1fr)] lg:gap-x-12">
+      <div class="mb-5 flex items-center gap-3 lg:mb-0 lg:block lg:pt-3">
+        <span class:list={['maszynowa', ciemna ? 'text-arkusz/55' : 'text-notatka']}>
+          {numer}
+        </span>
+        <span
+          class:list={[
+            'h-px w-8 lg:mt-3 lg:block lg:w-10',
+            ciemna ? 'bg-arkusz/25' : 'bg-linia',
+          ]}></span>
+      </div>
+
+      <div>
+        <h2 class="text-h2 max-w-[22ch]">{tytul}</h2>
+        <div class="mt-6 sm:mt-8">
+          <slot />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

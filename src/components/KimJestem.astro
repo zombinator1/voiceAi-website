@@ -1,0 +1,43 @@
+---
+import Sekcja from './Sekcja.astro';
+import { WLASCICIEL } from '../config';
+---
+
+<Sekcja numer="08" id="kim-jestem" tytul="Kto odbierze, kiedy zadzwonisz">
+  <div class="grid gap-6 sm:grid-cols-[13rem_minmax(0,1fr)] sm:gap-10 lg:grid-cols-[15rem_minmax(0,1fr)]">
+    {
+      WLASCICIEL.zdjecie ? (
+        <img
+          src={WLASCICIEL.zdjecie}
+          alt={`${WLASCICIEL.imie} — ${WLASCICIEL.rola}`}
+          width="480"
+          height="600"
+          loading="lazy"
+          decoding="async"
+          class="aspect-4/5 w-full max-w-[13rem] border border-linia object-cover sm:max-w-none"
+        />
+      ) : (
+        <div class="flex aspect-4/5 w-full max-w-[13rem] items-center justify-center border border-dashed border-notatka bg-arkusz-glebszy p-4 text-center sm:max-w-none">
+          <span class="maszynowa text-notatka">
+            {'{{ZDJĘCIE}}'}
+            <span class="mt-2 block normal-case tracking-normal">
+              portret, pion 4:5, wrzuć do /public
+            </span>
+          </span>
+        </div>
+      )
+    }
+
+    <div class="max-w-[56ch]">
+      <p class="font-display text-h3">{WLASCICIEL.imie}</p>
+      <p class="maszynowa mt-1.5 text-notatka">{WLASCICIEL.rola}</p>
+
+      <p class="mt-5 text-centrala-80">{WLASCICIEL.bio}</p>
+
+      <p class="mt-6 border-t border-linia pt-5 text-centrala-80">
+        Nie ma tu działu obsługi klienta ani skrzynki, w której zgłoszenie czeka
+        trzy dni. Odbieram, buduję i poprawiam ta sama osoba — na dobre i na złe.
+      </p>
+    </div>
+  </div>
+</Sekcja>

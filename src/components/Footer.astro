@@ -1,0 +1,69 @@
+---
+import { FIRMA, DEMO } from '../config';
+const rok = new Date().getFullYear();
+---
+
+<footer class="border-t border-linia bg-arkusz-glebszy py-10 sm:py-14">
+  <div class="arkusz-kolumna">
+    <div class="grid gap-8 sm:grid-cols-2 sm:gap-12">
+      <div>
+        <p class="font-display text-[1.0625rem] font-700 tracking-[-0.01em]">
+          {FIRMA.nazwa}
+        </p>
+        <dl class="mt-2">
+          <div class="flex gap-3">
+            <dt class="maszynowa w-16 shrink-0 pt-0.5 text-notatka">NIP</dt>
+            <dd class="font-mono text-[0.875rem] tabular-nums">{FIRMA.nip}</dd>
+          </div>
+          <div class="flex gap-3">
+            <dt class="maszynowa w-16 shrink-0 pt-0.5 text-notatka">e-mail</dt>
+            <dd class="font-mono text-[0.875rem]">
+              <a class="inline-flex min-h-11 items-center underline underline-offset-2 hover:text-sluchawka" href={`mailto:${FIRMA.email}`}>
+                {FIRMA.email}
+              </a>
+            </dd>
+          </div>
+          <div class="flex gap-3">
+            <dt class="maszynowa w-16 shrink-0 pt-0.5 text-notatka">telefon</dt>
+            <dd class="font-mono text-[0.875rem] tabular-nums">
+              <a class="inline-flex min-h-11 items-center underline underline-offset-2 hover:text-sluchawka" href={`tel:${DEMO.tel}`}>
+                {DEMO.wyswietlany}
+              </a>
+            </dd>
+          </div>
+        </dl>
+      </div>
+
+      <nav aria-label="Stopka" class="sm:justify-self-end">
+        <ul class="space-y-1">
+          <li>
+            <a class="inline-flex min-h-11 items-center underline underline-offset-2 hover:text-sluchawka" href="/polityka-prywatnosci">
+              Polityka prywatności
+            </a>
+          </li>
+          <li>
+            <a class="inline-flex min-h-11 items-center underline underline-offset-2 hover:text-sluchawka" href="/#oferta">Cennik</a>
+          </li>
+          <li>
+            <a class="inline-flex min-h-11 items-center underline underline-offset-2 hover:text-sluchawka" href="/#faq">
+              Pytania i odpowiedzi
+            </a>
+          </li>
+          <li>
+            <button
+              type="button"
+              data-cookies-otworz
+              class="inline-flex min-h-11 items-center underline underline-offset-2 hover:text-sluchawka"
+            >
+              Ustawienia cookies
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <p class="maszynowa mt-10 border-t border-linia pt-6 text-notatka">
+      © {rok} {FIRMA.nazwa}
+    </p>
+  </div>
+</footer>

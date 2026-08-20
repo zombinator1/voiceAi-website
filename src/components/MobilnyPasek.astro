@@ -1,0 +1,20 @@
+---
+import { DEMO } from '../config';
+---
+
+{/* Kciuk sięga dołu ekranu, nie góry — na mobile numer mieszka tutaj. */}
+<div
+  class="fixed inset-x-0 bottom-0 z-50 border-t border-sluchawka-ciemna bg-sluchawka pb-[env(safe-area-inset-bottom)] sm:hidden"
+>
+  <a
+    href={`tel:${DEMO.tel}`}
+    class="na-ciemnym flex min-h-[3.5rem] flex-col items-center justify-center gap-0.5 px-4 text-arkusz active:bg-sluchawka-ciemna"
+  >
+    <span class="maszynowa text-[0.6875rem] text-arkusz/75">
+      zadzwoń i porozmawiaj z agentem
+    </span>
+    <span class="font-mono text-lg font-500 tracking-[0.04em]">
+      {DEMO.wyswietlany}
+    </span>
+  </a>
+</div>

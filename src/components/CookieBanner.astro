@@ -1,0 +1,118 @@
+---
+import { META_PIXEL_ID } from '../config';
+---
+
+<div
+  id="baner-cookies"
+  hidden
+  role="dialog"
+  aria-modal="false"
+  aria-labelledby="baner-cookies-tytul"
+  class="fixed inset-x-0 bottom-[calc(3.5rem+env(safe-area-inset-bottom))] z-60 border-t border-linia bg-arkusz sm:bottom-0"
+>
+  <div class="arkusz-kolumna flex flex-col gap-4 py-4 lg:flex-row lg:items-center lg:justify-between lg:gap-8 lg:py-5">
+    <div class="max-w-[62ch]">
+      <p id="baner-cookies-tytul" class="maszynowa text-notatka">Cookies</p>
+      <p class="mt-1.5 text-meta text-centrala-80">
+        Używamy plików cookies niezbędnych do działania strony. Za Twoją zgodą
+        dodamy też cookies analityczno-marketingowe, dzięki którym wiemy, które
+        treści są przydatne. Zgodę możesz wycofać w każdej chwili. Szczegóły w{' '}
+        <a class="text-centrala underline underline-offset-2" href="/polityka-prywatnosci">
+          polityce prywatności</a
+        >.
+      </p>
+    </div>
+
+    <div class="flex shrink-0 flex-col gap-3 xs:flex-row">
+      <button
+        type="button"
+        data-cookies="nie"
+        class="min-h-11 border border-centrala px-5 py-2.5 font-display text-[0.9375rem] font-600 hover:bg-centrala hover:text-arkusz"
+      >
+        Tylko niezbędne
+      </button>
+      <button
+        type="button"
+        data-cookies="tak"
+        class="min-h-11 bg-sluchawka px-5 py-2.5 font-display text-[0.9375rem] font-600 text-arkusz hover:bg-sluchawka-ciemna"
+      >
+        Zgadzam się
+      </button>
+    </div>
+  </div>
+</div>
+
+<script is:inline define:vars={{ pixelId: META_PIXEL_ID }}>
+  (function () {
+    var KLUCZ = 'zgoda-cookies';
+    var baner = document.getElementById('baner-cookies');
+    if (!baner) return;
+
+    function odczytaj() {
+      try {
+        return localStorage.getItem(KLUCZ);
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function zapisz(wartosc) {
+      try {
+        localStorage.setItem(KLUCZ, wartosc);
+      } catch (e) {
+        /* tryb prywatny — decyzja obowiązuje do końca sesji */
+      }
+    }
+
+    /* Skrypty śledzące startują dopiero stąd, nigdy przed zgodą. */
+    var zaladowane = false;
+    function zaladujSledzenie() {
+      if (zaladowane || !pixelId) return;
+      zaladowane = true;
+
+      /* --- MIEJSCE NA META PIXEL ---------------------------------------
+         Odkomentuj poniższy blok i wpisz META_PIXEL_ID w src/config.ts.
+
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
+        t = b.createElement(e); t.async = !0; t.src = v;
+        s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+      })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', pixelId);
+      fbq('track', 'PageView');
+
+      --------------------------------------------------------------- */
+    }
+
+    function rozstrzygnij(wybor) {
+      zapisz(wybor);
+      baner.hidden = true;
+      if (wybor === 'tak') zaladujSledzenie();
+    }
+
+    baner.addEventListener('click', function (e) {
+      var przycisk = e.target.closest('[data-cookies]');
+      if (przycisk) rozstrzygnij(przycisk.getAttribute('data-cookies'));
+    });
+
+    /* Wycofanie zgody musi być tak samo łatwe jak jej udzielenie. */
+    document.querySelectorAll('[data-cookies-otworz]').forEach(function (el) {
+      el.addEventListener('click', function (e) {
+        e.preventDefault();
+        try {
+          localStorage.removeItem(KLUCZ);
+        } catch (err) {}
+        baner.hidden = false;
+      });
+    });
+
+    var wybor = odczytaj();
+    if (wybor === 'tak') zaladujSledzenie();
+    else if (wybor !== 'nie') baner.hidden = false;
+  })();
+</script>

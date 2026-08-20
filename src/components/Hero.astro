@@ -1,0 +1,37 @@
+---
+import RejestrPolaczen from './RejestrPolaczen.astro';
+import LeadForm from './LeadForm.astro';
+---
+
+<section class="border-b border-linia pt-10 pb-12 sm:pt-16 sm:pb-20">
+  <div class="arkusz-kolumna">
+    <h1 class="text-h1 max-w-[16ch]">
+      Telefon dzwonił. Nikt nie odebrał. Klient zadzwonił do konkurencji.
+    </h1>
+
+    <p class="mt-5 max-w-[52ch] text-lead text-centrala-80 sm:mt-6">
+      Budujemy agentów głosowych AI, którzy odbierają telefon w Twojej firmie —
+      o 21:00, w sobotę, w środku zlcenia, gdy Twój numer jest zajęty.
+    </p>
+
+    <div class="mt-10 grid gap-8 sm:mt-14 lg:grid-cols-2 lg:gap-14">
+      <div>
+        <RejestrPolaczen />
+        <p class="mt-4 max-w-[46ch] text-meta text-centrala-80">
+          Numer wyżej jest prawdziwy. Nie prowadzi do nagrania ani do wideo z
+          demem — odbierze go agent, którego zbudowaliśmy. Zapytaj go o cokolwiek,
+          tak jak zapytałby Twój klient.
+        </p>
+      </div>
+
+      <div class="lg:pt-1">
+        <LeadForm
+          idPrefix="hero"
+          zrodlo="hero"
+          tytul="Wolisz, żebyśmy zadzwonili?"
+          opis="Zostaw imię i numer. Oddzwonimy w godzinach pracy — bez skryptu sprzedażowego."
+        />
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,29 @@
+---
+import { FIRMA, DEMO } from '../config';
+---
+
+<header
+  class="sticky top-0 z-50 border-b border-linia bg-arkusz"
+>
+  <div class="arkusz-kolumna flex h-14 items-center justify-between gap-4 sm:h-16">
+    <a
+      href="/"
+      class="flex min-h-11 items-center font-display text-[0.9375rem] font-700 tracking-[-0.01em] text-centrala sm:text-base"
+    >
+      {FIRMA.nazwa}
+    </a>
+
+    <a
+      href={`tel:${DEMO.tel}`}
+      class="group flex min-h-11 items-center gap-2.5 px-1 sm:gap-3"
+      aria-label={`Zadzwoń pod numer demo ${DEMO.wyswietlany}`}
+    >
+      <span class="maszynowa hidden text-notatka xs:inline">numer demo</span>
+      <span
+        class="inline-block bg-sluchawka px-3 py-2 font-mono text-[0.9375rem] font-500 tracking-[0.02em] text-arkusz group-hover:bg-sluchawka-ciemna sm:px-4 sm:text-base"
+      >
+        {DEMO.wyswietlany}
+      </span>
+    </a>
+  </div>
+</header>

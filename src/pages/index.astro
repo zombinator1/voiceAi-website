@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Problem from '../components/Problem.astro';
+import DlaKogo from '../components/DlaKogo.astro';
+import JakToDziala from '../components/JakToDziala.astro';
+import Proof from '../components/Proof.astro';
+import Oferta from '../components/Oferta.astro';
+import BezRyzyka from '../components/BezRyzyka.astro';
+import Faq from '../components/Faq.astro';
+import KimJestem from '../components/KimJestem.astro';
+import CtaKoncowe from '../components/CtaKoncowe.astro';
+import { FIRMA } from '../config';
+---
+
+<Base
+  tytul={`${FIRMA.nazwa} — agent głosowy AI, który odbiera telefony w Twojej firmie`}
+  opis="Agent głosowy AI odbiera telefony, których nie możesz odebrać: odpowiada na pytania klientów, zbiera kontakt i wysyła podsumowanie rozmowy mailem. Zadzwoń pod numer demo i posłuchaj."
+>
+  <Hero />
+  <Problem />
+  <!-- <DlaKogo /> -->
+  <JakToDziala />
+  <!-- <Proof /> -->
+  <Oferta />
+  <BezRyzyka />
+  <Faq />
+  <KimJestem />
+  <CtaKoncowe />
+</Base>
