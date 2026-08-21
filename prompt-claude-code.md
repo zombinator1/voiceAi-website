@@ -60,7 +60,7 @@ Nazwa firmy + numer demo jako element klikalny (`tel:`), widoczny na każdej wys
 - Nagłówek uderzający w problem, nie w technologię. Nie zaczynaj od „Sztuczna inteligencja..." — zacznij od nieodebranego telefonu.
 - Podtytuł: jedno zdanie, co to jest.
 - **Numer demo: 123 456 789** z zaproszeniem: zadzwoń teraz i porozmawiaj z agentem. Podkreśl, że to nie nagranie ani wideo — to działający agent, który odbiera telefony tej firmy.
-- Formularz „Zostaw numer, oddzwonimy" — dwa pola (imię, telefon) + checkbox zgody RODO z linkiem do polityki prywatności.
+- Formularz „Zostaw numer, oddzwonię" — dwa pola (imię, telefon) + checkbox zgody RODO z linkiem do polityki prywatności.
 
 ### 3. Problem
 Nieodebrany telefon to utracony klient. Pokaż to konkretnie i policzalnie, w rachunku, który właściciel małej firmy zrobi sobie w głowie w trzy sekundy. Bez straszenia i bez pustych statystyk — nie wymyślaj żadnych danych ani badań, których nie mam.
@@ -69,8 +69,8 @@ Nieodebrany telefon to utracony klient. Pokaż to konkretnie i policzalnie, w ra
 Konkretne branże wymienione z nazwy: gabinety stomatologiczne i lekarskie, warsztaty samochodowe, kancelarie prawne, firmy instalacyjne, salony kosmetyczne i fryzjerskie, biura nieruchomości. Cel: żeby czytający rozpoznał siebie. Nie rób z tego siatki identycznych kafelków z ikonkami.
 
 ### 5. Jak to działa — 3 kroki
-1. **Rozmawiamy** — poznajemy firmę, pytania klientów, sposób obsługi telefonu
-2. **Budujemy agenta** — bazę wiedzy i scenariusz rozmowy pod konkretną firmę
+1. **Rozmawiam** — poznaję firmę, pytania klientów, sposób obsługi telefonu
+2. **Buduję agenta** — bazę wiedzy i scenariusz rozmowy pod konkretną firmę
 3. **Przekierowujesz numer** — bez zmiany operatora i bez wymiany centrali; przekierowanie cofniesz w każdej chwili
 
 Punkt 3 rozwiej wprost — największa obawa klienta to „będę musiał coś wymieniać w firmie".
