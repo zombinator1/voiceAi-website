@@ -26,7 +26,7 @@ const etykietaRozmowy = TRANSKRYPT.length > 0 ? 'Fragment rozmowy z dema' : 'Prz
       </p>
 
       <h1 class="mt-5 text-h1 max-w-[13ch] sm:mt-6">
-        Telefon dzwonił. Nikt nie odebrał. Klient zadzwonił do konkurencji.
+        Nikt nie odebrał. Klient zadzwonił do konkurencji.
       </h1>
 
       <p class="mt-6 max-w-[48ch] text-lead text-centrala-80">
@@ -43,16 +43,16 @@ const etykietaRozmowy = TRANSKRYPT.length > 0 ? 'Fragment rozmowy z dema' : 'Prz
       <div class="mt-8">
         <a
           href={`tel:${DEMO.tel}`}
-          class="group inline-flex min-h-14 w-full max-w-[31rem] items-center justify-between gap-4 bg-sluchawka px-5 py-3 text-arkusz shadow-[6px_6px_0_0_var(--color-centrala)] transition hover:-translate-y-0.5 hover:bg-sluchawka-ciemna hover:shadow-[8px_8px_0_0_var(--color-centrala)] focus-visible:-translate-y-0.5 sm:px-6"
+          class="group inline-flex min-h-14 w-full max-w-[31rem] flex-col items-start justify-center gap-1 bg-sluchawka px-5 py-3.5 text-arkusz shadow-[6px_6px_0_0_var(--color-centrala)] transition hover:-translate-y-0.5 hover:bg-sluchawka-ciemna hover:shadow-[8px_8px_0_0_var(--color-centrala)] focus-visible:-translate-y-0.5 sm:px-6"
           aria-label={`Zadzwoń do agenta demo pod numer ${DEMO.wyswietlany}`}
         >
-          <span class="maszynowa text-arkusz">zadzwoń do agenta</span>
+          <span class="maszynowa text-arkusz">Umów się poprzez mojego agenta</span>
           <span class="font-mono text-lg font-500 tracking-[0.03em] tabular-nums sm:text-xl">
             {DEMO.wyswietlany}
           </span>
         </a>
         <p class="mt-5 text-meta text-centrala-80">
-          Wolisz najpierw napisać? <a class="font-600 underline decoration-linia underline-offset-4 hover:decoration-centrala" href="#kontakt">Zostaw numer, oddzwonię osobiście.</a>
+          Wolisz najpierw napisać? <a class="font-600 text-centrala underline decoration-centrala/40 underline-offset-4 hover:decoration-centrala" href="#kontakt">Zostaw numer, oddzwonię osobiście.</a>
         </p>
       </div>
     </div>
@@ -66,16 +66,16 @@ const etykietaRozmowy = TRANSKRYPT.length > 0 ? 'Fragment rozmowy z dema' : 'Prz
 
       <div class="relative flex items-start justify-between gap-5 border-b border-arkusz/20 pb-5">
         <div>
-          <p class="maszynowa flex items-center gap-2 text-arkusz/55">
+          <!-- <p class="maszynowa flex items-center gap-2 text-arkusz/55">
             <span class="relative flex size-2" aria-hidden="true">
               <span class="absolute inline-flex size-full animate-ping rounded-full bg-sluchawka opacity-75 motion-reduce:hidden"></span>
               <span class="relative inline-flex size-2 rounded-full bg-sluchawka"></span>
             </span>
             agent gotowy
-          </p>
+          </p> -->
           <p class="mt-2 font-display text-h3 font-700 text-arkusz">Rozmowa, która nie czeka.</p>
         </div>
-        <span class="maszynowa shrink-0 border border-arkusz/20 px-2 py-1 text-arkusz/55">demo 24/7</span>
+        <!-- <span class="maszynowa shrink-0 border border-arkusz/20 px-2 py-1 text-arkusz/55">demo 24/7</span> -->
       </div>
 
       <div class="relative mt-6 rounded-sm border border-arkusz/20 bg-arkusz/5 p-4 sm:p-5">
@@ -121,21 +121,7 @@ const etykietaRozmowy = TRANSKRYPT.length > 0 ? 'Fragment rozmowy z dema' : 'Prz
         </div>
       </div>
 
-      <a
-        href={`tel:${DEMO.tel}`}
-        class="relative mt-6 flex min-h-14 items-center justify-between gap-4 border border-sluchawka bg-sluchawka px-4 py-3 text-arkusz transition hover:bg-sluchawka-ciemna focus-visible:bg-sluchawka-ciemna sm:px-5"
-        aria-label={`Sprawdź agenta demo pod numerem ${DEMO.wyswietlany}`}
-      >
-        <span>
-          <span class="maszynowa block text-arkusz/75">sprawdź go sam</span>
-          <span class="mt-1 block text-meta">Zadaj pytanie, które zadałby Twój klient.</span>
-        </span>
-        <span class="font-mono text-lg font-500 tracking-[0.03em] tabular-nums">{DEMO.wyswietlany}</span>
-      </a>
 
-      <p class="relative mt-4 text-meta text-arkusz/55">
-        Agent od początku informuje rozmówcę, że jest asystentem AI.
-      </p>
     </aside>
   </div>
 </section>
