@@ -1,0 +1,75 @@
+---
+import Sekcja from './Sekcja.astro';
+---
+
+<Sekcja
+  numer="02"
+  id="co-sie-zmienia"
+  ciemna
+  tytul="Każdy telefon dostaje kolejny krok."
+>
+  <div class="max-w-[58ch] text-arkusz/80">
+    <p class="text-lead">
+      Klient nie zostaje z sygnałem. Ty nie przerywasz pracy. Po rozmowie obie strony
+      wiedzą, co dalej.
+    </p>
+  </div>
+
+  <figure class="mt-10 lg:mt-14" aria-labelledby="diagram-tytul">
+    <figcaption id="diagram-tytul" class="maszynowa text-arkusz/50">
+      Przykładowy przebieg jednego połączenia
+    </figcaption>
+
+    <div class="mt-5 grid gap-4 lg:grid-cols-[minmax(0,0.8fr)_3.5rem_minmax(0,1fr)_3.5rem_minmax(0,0.8fr)] lg:items-center lg:gap-0">
+      <article class="border border-arkusz/25 bg-arkusz/5 p-5 sm:p-6">
+        <p class="maszynowa text-arkusz/50">01 / klient</p>
+        <h3 class="mt-3 text-h3 text-arkusz">Dzwoni wtedy, gdy tego potrzebuje.</h3>
+        <p class="mt-4 text-arkusz/70">
+          Wieczorem, w sobotę albo wtedy, gdy Twój numer jest zajęty.
+        </p>
+      </article>
+
+      <div class="flex h-9 items-center justify-center lg:h-auto lg:rotate-0" aria-hidden="true">
+        <span class="h-full w-px bg-arkusz/35 lg:h-px lg:w-full"></span>
+        <span class="-ml-[5px] mt-7 size-2.5 rotate-45 border-r border-t border-arkusz/60 lg:-ml-2.5 lg:mt-0"></span>
+      </div>
+
+      <article class="relative overflow-hidden border border-sluchawka bg-sluchawka p-5 text-arkusz shadow-[6px_6px_0_0_rgba(241,242,240,0.16)] sm:p-6">
+        <div aria-hidden="true" class="absolute -right-10 -top-10 size-36 rounded-full border border-arkusz/20"></div>
+        <p class="relative maszynowa text-arkusz/70">02 / agent głosowy</p>
+        <h3 class="relative mt-3 text-h3 text-arkusz">Odbiera, pyta i porządkuje sprawę.</h3>
+        <ul class="relative mt-4 space-y-2 text-meta text-arkusz/85">
+          <li class="flex gap-2"><span aria-hidden="true">—</span><span>odpowiada na powtarzalne pytania</span></li>
+          <li class="flex gap-2"><span aria-hidden="true">—</span><span>zbiera imię, kontakt i szczegóły</span></li>
+          <li class="flex gap-2"><span aria-hidden="true">—</span><span>ustala następny krok zgodnie z Twoimi zasadami</span></li>
+        </ul>
+      </article>
+
+      <div class="flex h-9 items-center justify-center lg:h-auto" aria-hidden="true">
+        <span class="h-full w-px bg-arkusz/35 lg:h-px lg:w-full"></span>
+        <span class="-ml-[5px] mt-7 size-2.5 rotate-45 border-r border-t border-arkusz/60 lg:-ml-2.5 lg:mt-0"></span>
+      </div>
+
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+        <article class="border border-arkusz/25 p-5 sm:p-6">
+          <p class="maszynowa text-arkusz/50">03a / klient</p>
+          <h3 class="mt-3 text-h3 text-arkusz">Wie, co wydarzy się dalej.</h3>
+          <p class="mt-3 text-arkusz/70">Nie musi szukać drugiej firmy ani dzwonić ponownie po odpowiedź.</p>
+        </article>
+
+        <article class="border border-arkusz/25 bg-arkusz text-centrala p-5 sm:p-6">
+          <p class="maszynowa text-notatka">03b / ty</p>
+          <h3 class="mt-3 text-h3">Dostajesz gotowe zgłoszenie.</h3>
+          <p class="mt-3 text-centrala-80">Kto dzwonił, w jakiej sprawie i czego od Ciebie potrzebuje.</p>
+        </article>
+      </div>
+    </div>
+
+    <div class="mt-8 border-l-2 border-sluchawka pl-5 sm:mt-10 sm:pl-6">
+      <p class="max-w-[62ch] font-display text-h3 font-600 text-arkusz">
+        Zamiast oddzwaniać po omacku, wchodzisz w rozmowę z pełnym kontekstem — albo
+        nie musisz dzwonić wcale.
+      </p>
+    </div>
+  </figure>
+</Sekcja>
