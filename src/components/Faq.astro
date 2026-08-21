@@ -4,6 +4,12 @@ import { DEMO } from '../config';
 
 const pytania = [
   {
+    p: 'Błedy?',
+    o: [
+      'Zdarzają sie błędy z niedokładnym transkryptem rozmowy, np. zamiast "Śrem" zanotuje "7".',
+    ],
+  },
+  {
     p: 'Czy dzwoniący pozna, że to nie człowiek?',
     o: [
       'Tak — i ma poznać. Agent na początku rozmowy przedstawia się jako asystent. Mówi płynną polszczyzną i brzmi naturalnie, ale nie udaje człowieka.',
@@ -25,45 +31,32 @@ const pytania = [
   {
     p: 'Jak długo trwa wdrożenie?',
     o: [
-      'Zwykle tydzień: rozmowa o firmie, budowa bazy wiedzy i scenariusza, Twoje testy, poprawki, przekierowanie numeru. Jeśli materiału do przerobienia jest dużo, powiemy o tym przed startem, a nie w trakcie.',
+      'Do dwóch tygodni, przez następny miesiąc obserwuje jak się sprawdza i udoskonalam. Później dbam o prawidłowe działanie i aktualizacje bazy wiedzy na Twoją prośbę.',
     ],
   },
   {
     p: 'Czy agent umie umawiać wizyty?',
     o: [
-      'W wersji podstawowej zbiera zgłoszenie i przekazuje je Wam: kto dzwonił, w jakiej sprawie, kiedy mu pasuje. Wpisanie wizyty robi człowiek.',
-      'Wpięcie w kalendarz albo CRM, tak żeby termin wpadał do systemu sam, mieści się w wycenie indywidualnej.',
+      'Tak.',
     ],
   },
   {
     p: 'Co z RODO i nagrywaniem rozmów?',
     o: [
-      'Przed uruchomieniem podpisujemy umowę powierzenia przetwarzania danych. Dzwoniący jest informowany, że rozmawia z asystentem i że rozmowa jest przetwarzana.',
-      'Zakres nagrywania i czas przechowywania ustalamy z Tobą i zapisujemy w umowie. To Ty decydujesz, ile z tego zostaje.',
+      'Agent po odebraniu telefonu wypełnia obowiązek informacyjny związany z RODO i z AI Act. Przed uruchomieniem podpisujemy umowę powierzenia przetwarzania danych osobowych.',
+      'Konsultowałem to z kancelarią Creativ Legal.'
     ],
   },
   {
     p: 'Czy mogę zrezygnować?',
     o: [
-      'Tak. Przez pierwsze 30 dni z pełnym zwrotem pieniędzy, bez pytania o powód. Umowne minimum to trzy miesiące, potem wypowiadasz w dowolnym momencie i bez kar.',
+      'Tak. Umowę możesz wypowiedzieć w trybie natychmiastowym.',
     ],
-  },
-  {
-    p: 'Czy agent mówi po polsku naturalnie?',
-    o: [
-      `Zadzwoń pod ${DEMO.wyswietlany} i oceń sam. To jedyna odpowiedź na to pytanie, która cokolwiek znaczy — opis brzmienia głosu napisany na stronie internetowej nie jest dowodem.`,
-    ],
-  },
-  {
-    p: 'Co jeśli dzwoniący chce rozmawiać z człowiekiem?',
-    o: [
-      'Mówi o tym i agent kończy swoją część: zbiera dane i zaznacza w podsumowaniu, że ktoś czeka na kontakt. Jeśli macie numer, na który da się przełączyć w godzinach pracy, konfigurujemy przełączenie.',
-    ],
-  },
+  }
 ];
 ---
 
-<Sekcja numer="07" id="faq" tytul="Pytania, które padają najczęściej">
+<Sekcja numer="07" id="faq" tytul="FAQ">
   <div class="max-w-[64ch]">
     {
       pytania.map((q) => (

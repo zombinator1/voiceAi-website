@@ -1,6 +1,27 @@
 ---
 import Sekcja from './Sekcja.astro';
 
+/* Struktura tej sekcji idzie za slajdem 2 prezentacji:
+   trzy sytuacje, w których telefon przegrywa, potem łańcuch następstw. */
+const sytuacje = [
+  {
+    gdy: 'Zespół jest przy kliencie',
+    skutek: 'Telefon konkuruje z realizacją usługi — i przegrywa z nią za każdym razem.',
+  },
+  {
+    gdy: 'Firma jest poza godzinami pracy',
+    skutek: 'Dzwoniący nie dostaje kolejnego kroku. Dostaje sygnał zajętości i wolny wieczór na znalezienie kogoś innego.',
+  },
+  {
+    gdy: 'Brakuje kompletnego kontekstu',
+    skutek: 'Oddzwonienie zaczyna się od pytań od zera, więc kosztuje drugie tyle czasu.',
+  },
+    {
+    gdy: 'Twój numer jest zajęty',
+    skutek: 'Akurat rozmawiasz, połączenie jest odrzucone zamiast przekierowane.',
+  },
+];
+
 const wiersze = [
   { znak: '', etykieta: 'nieodebrane telefony w tygodniu' },
   { znak: '×', etykieta: 'ilu z nich naprawdę chciało coś zamówić' },
@@ -8,24 +29,33 @@ const wiersze = [
 ];
 ---
 
-<Sekcja numer="01" id="problem" tytul="Nieodebrany telefon nie zostawia śladu">
-  <div class="max-w-[60ch] space-y-5">
-    <p>
-      Zgubione zlecenie nie przychodzi z powiadomieniem. Nie ma go w kalendarzu,
-      nie ma go na wyciągu z konta. Jedyny ślad to numer w wykazie połączeń, do
-      którego nikt nie oddzwonił — a po drugiej stronie ktoś już wybrał kolejną
-      firmę z listy.
-    </p>
-    <p>
-      Telefon dzwoni najczęściej dokładnie wtedy, kiedy nie możesz go odebrać:
-      bo pracujesz. Recepcjonistka na etacie rozwiązuje ten problem za pieniądze,
-      których mała firma zwykle nie ma.
-    </p>
-    <p class="font-500">Policz to sobie raz, na kartce.</p>
-  </div>
+<Sekcja numer="01" id="problem" tytul="Wartościowe połączenia wpadają w złym momencie">
+
+  {/* trzy sytuacje — czytane jak reguły przekierowania: warunek → skutek */}
+  <dl class="mt-8 max-w-[68ch] sm:mt-10">
+    {
+      sytuacje.map((s) => (
+        <div class="grid gap-x-6 gap-y-1.5 border-t border-linia py-5 sm:grid-cols-[minmax(0,17rem)_minmax(0,1fr)] sm:py-6">
+          <dt class="font-display text-[1.0625rem] font-600 leading-snug tracking-[-0.01em]">
+            {s.gdy}
+          </dt>
+          <dd class="flex gap-2.5 text-centrala-80">
+            <span class="font-mono text-nieodebrane" aria-hidden="true">
+              →
+            </span>
+            <span>{s.skutek}</span>
+          </dd>
+        </div>
+      ))
+    }
+  </dl>
+
+  <h1 class="mt-10 max-w-[60ch] font-500 sm:mt-12">
+    Ile tracisz?
+  </h1>
 
   {/* Rachunek bez ani jednej liczby ode mnie — wpisujesz swoje. */}
-  <div class="mt-8 max-w-lg border border-linia bg-arkusz-glebszy p-5 sm:mt-10 sm:p-7">
+  <div class="mt-6 max-w-lg border border-linia bg-arkusz-glebszy p-5 sm:p-7">
     <dl class="space-y-4">
       {
         wiersze.map((w) => (
@@ -42,7 +72,7 @@ const wiersze = [
 
     <div class="mt-5 border-t border-centrala/25 pt-5">
       <div class="flex items-baseline gap-3">
-        <p class="flex flex-1 items-baseline gap-2.5 text-[0.9375rem] font-500 leading-snug text-nieodebrane">
+        <p class="flex flex-1 items-baseline gap-2.5 text-[0.9375rem] leading-snug font-500 text-nieodebrane">
           <span class="w-3 shrink-0 font-mono">=</span>
           <span>tyle kosztuje Cię cisza w słuchawce — co tydzień</span>
         </p>
@@ -50,9 +80,4 @@ const wiersze = [
       </div>
     </div>
   </div>
-
-  <p class="mt-8 max-w-[60ch]">
-    Jeśli wynik Cię zaskoczył, to nie jest problem cennika ani reklamy. To problem
-    odbierania telefonu — i akurat ten da się rozwiązać w tydzień.
-  </p>
 </Sekcja>

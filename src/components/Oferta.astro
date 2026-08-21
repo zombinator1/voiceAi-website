@@ -1,19 +1,22 @@
 ---
-import Sekcja from './Sekcja.astro';
+import Sekcja from "./Sekcja.astro";
 
 const standard = [
-  ['opłata wdrożeniowa', 'brak'],
-  ['w abonamencie', '300 minut rozmów — około 100 telefonów'],
-  ['powyżej limitu', '1,50 zł za minutę'],
-  ['po każdej rozmowie', 'podsumowanie na Twoją skrzynkę'],
-  ['baza wiedzy', 'aktualizowana, kiedy zmienią się ceny albo godziny'],
+  ["opłata wdrożeniowa", "brak"],
+  ["w abonamencie", "300 minut rozmów — około 100 telefonów"],
+  ["powyżej limitu", "1,50 zł za minutę"],
+  ["po każdej rozmowie", "podsumowanie na Twoją skrzynkę, klient dostaje SMS"],
+  ["baza wiedzy", "aktualizowana, kiedy zmienią się ceny albo godziny"],
 ];
 
 const indywidualna = [
-  ['dla kogo', 'większy ruch, kilka numerów, integracja z CRM albo kalendarzem'],
-  ['zakres', 'ustalany pod firmę'],
-  ['czas reakcji', 'ustalany w umowie'],
-  ['cena', 'po rozmowie o tym, co ma robić agent'],
+  [
+    "dla kogo",
+    "większy ruch, kilka numerów, integracja z CRM albo kalendarzem",
+  ],
+  ["zakres", "ustalany pod firmę"],
+  ["czas reakcji", "ustalany w umowie"],
+  ["cena", "po rozmowie o tym, co ma robić agent"],
 ];
 ---
 
@@ -22,9 +25,10 @@ const indywidualna = [
   <div class="border-l-4 border-sluchawka bg-arkusz-glebszy p-5 sm:p-6">
     <p class="maszynowa text-sluchawka">Program pilotażowy — 5 miejsc</p>
     <p class="mt-3 max-w-[62ch] text-centrala-80">
-      Startuję i szukam pierwszych klientów. W zamian za warunki poniżej proszę o
-      dwie rzeczy: szczerą opinię — także tę niewygodną — i zgodę na opisanie
-      efektów, kiedy już będą. Po piątym wdrożeniu warunki się zmienią.
+      Startuję i szukam pierwszych klientów. W zamian za warunki poniżej proszę
+      o dwie rzeczy: szczerą opinię — także tę niewygodną — i zgodę na opisanie
+      efektów, kiedy już będą. Po piątym wdrożeniu warunki dla kolejnych
+      klientów się zmienią.
     </p>
   </div>
 
@@ -37,8 +41,10 @@ const indywidualna = [
 
       <div class="px-5 py-6 sm:px-7">
         <p class="flex flex-wrap items-baseline gap-x-2.5">
-          <span class="font-display text-[2.75rem] font-700 leading-none tracking-[-0.02em] tabular-nums sm:text-[3.25rem]">
-            500 zł
+          <span
+            class="font-display text-[2.75rem] font-700 leading-none tracking-[-0.02em] tabular-nums sm:text-[3.25rem]"
+          >
+            490 zł
           </span>
           <span class="text-centrala-80">/ miesiąc</span>
         </p>
@@ -72,7 +78,9 @@ const indywidualna = [
       </div>
 
       <div class="px-5 py-6 sm:px-7">
-        <p class="font-display text-[2rem] font-700 leading-none tracking-[-0.02em] text-centrala-80 sm:text-[2.25rem]">
+        <p
+          class="font-display text-[2rem] font-700 leading-none tracking-[-0.02em] text-centrala-80 sm:text-[2.25rem]"
+        >
           Zależy, co ma robić
         </p>
 
