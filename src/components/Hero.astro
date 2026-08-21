@@ -1,32 +1,141 @@
 ---
-import RejestrPolaczen from './RejestrPolaczen.astro';
-import LeadForm from './LeadForm.astro';
+import { DEMO, TRANSKRYPT } from '../config';
+
+const przykladowyPrzebieg = [
+  { mowca: 'dzwoniący', tekst: 'Dzień dobry, chciałbym zgłosić pilną sprawę.' },
+  { mowca: 'agent', tekst: 'Oczywiście. Zbiorę szczegóły i przekażę je właściwej osobie.' },
+  { mowca: 'agent', tekst: 'Na koniec wyślę podsumowanie, żeby nic nie umknęło.' },
+] as const;
+
+const przebiegRozmowy = TRANSKRYPT.length > 0 ? TRANSKRYPT.slice(0, 3) : przykladowyPrzebieg;
+const etykietaRozmowy = TRANSKRYPT.length > 0 ? 'Fragment rozmowy z dema' : 'Przykładowy przebieg rozmowy';
 ---
 
-<section class="border-b border-linia pt-10 pb-12 sm:pt-16 sm:pb-20">
-  <div class="arkusz-kolumna">
-    <h1 class="text-h1 max-w-[16ch]">
-      Telefon dzwonił. Nikt nie odebrał. Klient zadzwonił do konkurencji.
-    </h1>
+<section class="relative overflow-hidden border-b border-linia bg-arkusz">
+  <div aria-hidden="true" class="pointer-events-none absolute inset-0 opacity-45">
+    <div class="absolute inset-x-0 top-0 h-px bg-linia"></div>
+    <div class="absolute -right-40 top-[-12rem] size-[34rem] rounded-full border border-linia"></div>
+    <div class="absolute -right-20 top-[-4rem] size-[20rem] rounded-full border border-linia"></div>
+  </div>
 
-    <p class="mt-5 max-w-[52ch] text-lead text-centrala-80 sm:mt-6">
-      Buduję agentów głosowych AI, którzy odbierają telefon w Twojej firmie —
-      o 21:00, w sobotę, w środku zlcenia, gdy Twój numer jest zajęty.
-    </p>
+  <div class="arkusz-kolumna relative grid gap-10 py-12 sm:gap-14 sm:py-20 lg:grid-cols-[minmax(0,0.88fr)_minmax(30rem,1.12fr)] lg:items-center lg:gap-16 lg:py-24">
+    <div class="max-w-[39rem]">
+      <p class="maszynowa flex items-center gap-3 text-notatka">
+        <span class="inline-block size-2 bg-nieodebrane"></span>
+        01 — telefon bez odpowiedzi to utracony klient
+      </p>
 
-    <div class="mt-10 grid gap-8 sm:mt-14 lg:grid-cols-2 lg:gap-14">
-      <div>
-        <RejestrPolaczen />
+      <h1 class="mt-5 text-h1 max-w-[13ch] sm:mt-6">
+        Telefon dzwonił. Nikt nie odebrał. Klient zadzwonił do konkurencji.
+      </h1>
+
+      <p class="mt-6 max-w-[48ch] text-lead text-centrala-80">
+        Agent odbiera połączenia, zbiera zgłoszenie i wysyła Ci gotowe podsumowanie —
+        także wtedy, gdy jesteś u klienta, po godzinach albo masz zajętą linię.
+      </p>
+
+      <div class="mt-8 border-y border-linia py-4 sm:mt-10">
+        <p class="maszynowa text-notatka">
+          Bez zmiany numeru <span class="mx-2 text-linia">/</span> uruchomienie do 2 tygodni
+        </p>
       </div>
 
-      <div class="lg:pt-1">
-        <LeadForm
-          idPrefix="hero"
-          zrodlo="hero"
-          tytul="Wolisz, żebym zadzwonił?"
-          opis="Zostaw imię i numer. Oddzwonię w godzinach pracy — bez skryptu sprzedażowego."
-        />
+      <div class="mt-8">
+        <a
+          href={`tel:${DEMO.tel}`}
+          class="group inline-flex min-h-14 w-full max-w-[31rem] items-center justify-between gap-4 bg-sluchawka px-5 py-3 text-arkusz shadow-[6px_6px_0_0_var(--color-centrala)] transition hover:-translate-y-0.5 hover:bg-sluchawka-ciemna hover:shadow-[8px_8px_0_0_var(--color-centrala)] focus-visible:-translate-y-0.5 sm:px-6"
+          aria-label={`Zadzwoń do agenta demo pod numer ${DEMO.wyswietlany}`}
+        >
+          <span class="maszynowa text-arkusz">zadzwoń do agenta</span>
+          <span class="font-mono text-lg font-500 tracking-[0.03em] tabular-nums sm:text-xl">
+            {DEMO.wyswietlany}
+          </span>
+        </a>
+        <p class="mt-5 text-meta text-centrala-80">
+          Wolisz najpierw napisać? <a class="font-600 underline decoration-linia underline-offset-4 hover:decoration-centrala" href="#kontakt">Zostaw numer, oddzwonię osobiście.</a>
+        </p>
       </div>
     </div>
+
+    <aside
+      class="relative overflow-hidden border border-centrala bg-centrala p-4 text-arkusz shadow-[10px_10px_0_0_var(--color-linia)] sm:p-6 lg:p-7"
+      aria-label="Demonstracja działania agenta głosowego"
+    >
+      <div aria-hidden="true" class="pointer-events-none absolute -right-20 -top-20 size-64 rounded-full border border-arkusz/10"></div>
+      <div aria-hidden="true" class="pointer-events-none absolute -bottom-28 -left-24 size-72 rounded-full border border-arkusz/10"></div>
+
+      <div class="relative flex items-start justify-between gap-5 border-b border-arkusz/20 pb-5">
+        <div>
+          <p class="maszynowa flex items-center gap-2 text-arkusz/55">
+            <span class="relative flex size-2" aria-hidden="true">
+              <span class="absolute inline-flex size-full animate-ping rounded-full bg-sluchawka opacity-75 motion-reduce:hidden"></span>
+              <span class="relative inline-flex size-2 rounded-full bg-sluchawka"></span>
+            </span>
+            agent gotowy
+          </p>
+          <p class="mt-2 font-display text-h3 font-700 text-arkusz">Rozmowa, która nie czeka.</p>
+        </div>
+        <span class="maszynowa shrink-0 border border-arkusz/20 px-2 py-1 text-arkusz/55">demo 24/7</span>
+      </div>
+
+      <div class="relative mt-6 rounded-sm border border-arkusz/20 bg-arkusz/5 p-4 sm:p-5">
+        <div class="flex items-center justify-between gap-4">
+          <p class="maszynowa text-arkusz/55">{etykietaRozmowy}</p>
+          <span class="font-mono text-meta tabular-nums text-arkusz/55">00:47</span>
+        </div>
+
+        <dl class="mt-6 space-y-4">
+          {
+            przebiegRozmowy.map((linia, index) => (
+              <div
+                class:list={[
+                  'max-w-[92%] border p-3.5 font-mono text-[0.8125rem] leading-relaxed sm:text-sm',
+                  linia.mowca === 'agent'
+                    ? 'border-arkusz/20 bg-arkusz/10 text-arkusz'
+                    : 'ml-auto border-sluchawka/65 bg-sluchawka/15 text-arkusz/90',
+                  index === 1 && 'sm:translate-x-3',
+                ]}
+              >
+                <dt class="maszynowa mb-1.5 text-[0.625rem] text-arkusz/50">
+                  {linia.mowca === 'agent' ? 'asystent AI' : 'dzwoniący'}
+                </dt>
+                <dd>{linia.tekst}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+
+      <div class="relative mt-5 grid gap-3 border-t border-arkusz/20 pt-5 sm:grid-cols-3">
+        <div>
+          <p class="maszynowa text-arkusz/45">01</p>
+          <p class="mt-1 text-meta text-arkusz/85">odbiera i przedstawia się</p>
+        </div>
+        <div>
+          <p class="maszynowa text-arkusz/45">02</p>
+          <p class="mt-1 text-meta text-arkusz/85">zbiera sprawę i kontakt</p>
+        </div>
+        <div>
+          <p class="maszynowa text-arkusz/45">03</p>
+          <p class="mt-1 text-meta text-arkusz/85">wysyła podsumowanie</p>
+        </div>
+      </div>
+
+      <a
+        href={`tel:${DEMO.tel}`}
+        class="relative mt-6 flex min-h-14 items-center justify-between gap-4 border border-sluchawka bg-sluchawka px-4 py-3 text-arkusz transition hover:bg-sluchawka-ciemna focus-visible:bg-sluchawka-ciemna sm:px-5"
+        aria-label={`Sprawdź agenta demo pod numerem ${DEMO.wyswietlany}`}
+      >
+        <span>
+          <span class="maszynowa block text-arkusz/75">sprawdź go sam</span>
+          <span class="mt-1 block text-meta">Zadaj pytanie, które zadałby Twój klient.</span>
+        </span>
+        <span class="font-mono text-lg font-500 tracking-[0.03em] tabular-nums">{DEMO.wyswietlany}</span>
+      </a>
+
+      <p class="relative mt-4 text-meta text-arkusz/55">
+        Agent od początku informuje rozmówcę, że jest asystentem AI.
+      </p>
+    </aside>
   </div>
 </section>
