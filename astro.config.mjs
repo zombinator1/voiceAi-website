@@ -7,6 +7,10 @@ export default defineConfig({
   site: 'https://example.netlify.app',
   vite: {
     plugins: [tailwindcss()],
+    server: {
+      /* Tunele ngrok — bez tego Vite odrzuca żądania z obcego hosta. */
+      allowedHosts: ['.ngrok-free.app', '.ngrok.app', '.ngrok.io'],
+    },
   },
   fonts: [
     {
