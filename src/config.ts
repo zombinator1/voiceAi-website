@@ -9,21 +9,21 @@ export const FIRMA = {
   email: 'bartek@zabekdigital.pl',
 } as const;
 
-/**
- * Numer, pod którym odbiera agent. Jedyna wartość do podmiany —
- * wersja dla `href="tel:"` liczy się z niej sama.
- */
+/** Numer zapisany „po ludzku” → E.164 do atrybutu `href="tel:"`. */
+const doHref = (numer: string) => `+48${numer.replace(/\D/g, '')}`;
+
+/** Numer, pod którym odbiera agent. Wszystkie CTA na stronie. */
 export const telefonAi = '123 456 789';
+export const telefonAiHref = doHref(telefonAi);
+
+/** Numer prywatny — kontakt bezpośredni w stopce. Nie trafia do CTA agenta. */
 export const myPhone = '698 358 122';
-
-
-/** Ten sam numer w E.164. Wyłącznie do atrybutu `href="tel:"`. */
-export const telefonAiHref = `+48${telefonAi.replace(/\D/g, '')}`;
+export const myPhoneHref = doHref(myPhone);
 
 /** Właściciel — sekcja „Kim jestem”. */
 export const WLASCICIEL = {
   imie: '{{IMIE_I_NAZWISKO}}',
-  rola: '{{ROLA — np. założyciel}}',
+  rola: 'Założyciel',
   /** Ścieżka do zdjęcia w /public. Puste = widoczny placeholder na zdjęcie. */
   zdjecie: '',
   bio: '{{BIO — 2–3 zdania. Kim jesteś, skąd się tu wziąłeś, dlaczego akurat telefony.}}',

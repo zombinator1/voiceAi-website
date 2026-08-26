@@ -1,5 +1,5 @@
 ---
-import { telefonAi, telefonAiHref, FIRMA } from '../config';
+import { myPhone, myPhoneHref, FIRMA } from '../config';
 const rok = new Date().getFullYear();
 ---
 
@@ -10,23 +10,23 @@ const rok = new Date().getFullYear();
         <p class="font-display text-[1.0625rem] font-700 tracking-[-0.01em]">
           {FIRMA.nazwa}
         </p>
-        <dl class="mt-2">
-          <div class="flex gap-3">
-            <dt class="maszynowa w-16 shrink-0 pt-0.5 text-notatka">e-mail</dt>
-            <dd class="font-mono text-[0.875rem]">
-              <a class="inline-flex min-h-11 items-center underline underline-offset-2 hover:text-sluchawka" href={`mailto:${FIRMA.email}`}>
-                {FIRMA.email}
-              </a>
-            </dd>
-          </div>
-          <div class="flex gap-3">
-            <dt class="maszynowa w-16 shrink-0 pt-0.5 text-notatka">telefon</dt>
-            <dd class="font-mono text-[0.875rem] tabular-nums">
-              <a class="inline-flex min-h-11 items-center underline underline-offset-2 hover:text-sluchawka" href={`tel:${telefonAiHref}`}>
-                {telefonAi}
-              </a>
-            </dd>
-          </div>
+        <!-- Kolumna etykiet dopasowuje się do najdłuższej z nich (`auto`),
+             więc wartości startują równo bez zgadywania szerokości.
+             Poniżej `xs` etykieta ląduje nad wartością — „telefon osobisty"
+             i adres e-mail nie mieszczą się obok siebie na wąskim telefonie. -->
+        <dl class="mt-2 grid gap-x-3 xs:grid-cols-[auto_1fr] xs:items-center">
+          <dt class="maszynowa text-notatka xs:whitespace-nowrap">e-mail</dt>
+          <dd class="font-mono text-[0.875rem]">
+            <a class="inline-flex min-h-11 items-center underline underline-offset-2 hover:text-sluchawka" href={`mailto:${FIRMA.email}`}>
+              {FIRMA.email}
+            </a>
+          </dd>
+          <dt class="maszynowa text-notatka xs:whitespace-nowrap">telefon osobisty</dt>
+          <dd class="font-mono text-[0.875rem] tabular-nums">
+            <a class="inline-flex min-h-11 items-center underline underline-offset-2 hover:text-sluchawka" href={`tel:${myPhoneHref}`}>
+              {myPhone}
+            </a>
+          </dd>
         </dl>
       </div>
 
