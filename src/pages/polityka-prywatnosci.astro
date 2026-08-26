@@ -22,20 +22,227 @@ import { FIRMA } from '../config';
 
         <p class="maszynowa mt-4 text-notatka">{FIRMA.nazwa} · NIP {FIRMA.nip}</p>
 
-        {/* Treść dostarcza prawnik — layout i typografia czekają gotowe. */}
+        {/* Treść z dokumentu od prawnika (docx w src/assets), przeniesiona
+            1:1 do semantycznego HTML. Wyróżnienia niosą znaczniki, nie klasy. */}
         <div class="tresc-polityki mt-10 border-t border-linia pt-10">
-          <div class="border border-dashed border-notatka bg-arkusz-glebszy p-6 sm:p-8">
-            <p class="font-mono text-[0.9375rem] leading-relaxed text-centrala-80">
-              {'{{TREŚĆ POLITYKI PRYWATNOŚCI — DO UZUPEŁNIENIA PRZEZ PRAWNIKA}}'}
-            </p>
-            <p class="mt-4 text-meta text-notatka">
-              Wklej treść w miejsce tego bloku, wewnątrz kontenera{' '}
-              <code class="font-mono">.tresc-polityki</code>. Nagłówki{' '}
-              <code class="font-mono">h2</code>/<code class="font-mono">h3</code>,
-              akapity, listy i linki są już ostylowane pod resztę strony — nie
-              trzeba dodawać klas.
-            </p>
-          </div>
+          <p>Niniejsza Polityka prywatności (dalej: „<strong>Polityka</strong>”) zawiera informacje na temat przetwarzania Twoich danych osobowych w związku z korzystaniem z serwisu internetowego „zabekdigital”, działającego pod adresem internetowym zabekdigital.pl (dalej: „<strong>Serwis</strong>”). </p>
+          <h2>Administrator danych osobowych</h2>
+          <p>Administratorem Twoich danych osobowych jest Bartłomiej Ząbek, prowadzący działalności gospodarczą pod firmą ZDigital Bartłomiej Ząbek (adres stałego miejsca wykonywania działalności: ul. Redutowa 50/132, 01-131 Warszawa), wpisany do Centralnej Ewidencji Informacji o Działalności Gospodarczej prowadzonej przez ministra właściwego ds. gospodarki, posiadający numerem REGON: 545446432, NIP: 5273231824 (dalej: „<strong>Administrator</strong>”).</p>
+          <h2>Kontakt z Administratorem</h2>
+          <p>We wszystkich sprawach związanych z przetwarzaniem danych osobowych możesz kontaktować się z Administratorem za pomocą poczty elektronicznej – pod adresem: {FIRMA.email}.</p>
+          <h2>Środki ochrony danych osobowych</h2>
+          <p>Administrator stosuje nowoczesne zabezpieczenia organizacyjne i techniczne, aby zapewnić jak najlepszą ochronę Twoich danych osobowych oraz gwarantuje, że przetwarza je zgodnie z przepisami Rozporządzenia Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (ogólne rozporządzenie o ochronie danych) (dalej: „<strong>RODO</strong>”), ustawy z dnia 10 maja 2018 r. o ochronie danych osobowych oraz innymi przepisami o ochronie danych osobowych.</p>
+          <h2>Informacje o przetwarzanych danych osobowych</h2>
+          <p>Korzystanie z Serwisu wymaga przetwarzania Twoich danych osobowych. Poniżej znajdziesz szczegółowe informacje o celach i podstawach prawnych przetwarzania, a także o okresie przetwarzania oraz obowiązku lub dobrowolności ich podania.</p>
+          <div class="tabela-przewijana">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Cel przetwarzania</th>
+                  <th scope="col">Przetwarzane dane osobowe</th>
+                  <th scope="col">Podstawa prawna</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Obsługa zapytań składanych przez użytkowników strony internetowej (w tym zapytań składanych drogą mailową lub przez udostępnione formularze kontaktowe)</td>
+                  <td>
+                    <p>imię i nazwisko</p>
+                    <p>adres poczty elektronicznej</p>
+                    <p>inne dane zawarte w wiadomości do Administratora</p>
+                  </td>
+                  <td>
+                    <p>art. 6 ust. 1 lit. f RODO</p>
+                    <p>(przetwarzanie jest niezbędne w celu realizacji prawnie uzasadnionego interesu Administratora, w tym przypadku udzielenia odpowiedzi na otrzymane zapytanie)</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="3">
+                    <p>Podanie ww. danych osobowych jest dobrowolne, ale niezbędne w celu otrzymania odpowiedzi na zapytanie (konsekwencją ich niepodania będzie niemożność otrzymania odpowiedzi).</p>
+                    <p>Administrator będzie przetwarzał ww. dane osobowe do czasu skutecznego wniesienia sprzeciwu lub osiągnięcia celu przetwarzania (w zależności od tego, które z wymienionych zdarzeń nastąpi wcześniej).</p>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="col">Cel przetwarzania</th>
+                  <th scope="col">Przetwarzane dane osobowe</th>
+                  <th scope="col">Podstawa prawna</th>
+                </tr>
+                <tr>
+                  <td>Umożliwienie rozmówcy przeprowadzenia rozmowy głosowej z voicebotem oraz transkrypcja i nagrywanie rozmowy z voicebotem</td>
+                  <td>
+                    <p>numer telefonu i dane techniczne połączenia (data i godzina, czas trwania) </p>
+                    <p>głos oraz treść wypowiedzi przekazywanych w rozmowie </p>
+                    <p>imię i nazwisko lub inne dane identyfikacyjne - jeżeli zostaną podane </p>
+                    <p>dane kontaktowe oraz informacje dotyczące sprawy, w której osoba dzwoni - jeżeli zostaną podane </p>
+                    <p>transkrypcja rozmowy;</p>
+                    <p>inne dane przekazane w trakcie rozmowy przez rozmówcę</p>
+                  </td>
+                  <td>
+                    <p>art. 6 ust. 1 lit. a RODO</p>
+                    <p>(przetwarzanie odbywa się po uzyskaniu zgody rozmówcy) </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="3">
+                    <p>Korzystanie z voicebota znajdującego się w Serwisie jest dobrowolne i zależne od zgody rozmówcy. Nie należy przekazywać danych szczególnych kategorii ani danych nadmiarowych, jeżeli nie jest to konieczne do załatwienia sprawy.</p>
+                    <p>Administrator będzie przetwarzać ww. dane osobowe do czasu cofnięcia zgody lub osiągnięcia celu przetwarzania. </p>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="col">Cel przetwarzania</th>
+                  <th scope="col">Przetwarzane dane osobowe</th>
+                  <th scope="col">Podstawa prawna</th>
+                </tr>
+                <tr>
+                  <td>Ustalenie, dochodzenie lub obrona przed roszczeniami</td>
+                  <td>
+                    <p>imię i nazwisko/firma</p>
+                    <p>adres poczty elektronicznej</p>
+                    <p>adres zamieszkania/siedziby</p>
+                    <p>numer PESEL</p>
+                    <p>NIP</p>
+                  </td>
+                  <td>
+                    <p>art. 6 ust. 1 lit. f RODO</p>
+                    <p>(przetwarzanie jest niezbędne w celu realizacji prawnie uzasadnionego interesu Administratora, w tym przypadku ustalenia, dochodzenia lub obrony przed roszczeniami mogącymi powstać w związku z wykonywaniem umów zawartych z Administratorem)</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="3">
+                    <p>Podanie ww. danych osobowych jest dobrowolne, ale niezbędne w celu ustalenia, dochodzenia lub obrony przed roszczeniami mogącymi powstać w związku z wykonywaniem umów zawartych z Administratorem (konsekwencją niepodania ww. danych będzie niemożność podjęcia przez Administratora ww. działań)</p>
+                    <p>Administrator będzie przetwarzał ww. dane osobowe do czasu upływu terminów przedawnienia roszczeń mogącymi powstać w związku z wykonywaniem umów zawartych z Administratorem.</p>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="col">Cel przetwarzania</th>
+                  <th scope="col">Przetwarzane dane osobowe</th>
+                  <th scope="col">Podstawa prawna</th>
+                </tr>
+                <tr>
+                  <td>Analiza Twojej aktywności w Serwisie</td>
+                  <td>
+                    <p>data i godzina odwiedzin </p>
+                    <p>numer IP urządzenia</p>
+                    <p>rodzaj systemu operacyjnego urządzenia</p>
+                    <p>przybliżona lokalizacja</p>
+                    <p>rodzaj przeglądarki internetowej</p>
+                    <p>czas spędzony w Serwisie</p>
+                    <p>odwiedzone podstrony oraz inne działania podejmowane w ramach Serwisu</p>
+                  </td>
+                  <td>
+                    <p>art. 6 ust. 1 lit. f RODO</p>
+                    <p>(przetwarzanie jest niezbędne w celu realizacji prawnie uzasadnionego interesu Administratora, w tym przypadku uzyskania informacji o Twojej aktywności w Serwisie)</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="3">
+                    <p>Podanie ww. danych osobowych jest dobrowolne, ale niezbędne w celu uzyskania przez Administratora informacji o Twojej aktywności w Serwisie (konsekwencją ich niepodania będzie niemożność uzyskania przez Administratora ww. informacji).</p>
+                    <p>Administrator będzie przetwarzał ww. dane osobowe do czasu skutecznego wniesienia sprzeciwu lub osiągnięcia celu przetwarzania.</p>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="col">Cel przetwarzania</th>
+                  <th scope="col">Przetwarzane dane osobowe</th>
+                  <th scope="col">Podstawa prawna</th>
+                </tr>
+                <tr>
+                  <td>Administrowanie Serwisem</td>
+                  <td>
+                    <p>adres IP</p>
+                    <p>data i czas serwera</p>
+                    <p>informacje o przeglądarce internetowej</p>
+                    <p>informacje o systemie operacyjnym</p>
+                    <p>Powyższe dane te są zapisywane automatycznie w tzw. logach serwera, przy każdorazowym korzystaniu z Serwisu (administrowanie nim bez użycia logów serwera i automatycznego zapisu nie byłoby możliwe).</p>
+                  </td>
+                  <td>
+                    <p>art. 6 ust. 1 lit. f RODO</p>
+                    <p>(przetwarzanie jest niezbędne w celu realizacji prawnie uzasadnionego interesu Administratora, w tym przypadku zapewnienia prawidłowego działania Serwisu)</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="3">
+                    <p>Podanie ww. danych osobowych jest dobrowolne, ale niezbędne w celu zapewnienia prawidłowego działania Serwisu (konsekwencją ich niepodania będzie niemożność zapewnienia działania Serwisu w sposób prawidłowy).</p>
+                    <p>Administrator będzie przetwarzał ww. dane osobowe do czasu skutecznego wniesienia sprzeciwu lub osiągnięcia celu przetwarzania.</p>
+                  </td>
+                </tr>
+              </tbody>
+              </table>
+            </div>
+          <div class="tabela-przewijana">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Cel przetwarzania</th>
+                  <th scope="col">Przetwarzane dane osobowe</th>
+                  <th scope="col">Podstawa prawna</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Wypełnienie obowiązków związanych z ochroną danych osobowych</td>
+                  <td>
+                    <p>imię i nazwisko</p>
+                    <p>podane przez Ciebie dane kontaktowe (m.in. adres poczty elektronicznej; adres do korespondencji; numer telefonu)</p>
+                  </td>
+                  <td>
+                    <p>art. 6 ust. 1 lit. c RODO </p>
+                    <p>(przetwarzanie jest niezbędne do wypełnienia obowiązku prawnego ciążącego na Administratorze, w tym przypadku obowiązków wynikających z przepisów o ochronie danych osobowych)</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="3">
+                    <p>Podanie ww. danych osobowych jest dobrowolne, ale niezbędne w celu prawidłowego wykonywania przez Administratora obowiązków wynikających z przepisów o ochronie danych osobowych, m.in. realizacji uprawnień przyznanych Ci przez RODO (konsekwencją niepodania ww. danych będzie niemożność prawidłowej realizacji ww. uprawnień).</p>
+                    <p>Administrator będzie przetwarzał ww. dane osobowe do czasu upływu terminów przedawnienia roszczeń z tytułu naruszenia przepisów o ochronie danych osobowych.</p>
+                  </td>
+                </tr>
+              </tbody>
+              </table>
+            </div>
+          <h2>Odbiorcy danych osobowych</h2>
+          <p>Odbiorcami danych osobowych będą następujące podmioty zewnętrzne współpracujące z Administratorem:</p>
+          <ol type="a">
+            <li>Retell AI;</li>
+            <li>n8n;</li>
+            <li>SMSAPI sp. z o.o.;</li>
+            <li>Google LLC;</li>
+            <li>firma hostingowa;</li>
+            <li>firma świadcząca na rzecz Administratora usługi informatyczne/techniczne;</li>
+            <li>firma świadcząca usługi księgowe;</li>
+            <li>firma świadcząca usługi prawne.</li>
+          </ol>
+          <p>Ponadto, dane osobowe mogą zostać przekazane również podmiotom publicznym lub prywatnym, jeśli taki obowiązek będzie wynikał z powszechnie obowiązujących przepisów prawa, prawomocnego wyroku sądu lub prawomocnej decyzji administracyjnej. </p>
+          <h2>Przekazywanie danych osobowych do państwa trzeciego</h2>
+          <p>W związku z korzystaniem przez Administratora z usług dostarczanych przez Google LLC oraz Retell AI Twoje dane osobowe mogą być przekazywane do następujących państw trzecich: Wielka Brytania, Kanada, USA, Chile, Brazylia, Izrael, Arabia Saudyjska, Katar, Indie, Chiny, Korea Południowa, Japonia, Singapur, Tajwan (Republika Chińska), Indonezja oraz Australia. Podstawą przekazania danych do ww. państw trzecich są:</p>
+          <ul>
+            <li>w przypadku Wielkiej Brytanii, Kanady, Izraela, Japonii i Korei Południowej - decyzje Komisji Europejskiej stwierdzająca odpowiedni stopień ochrony danych osobowych w każdym z ww. państw trzecich;</li>
+            <li>w przypadku USA – decyzja wykonawcza Komisji (UE) 2023/1795 z dnia 10 lipca 2023 r. na podstawie rozporządzenia Parlamentu Europejskiego i Rady (UE) 2016/679, stwierdzająca odpowiedni stopień ochrony danych osobowych zapewniony w ramach ochrony danych UE-USA;</li>
+            <li>w przypadku Chile, Brazylii, Arabii Saudyjskiej, Kataru, Indii, Chin, Singapuru, Tajwanu (Republiki Chińskiej), Indonezji oraz Australii - klauzule umowne zapewniające odpowiedni poziom ochrony, zgodne ze standardowymi klauzulami umownymi określonymi w decyzji wykonawczej Komisji (UE) 2021/914 z dnia 4 czerwca 2021 r. w sprawie standardowych klauzul umownych dotyczących przekazywania danych osobowych do państw trzecich na podstawie rozporządzenia Parlamentu Europejskiego i Rady (UE) 2016/679.</li>
+          </ul>
+          <p>Możesz uzyskać od Administratora kopię danych przekazywanych do państwa trzeciego.</p>
+          <h2>Uprawnienia</h2>
+          <p>W związku z przetwarzaniem danych osobowych, przysługują Ci następujące uprawnienia:</p>
+          <ol>
+            <li>prawo do informacji, jakie dane osobowe Ciebie dotyczące są przetwarzane przez Administratora oraz do otrzymania kopii tych danych (tzw. prawo dostępu). Wydanie pierwszej kopii danych jest darmowe, za kolejne Administrator może naliczyć opłatę;</li>
+            <li>jeżeli przetwarzane dane staną się nieaktualne lub niekompletne (lub w inny sposób niepoprawne) masz prawo zażądać ich sprostowania;</li>
+            <li>w pewnych sytuacjach możesz zwrócić się do Administratora o usunięcie swoich danych osobowych, np. gdy:
+              <ol type="a">
+                <li>dane przestaną być potrzebne Administratorowi do celów, o których poinformował;</li>
+                <li>skutecznie cofnąłeś zgodę na przetwarzanie danych - o ile Administrator nie ma prawa przetwarzać danych na innej podstawie prawnej; </li>
+                <li>przetwarzanie jest niezgodne z prawem;</li>
+                <li>konieczność usunięcia danych wynika z ciążącego na Administratorze obowiązku prawnego;</li>
+              </ol>
+            </li>
+            <li>w przypadku, gdy dane osobowe są przetwarzane przez Administratora na podstawie udzielonej zgody na przetwarzanie albo w celu wykonania Umowy z nim zawartej, masz prawo przenieść swoje dane do innego administratora;</li>
+            <li>w przypadku, gdy dane osobowe przetwarzane są przez Administratora na podstawie udzielonej przez Ciebie zgody na przetwarzanie, masz prawo cofnąć tę zgodę w każdym momencie (cofnięcie zgody nie wpływa na zgodność z prawem przetwarzania, którego dokonano na podstawie zgody przed jej cofnięciem);</li>
+            <li>jeśli uznasz, że przetwarzane dane osobowe są nieprawidłowe, ich przetwarzanie jest niezgodne z prawem, lub Administrator nie potrzebuje już określonych danych, możesz zażądać, aby przez określony, potrzebny czas (np. sprawdzenia poprawności danych lub dochodzenia roszczeń) Administrator nie dokonywał na danych żadnych operacji, a jedynie je przechowywał;</li>
+            <li>masz prawo do wyrażenia sprzeciwu wobec przetwarzania danych osobowych, których podstawą przetwarzania jest prawnie uzasadniony interes Administratora. W razie skutecznego wniesienia sprzeciwu, Administrator przestanie przetwarzać dane osobowe w ww. celu;</li>
+            <li>masz prawo wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych, gdy uznasz, że przetwarzanie danych osobowych narusza przepisy RODO.</li>
+          </ol>
+          <h2>Pliki cookies</h2>
+          <p>Administrator informuje, że Serwis korzysta wyłącznie z plików „cookies” (ciasteczka), instalowanych w Twoim urządzeniu końcowym, które są niezbędne do wyświetlania treści Serwisu. Administrator nie korzysta z żadnych naddatkowych plików cookies w zakresie marketingu, targetowania lub analityki. </p>
+          <h2>Postanowienia końcowe</h2>
+          <p>W zakresie nieuregulowanym Polityką, stosuje się powszechnie obowiązujące przepisy o ochronie danych osobowych. </p>
+          <p>Polityka obowiązuje od dnia 27.08.2026 r.</p>
         </div>
 
         <p class="mt-10 border-t border-linia pt-6 text-meta text-centrala-80">
@@ -92,13 +299,42 @@ import { FIRMA } from '../config';
     text-decoration: underline;
     text-underline-offset: 2px;
   }
+  /* Numeracja odwzorowana z dokumentu — atrybut `type` sam z siebie
+     przegrywa z `list-style` powyżej, więc dopisujemy go jawnie. */
+  .tresc-polityki :global(ol[type='a']) {
+    list-style: lower-alpha;
+  }
+  .tresc-polityki :global(ol[type='i']) {
+    list-style: lower-roman;
+  }
+  .tresc-polityki :global(li > ol),
+  .tresc-polityki :global(li > ul) {
+    margin-block: 0.5rem;
+  }
+
+  /* Trzy kolumny prawnego tekstu nie zmieszczą się na telefonie —
+     przewija się sama tabela, nie cała strona. */
+  .tresc-polityki :global(.tabela-przewijana) {
+    margin-block: 1.5rem;
+    overflow-x: auto;
+    border: 1px solid var(--color-linia);
+  }
   .tresc-polityki :global(table) {
     width: 100%;
-    margin-block: 1.25rem;
+    min-width: 34rem;
     border-collapse: collapse;
     font-size: 0.9375rem;
-    display: block;
-    overflow-x: auto;
+  }
+  .tresc-polityki :global(thead th) {
+    background-color: var(--color-arkusz-glebszy);
+  }
+  .tresc-polityki :global(tbody th) {
+    background-color: var(--color-arkusz-glebszy);
+    font-weight: 600;
+  }
+  .tresc-polityki :global(td p),
+  .tresc-polityki :global(th p) {
+    margin-block: 0.25rem;
   }
   .tresc-polityki :global(th),
   .tresc-polityki :global(td) {

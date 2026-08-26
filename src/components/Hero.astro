@@ -1,24 +1,45 @@
 ---
-import { telefonAi, telefonAiHref, TRANSKRYPT } from '../config';
+import { telefonAi, telefonAiHref, TRANSKRYPT } from "../config";
 
 const przykladowyPrzebieg = [
-  { mowca: 'dzwoniący', tekst: 'Dzień dobry, chciałbym zgłosić pilną sprawę.' },
-  { mowca: 'agent', tekst: 'Oczywiście. Zbiorę szczegóły i przekażę je właściwej osobie.' },
-  { mowca: 'agent', tekst: 'Na koniec wyślę podsumowanie, żeby nic nie umknęło.' },
+  { mowca: "dzwoniący", tekst: "Dzień dobry, chciałbym zgłosić pilną sprawę." },
+  {
+    mowca: "agent",
+    tekst: "Oczywiście. Zbiorę szczegóły i przekażę je właściwej osobie.",
+  },
+  {
+    mowca: "agent",
+    tekst: "Na koniec wyślę podsumowanie, żeby nic nie umknęło.",
+  },
 ] as const;
 
-const przebiegRozmowy = TRANSKRYPT.length > 0 ? TRANSKRYPT.slice(0, 3) : przykladowyPrzebieg;
-const etykietaRozmowy = TRANSKRYPT.length > 0 ? 'Fragment rozmowy z dema' : 'Przykładowy przebieg rozmowy';
+const przebiegRozmowy =
+  TRANSKRYPT.length > 0 ? TRANSKRYPT.slice(0, 3) : przykladowyPrzebieg;
+const etykietaRozmowy =
+  TRANSKRYPT.length > 0
+    ? "Fragment rozmowy z dema"
+    : "Przykładowy przebieg rozmowy";
 ---
 
 <section class="relative overflow-hidden border-b border-linia bg-arkusz">
-  <div aria-hidden="true" class="pointer-events-none absolute inset-0 opacity-45">
+  <div
+    aria-hidden="true"
+    class="pointer-events-none absolute inset-0 opacity-45"
+  >
     <div class="absolute inset-x-0 top-0 h-px bg-linia"></div>
-    <div class="absolute -right-40 top-[-12rem] size-[34rem] rounded-full border border-linia"></div>
-    <div class="absolute -right-20 top-[-4rem] size-[20rem] rounded-full border border-linia"></div>
+    <div
+      class="absolute -right-40 top-[-12rem] size-[34rem] rounded-full border border-linia"
+    >
+    </div>
+    <div
+      class="absolute -right-20 top-[-4rem] size-[20rem] rounded-full border border-linia"
+    >
+    </div>
   </div>
 
-  <div class="arkusz-kolumna relative grid gap-10 py-12 sm:gap-14 sm:py-20 lg:grid-cols-[minmax(0,0.88fr)_minmax(30rem,1.12fr)] lg:items-center lg:gap-16 lg:py-24">
+  <div
+    class="arkusz-kolumna relative grid gap-10 py-12 sm:gap-14 sm:py-20 lg:grid-cols-[minmax(0,0.88fr)_minmax(30rem,1.12fr)] lg:items-center lg:gap-16 lg:py-24"
+  >
     <div class="max-w-[39rem]">
       <p class="maszynowa flex items-center gap-3 text-notatka">
         <span class="inline-block size-2 bg-nieodebrane"></span>
@@ -30,13 +51,15 @@ const etykietaRozmowy = TRANSKRYPT.length > 0 ? 'Fragment rozmowy z dema' : 'Prz
       </h1>
 
       <p class="mt-6 max-w-[48ch] text-lead text-centrala-80">
-        Agent odbiera połączenia, zbiera zgłoszenie i wysyła Ci gotowe podsumowanie —
-        także wtedy, gdy jesteś u klienta, po godzinach albo masz zajętą linię.
+        Agent odbiera połączenia, zbiera zgłoszenie i wysyła Ci gotowe
+        podsumowanie — także wtedy, gdy jesteś u klienta, po godzinach albo masz
+        zajętą linię.
       </p>
 
       <div class="mt-8 border-y border-linia py-4 sm:mt-10">
         <p class="maszynowa text-notatka">
-          Bez zmiany numeru <span class="mx-2 text-linia">/</span> uruchomienie do 2 tygodni
+          Bez zmiany numeru <span class="mx-2 text-linia">/</span> uruchomienie do
+          2 tygodni
         </p>
       </div>
 
@@ -46,13 +69,20 @@ const etykietaRozmowy = TRANSKRYPT.length > 0 ? 'Fragment rozmowy z dema' : 'Prz
           class="group inline-flex min-h-14 w-full max-w-[31rem] flex-col items-start justify-center gap-1 bg-sluchawka px-5 py-3.5 text-arkusz shadow-[6px_6px_0_0_var(--color-centrala)] transition hover:-translate-y-0.5 hover:bg-sluchawka-ciemna hover:shadow-[8px_8px_0_0_var(--color-centrala)] focus-visible:-translate-y-0.5 sm:px-6"
           aria-label={`Zadzwoń do agenta demo pod numer ${telefonAi}`}
         >
-          <span class="maszynowa text-arkusz">Umów się poprzez mojego agenta</span>
-          <span class="font-mono text-lg font-500 tracking-[0.03em] tabular-nums sm:text-xl">
+          <span class="maszynowa text-arkusz"
+            >Umów się poprzez mojego asystenta AI</span
+          >
+          <span
+            class="font-mono text-lg font-500 tracking-[0.03em] tabular-nums sm:text-xl"
+          >
             {telefonAi}
           </span>
         </a>
         <p class="mt-5 text-meta text-centrala-80">
-          Wolisz najpierw napisać? <a class="font-600 text-centrala underline decoration-centrala/40 underline-offset-4 hover:decoration-centrala" href="#kontakt">Zostaw numer, oddzwonię osobiście.</a>
+          Wolisz najpierw napisać? <a
+            class="font-600 text-centrala underline decoration-centrala/40 underline-offset-4 hover:decoration-centrala"
+            href="#kontakt">Zostaw numer, oddzwonię osobiście.</a
+          >
         </p>
       </div>
     </div>
@@ -61,10 +91,20 @@ const etykietaRozmowy = TRANSKRYPT.length > 0 ? 'Fragment rozmowy z dema' : 'Prz
       class="relative overflow-hidden border border-centrala bg-centrala p-4 text-arkusz shadow-[10px_10px_0_0_var(--color-linia)] sm:p-6 lg:p-7"
       aria-label="Demonstracja działania agenta głosowego"
     >
-      <div aria-hidden="true" class="pointer-events-none absolute -right-20 -top-20 size-64 rounded-full border border-arkusz/10"></div>
-      <div aria-hidden="true" class="pointer-events-none absolute -bottom-28 -left-24 size-72 rounded-full border border-arkusz/10"></div>
+      <div
+        aria-hidden="true"
+        class="pointer-events-none absolute -right-20 -top-20 size-64 rounded-full border border-arkusz/10"
+      >
+      </div>
+      <div
+        aria-hidden="true"
+        class="pointer-events-none absolute -bottom-28 -left-24 size-72 rounded-full border border-arkusz/10"
+      >
+      </div>
 
-      <div class="relative flex items-start justify-between gap-5 border-b border-arkusz/20 pb-5">
+      <div
+        class="relative flex items-start justify-between gap-5 border-b border-arkusz/20 pb-5"
+      >
         <div>
           <!-- <p class="maszynowa flex items-center gap-2 text-arkusz/55">
             <span class="relative flex size-2" aria-hidden="true">
@@ -73,15 +113,21 @@ const etykietaRozmowy = TRANSKRYPT.length > 0 ? 'Fragment rozmowy z dema' : 'Prz
             </span>
             agent gotowy
           </p> -->
-          <p class="mt-2 font-display text-h3 font-700 text-arkusz">Rozmowa, która nie czeka.</p>
+          <p class="mt-2 font-display text-h3 font-700 text-arkusz">
+            Rozmowa, która nie czeka.
+          </p>
         </div>
         <!-- <span class="maszynowa shrink-0 border border-arkusz/20 px-2 py-1 text-arkusz/55">demo 24/7</span> -->
       </div>
 
-      <div class="relative mt-6 rounded-sm border border-arkusz/20 bg-arkusz/5 p-4 sm:p-5">
+      <div
+        class="relative mt-6 rounded-sm border border-arkusz/20 bg-arkusz/5 p-4 sm:p-5"
+      >
         <div class="flex items-center justify-between gap-4">
           <p class="maszynowa text-arkusz/55">{etykietaRozmowy}</p>
-          <span class="font-mono text-meta tabular-nums text-arkusz/55">00:47</span>
+          <span class="font-mono text-meta tabular-nums text-arkusz/55"
+            >00:47</span
+          >
         </div>
 
         <dl class="mt-6 space-y-4">
@@ -89,15 +135,15 @@ const etykietaRozmowy = TRANSKRYPT.length > 0 ? 'Fragment rozmowy z dema' : 'Prz
             przebiegRozmowy.map((linia, index) => (
               <div
                 class:list={[
-                  'max-w-[92%] border p-3.5 font-mono text-[0.8125rem] leading-relaxed sm:text-sm',
-                  linia.mowca === 'agent'
-                    ? 'border-arkusz/20 bg-arkusz/10 text-arkusz'
-                    : 'ml-auto border-sluchawka/65 bg-sluchawka/15 text-arkusz/90',
-                  index === 1 && 'sm:translate-x-3',
+                  "max-w-[92%] border p-3.5 font-mono text-[0.8125rem] leading-relaxed sm:text-sm",
+                  linia.mowca === "agent"
+                    ? "border-arkusz/20 bg-arkusz/10 text-arkusz"
+                    : "ml-auto border-sluchawka/65 bg-sluchawka/15 text-arkusz/90",
+                  index === 1 && "sm:translate-x-3",
                 ]}
               >
                 <dt class="maszynowa mb-1.5 text-[0.625rem] text-arkusz/50">
-                  {linia.mowca === 'agent' ? 'asystent AI' : 'dzwoniący'}
+                  {linia.mowca === "agent" ? "asystent AI" : "dzwoniący"}
                 </dt>
                 <dd>{linia.tekst}</dd>
               </div>
@@ -106,7 +152,9 @@ const etykietaRozmowy = TRANSKRYPT.length > 0 ? 'Fragment rozmowy z dema' : 'Prz
         </dl>
       </div>
 
-      <div class="relative mt-5 grid gap-3 border-t border-arkusz/20 pt-5 sm:grid-cols-3">
+      <div
+        class="relative mt-5 grid gap-3 border-t border-arkusz/20 pt-5 sm:grid-cols-3"
+      >
         <div>
           <p class="maszynowa text-arkusz/45">01</p>
           <p class="mt-1 text-meta text-arkusz/85">odbiera i przedstawia się</p>
@@ -120,7 +168,6 @@ const etykietaRozmowy = TRANSKRYPT.length > 0 ? 'Fragment rozmowy z dema' : 'Prz
           <p class="mt-1 text-meta text-arkusz/85">wysyła podsumowanie</p>
         </div>
       </div>
-
     </aside>
   </div>
 </section>
