@@ -4,9 +4,9 @@
  */
 
 export const FIRMA = {
-  nazwa: '{{NAZWA_FIRMY}}',
-  nip: '{{NIP}}',
-  email: '{{EMAIL}}',
+  nazwa: 'ZDigital Bartłomiej Ząbek',
+  nip: '',
+  email: 'bartek@zabekdigital.pl',
 } as const;
 
 /**
