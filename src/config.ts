@@ -24,7 +24,7 @@ export const myPhoneHref = doHref(myPhone);
 
 /** Właściciel — sekcja „Kim jestem”. */
 export const WLASCICIEL = {
-  imie: '{{IMIE_I_NAZWISKO}}',
+  imie: 'BARTŁOMIEJ ZĄBEK',
   rola: 'Założyciel',
   /**
    * Portret z `src/assets` — importowany, nie jako ścieżka tekstowa.
@@ -32,8 +32,7 @@ export const WLASCICIEL = {
    * `null` = widoczny placeholder na zdjęcie.
    */
   zdjecie: profilowe,
-  bio: '{{BIO — 2–3 zdania. Kim jesteś, skąd się tu wziąłeś, dlaczego akurat telefony.}}',
-} as const;
+  bio: 'Z zawodu programista. AI używam na co dzień w pracy i poza nią, więc wiem, gdzie realnie pomaga, a gdzie tylko ładnie wygląda. Agenci głosowi trafiają w tę pierwszą kategorię.'} as const;
 
 /**
  * Prawdziwy fragment transkryptu rozmowy z agentem spod numeru demo.
