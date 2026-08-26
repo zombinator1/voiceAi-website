@@ -1,5 +1,5 @@
 ---
-import { DEMO } from '../config';
+import { telefonAi, telefonAiHref } from '../config';
 
 /* Wykaz ilustracyjny — depikcja pojęcia „nieodebrany telefon”, nie zapis
    czyichkolwiek połączeń. Numery są zamaskowane, dat brak celowo. */
@@ -52,9 +52,9 @@ const nieodebrane = [
 {/* Rozwiązanie: ta sama szerokość, ta sama typografia maszynowa — ciąg
     dalszy tego samego wykazu, tyle że wiersz jest odebrany. */}
 <a
-  href={`tel:${DEMO.tel}`}
+  href={`tel:${telefonAiHref}`}
   class="group mt-3 block border border-sluchawka border-l-4 bg-arkusz px-4 py-5 hover:bg-sluchawka focus-visible:bg-sluchawka sm:px-5 sm:py-6"
-  aria-label={`Zadzwoń pod numer demo ${DEMO.wyswietlany}`}
+  aria-label={`Zadzwoń pod numer demo ${telefonAi}`}
 >
   <span
     class="maszynowa flex items-center justify-between gap-3 text-sluchawka group-hover:text-arkusz group-focus-visible:text-arkusz"
@@ -66,7 +66,7 @@ const nieodebrane = [
   <span
     class="numer-demo mt-3 block font-display font-700 tracking-[-0.015em] text-sluchawka tabular-nums group-hover:text-arkusz group-focus-visible:text-arkusz"
   >
-    {DEMO.wyswietlany}
+    {telefonAi}
   </span>
 
   <span

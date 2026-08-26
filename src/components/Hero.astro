@@ -1,5 +1,5 @@
 ---
-import { DEMO, TRANSKRYPT } from '../config';
+import { telefonAi, telefonAiHref, TRANSKRYPT } from '../config';
 
 const przykladowyPrzebieg = [
   { mowca: 'dzwoniący', tekst: 'Dzień dobry, chciałbym zgłosić pilną sprawę.' },
@@ -42,13 +42,13 @@ const etykietaRozmowy = TRANSKRYPT.length > 0 ? 'Fragment rozmowy z dema' : 'Prz
 
       <div class="mt-8">
         <a
-          href={`tel:${DEMO.tel}`}
+          href={`tel:${telefonAiHref}`}
           class="group inline-flex min-h-14 w-full max-w-[31rem] flex-col items-start justify-center gap-1 bg-sluchawka px-5 py-3.5 text-arkusz shadow-[6px_6px_0_0_var(--color-centrala)] transition hover:-translate-y-0.5 hover:bg-sluchawka-ciemna hover:shadow-[8px_8px_0_0_var(--color-centrala)] focus-visible:-translate-y-0.5 sm:px-6"
-          aria-label={`Zadzwoń do agenta demo pod numer ${DEMO.wyswietlany}`}
+          aria-label={`Zadzwoń do agenta demo pod numer ${telefonAi}`}
         >
           <span class="maszynowa text-arkusz">Umów się poprzez mojego agenta</span>
           <span class="font-mono text-lg font-500 tracking-[0.03em] tabular-nums sm:text-xl">
-            {DEMO.wyswietlany}
+            {telefonAi}
           </span>
         </a>
         <p class="mt-5 text-meta text-centrala-80">
@@ -120,7 +120,6 @@ const etykietaRozmowy = TRANSKRYPT.length > 0 ? 'Fragment rozmowy z dema' : 'Prz
           <p class="mt-1 text-meta text-arkusz/85">wysyła podsumowanie</p>
         </div>
       </div>
-
 
     </aside>
   </div>

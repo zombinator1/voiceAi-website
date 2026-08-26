@@ -5,18 +5,20 @@
 
 export const FIRMA = {
   nazwa: 'ZDigital Bartłomiej Ząbek',
-  nip: '',
+  nip: '5273231824',
   email: 'bartek@zabekdigital.pl',
 } as const;
 
 /**
- * Numer demo. `wyswietlany` trafia do treści strony, `tel` do atrybutu href.
- * Po otrzymaniu prawdziwego numeru podmień obie wartości.
+ * Numer, pod którym odbiera agent. Jedyna wartość do podmiany —
+ * wersja dla `href="tel:"` liczy się z niej sama.
  */
-export const DEMO = {
-  wyswietlany: '123 456 789',
-  tel: '+48123456789',
-} as const;
+export const telefonAi = '123 456 789';
+export const myPhone = '698 358 122';
+
+
+/** Ten sam numer w E.164. Wyłącznie do atrybutu `href="tel:"`. */
+export const telefonAiHref = `+48${telefonAi.replace(/\D/g, '')}`;
 
 /** Właściciel — sekcja „Kim jestem”. */
 export const WLASCICIEL = {

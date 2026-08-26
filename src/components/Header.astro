@@ -1,5 +1,5 @@
 ---
-import { FIRMA, DEMO } from '../config';
+import { telefonAi, telefonAiHref, FIRMA } from '../config';
 ---
 
 <header
@@ -14,15 +14,15 @@ import { FIRMA, DEMO } from '../config';
     </a>
 
     <a
-      href={`tel:${DEMO.tel}`}
+      href={`tel:${telefonAiHref}`}
       class="group flex min-h-11 items-center gap-2.5 px-1 sm:gap-3"
-      aria-label={`Zadzwoń pod numer demo ${DEMO.wyswietlany}`}
+      aria-label={`Zadzwoń pod numer demo ${telefonAi}`}
     >
       <span class="maszynowa hidden text-notatka xs:inline">numer demo</span>
       <span
         class="inline-block bg-sluchawka px-3 py-2 font-mono text-[0.9375rem] font-500 tracking-[0.02em] text-arkusz group-hover:bg-sluchawka-ciemna sm:px-4 sm:text-base"
       >
-        {DEMO.wyswietlany}
+        {telefonAi}
       </span>
     </a>
   </div>

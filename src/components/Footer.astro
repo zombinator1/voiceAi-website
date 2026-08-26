@@ -1,5 +1,5 @@
 ---
-import { FIRMA, DEMO } from '../config';
+import { telefonAi, telefonAiHref, FIRMA } from '../config';
 const rok = new Date().getFullYear();
 ---
 
@@ -22,8 +22,8 @@ const rok = new Date().getFullYear();
           <div class="flex gap-3">
             <dt class="maszynowa w-16 shrink-0 pt-0.5 text-notatka">telefon</dt>
             <dd class="font-mono text-[0.875rem] tabular-nums">
-              <a class="inline-flex min-h-11 items-center underline underline-offset-2 hover:text-sluchawka" href={`tel:${DEMO.tel}`}>
-                {DEMO.wyswietlany}
+              <a class="inline-flex min-h-11 items-center underline underline-offset-2 hover:text-sluchawka" href={`tel:${telefonAiHref}`}>
+                {telefonAi}
               </a>
             </dd>
           </div>
