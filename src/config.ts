@@ -3,6 +3,8 @@
  * Wszystkie wartości w {{...}} są placeholderami do uzupełnienia.
  */
 
+import profilowe from './assets/profilowe.jpg';
+
 export const FIRMA = {
   nazwa: 'ZDigital Bartłomiej Ząbek',
   nip: '5273231824',
@@ -24,8 +26,12 @@ export const myPhoneHref = doHref(myPhone);
 export const WLASCICIEL = {
   imie: '{{IMIE_I_NAZWISKO}}',
   rola: 'Założyciel',
-  /** Ścieżka do zdjęcia w /public. Puste = widoczny placeholder na zdjęcie. */
-  zdjecie: '',
+  /**
+   * Portret z `src/assets` — importowany, nie jako ścieżka tekstowa.
+   * Dzięki temu Astro przy buildzie przeskaluje go i wyda w WebP.
+   * `null` = widoczny placeholder na zdjęcie.
+   */
+  zdjecie: profilowe,
   bio: '{{BIO — 2–3 zdania. Kim jesteś, skąd się tu wziąłeś, dlaczego akurat telefony.}}',
 } as const;
 

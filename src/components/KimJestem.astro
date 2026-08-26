@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import Sekcja from './Sekcja.astro';
 import { WLASCICIEL } from '../config';
 ---
@@ -7,11 +8,13 @@ import { WLASCICIEL } from '../config';
   <div class="grid gap-6 sm:grid-cols-[13rem_minmax(0,1fr)] sm:gap-10 lg:grid-cols-[15rem_minmax(0,1fr)]">
     {
       WLASCICIEL.zdjecie ? (
-        <img
+        <Image
           src={WLASCICIEL.zdjecie}
           alt={`${WLASCICIEL.imie} — ${WLASCICIEL.rola}`}
-          width="480"
-          height="600"
+          width={240}
+          densities={[1, 2]}
+          format="webp"
+          quality={80}
           loading="lazy"
           decoding="async"
           class="aspect-4/5 w-full max-w-[13rem] border border-linia object-cover sm:max-w-none"
