@@ -36,8 +36,8 @@ Dwa osobne pola, bo służą do czego innego:
 
 ```ts
 export const DEMO = {
-  wyswietlany: '123 456 789',   // to widzi człowiek
-  tel: '+48123456789',          // to trafia do href="tel:", bez spacji, z prefiksem kraju
+  wyswietlany: '221 811 286',   // to widzi człowiek
+  tel: '+48221811286',          // to trafia do href="tel:", bez spacji, z prefiksem kraju
 };
 ```
 

@@ -15,7 +15,7 @@ export const FIRMA = {
 const doHref = (numer: string) => `+48${numer.replace(/\D/g, '')}`;
 
 /** Numer, pod którym odbiera agent. Wszystkie CTA na stronie. */
-export const telefonAi = '123 456 789';
+export const telefonAi = '+48 221 811 286';
 export const telefonAiHref = doHref(telefonAi);
 
 /** Numer prywatny — kontakt bezpośredni w stopce. Nie trafia do CTA agenta. */

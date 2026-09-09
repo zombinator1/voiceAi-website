@@ -59,7 +59,7 @@ Nazwa firmy + numer demo jako element klikalny (`tel:`), widoczny na każdej wys
 ### 2. Hero
 - Nagłówek uderzający w problem, nie w technologię. Nie zaczynaj od „Sztuczna inteligencja..." — zacznij od nieodebranego telefonu.
 - Podtytuł: jedno zdanie, co to jest.
-- **Numer demo: 123 456 789** z zaproszeniem: zadzwoń teraz i porozmawiaj z agentem. Podkreśl, że to nie nagranie ani wideo — to działający agent, który odbiera telefony tej firmy.
+- **Numer demo:  +48221811286** z zaproszeniem: zadzwoń teraz i porozmawiaj z agentem. Podkreśl, że to nie nagranie ani wideo — to działający agent, który odbiera telefony tej firmy.
 - Formularz „Zostaw numer, oddzwonię" — dwa pola (imię, telefon) + checkbox zgody RODO z linkiem do polityki prywatności.
 
 ### 3. Problem
