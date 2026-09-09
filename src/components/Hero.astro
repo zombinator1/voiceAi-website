@@ -1,5 +1,5 @@
 ---
-import { telefonAi, telefonAiHref, TRANSKRYPT } from "../config";
+import { telefonAi,TRANSKRYPT } from "../config";
 
 const przykladowyPrzebieg = [
   { mowca: "dzwoniący", tekst: "Dzień dobry, chciałbym zgłosić pilną sprawę." },
@@ -64,11 +64,7 @@ const etykietaRozmowy =
       </div>
 
       <div class="mt-8">
-        <a
-          href={`tel:${telefonAiHref}`}
-          class="group inline-flex min-h-14 w-full max-w-[31rem] flex-col items-start justify-center gap-1 bg-sluchawka px-5 py-3.5 text-arkusz shadow-[6px_6px_0_0_var(--color-centrala)] transition hover:-translate-y-0.5 hover:bg-sluchawka-ciemna hover:shadow-[8px_8px_0_0_var(--color-centrala)] focus-visible:-translate-y-0.5 sm:px-6"
-          aria-label={`Zadzwoń do agenta demo pod numer ${telefonAi}`}
-        >
+        <div class="group inline-flex min-h-14 w-full max-w-[31rem] flex-col items-start justify-center gap-1 bg-sluchawka px-5 py-3.5 text-arkusz shadow-[6px_6px_0_0_var(--color-centrala)] transition hover:-translate-y-0.5 hover:bg-sluchawka-ciemna hover:shadow-[8px_8px_0_0_var(--color-centrala)] sm:px-6">
           <span class="maszynowa text-arkusz"
             >Umów się poprzez mojego asystenta AI</span
           >
@@ -77,7 +73,7 @@ const etykietaRozmowy =
           >
             {telefonAi}
           </span>
-        </a>
+        </div>
         <p class="mt-5 text-meta text-centrala-80">
           Wolisz najpierw napisać? <a
             class="font-600 text-centrala underline decoration-centrala/40 underline-offset-4 hover:decoration-centrala"

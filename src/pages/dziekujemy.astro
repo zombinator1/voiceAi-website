@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { telefonAi, telefonAiHref, FIRMA } from '../config';
+import { telefonAi,FIRMA } from '../config';
 ---
 
 <Base
@@ -20,20 +20,16 @@ import { telefonAi, telefonAiHref, FIRMA } from '../config';
           od razu — o dowolnej porze.
         </p>
 
-        <a
-          href={`tel:${telefonAiHref}`}
-          class="group mt-8 block border border-sluchawka border-l-4 bg-arkusz px-5 py-6 hover:bg-sluchawka focus-visible:bg-sluchawka"
-          aria-label={`Zadzwoń pod numer demo ${telefonAi}`}
-        >
-          <span class="maszynowa block text-sluchawka group-hover:text-arkusz group-focus-visible:text-arkusz">
+        <div class="group mt-8 block border border-sluchawka border-l-4 bg-arkusz px-5 py-6 hover:bg-sluchawka transition">
+          <span class="maszynowa block text-sluchawka group-hover:text-arkusz">
             numer demo
           </span>
           <span
-            class="numer-demo mt-2.5 block font-display font-700 tracking-[-0.015em] tabular-nums text-sluchawka group-hover:text-arkusz group-focus-visible:text-arkusz"
+            class="numer-demo mt-2.5 block font-display font-700 tracking-[-0.015em] tabular-nums text-sluchawka group-hover:text-arkusz"
           >
             {telefonAi}
           </span>
-        </a>
+        </div>
 
         <a
           href="/"

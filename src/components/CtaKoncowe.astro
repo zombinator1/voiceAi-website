@@ -1,5 +1,5 @@
 ---
-import { telefonAi, telefonAiHref } from '../config';
+import { telefonAi } from '../config';
 import LeadForm from './LeadForm.astro';
 ---
 
@@ -21,20 +21,16 @@ import LeadForm from './LeadForm.astro';
               jest dla tych, którzy właśnie pracują i nie mogą teraz rozmawiać.
             </p>
 
-            <a
-              href={`tel:${telefonAiHref}`}
-              class="group mt-6 block border border-arkusz/30 border-l-4 border-l-sluchawka bg-transparent px-5 py-6 hover:bg-arkusz focus-visible:bg-arkusz"
-              aria-label={`Zadzwoń pod numer demo ${telefonAi}`}
-            >
-              <span class="maszynowa block text-arkusz/60 group-hover:text-notatka group-focus-visible:text-notatka">
+            <div class="group mt-6 block border border-arkusz/30 border-l-4 border-l-sluchawka bg-transparent px-5 py-6 hover:bg-arkusz transition">
+              <span class="maszynowa block text-arkusz/60 group-hover:text-notatka">
                 numer do mojego asystenta AI
               </span>
               <span
-                class="numer-demo mt-3 block font-display font-700 tracking-[-0.015em] tabular-nums text-arkusz group-hover:text-sluchawka group-focus-visible:text-sluchawka"
+                class="numer-demo mt-3 block font-display font-700 tracking-[-0.015em] tabular-nums text-arkusz group-hover:text-sluchawka"
               >
                 {telefonAi}
               </span>
-            </a>
+            </div>
 
             <p class="mt-4 max-w-[44ch] text-meta text-arkusz/70">
               Zadzwoń o dowolnej porze. Jeśli agent poradzi sobie z Twoimi

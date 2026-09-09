@@ -1,6 +1,6 @@
 ---
 import Sekcja from './Sekcja.astro';
-import { telefonAi, telefonAiHref, TRANSKRYPT } from '../config';
+import { telefonAi,TRANSKRYPT } from '../config';
 ---
 
 <Sekcja numer="04" id="dowod" ciemna tytul="Nie mam logotypów. Mam działającego agenta.">
@@ -22,13 +22,10 @@ import { telefonAi, telefonAiHref, TRANSKRYPT } from '../config';
     </p>
   </div>
 
-  <a
-    href={`tel:${telefonAiHref}`}
-    class="mt-8 inline-flex min-h-12 items-center gap-3 border-2 border-arkusz px-5 py-3 text-arkusz hover:bg-arkusz hover:text-centrala"
-  >
+  <div class="mt-8 inline-flex min-h-12 items-center gap-3 border-2 border-arkusz px-5 py-3 text-arkusz hover:bg-arkusz hover:text-centrala transition">
     <span class="maszynowa">zadzwoń i oceń sam</span>{' '}
     <span class="font-mono text-base font-500 tracking-[0.03em]">{telefonAi}</span>
-  </a>
+  </div>
 
   <div class="mt-12 max-w-[58ch]">
     <p class="maszynowa text-arkusz/55">Fragment rozmowy z agentem</p>
