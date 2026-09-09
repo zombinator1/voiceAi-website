@@ -1,6 +1,8 @@
 ---
 /* Czysty <form> w .astro — bez wyspy, bez frameworka.
-   Netlify wykrywa formularz przy buildzie tylko w statycznym HTML. */
+   Wysyłka leci natywnym POST-em do funkcji /api/kontakt, która dopiero
+   po stronie serwera woła Lettermint (token nie może trafić do przeglądarki).
+   Działa bez JavaScriptu. */
 interface Props {
   /** Prefiks id — na stronie są dwa formularze, etykiety muszą trafić we właściwe pole. */
   idPrefix: string;
@@ -23,15 +25,7 @@ const etykieta = 'maszynowa text-notatka';
   <h3 class="text-h3">{tytul}</h3>
   <p class="mt-2 text-meta text-centrala-80">{opis}</p>
 
-  <form
-    name="kontakt"
-    method="POST"
-    action="/dziekujemy"
-    data-netlify="true"
-    netlify-honeypot="bot-field"
-    class="mt-6 space-y-5"
-  >
-    <input type="hidden" name="form-name" value="kontakt" />
+  <form name="kontakt" method="POST" action="/api/kontakt" class="mt-6 space-y-5">
     <input type="hidden" name="zrodlo" value={zrodlo} />
 
     {/* pułapka na boty — ukryta przed ludźmi, widoczna dla skryptów */}
@@ -66,6 +60,19 @@ const etykieta = 'maszynowa text-notatka';
         autocomplete="tel"
         placeholder="Numer, pod który mam oddzwonić"
       />
+    </div>
+
+    <div>
+      <label class={etykieta} for={`${idPrefix}-wiadomosc`}>
+        Wiadomość <span class="normal-case tracking-normal">(opcjonalnie)</span>
+      </label>
+      <textarea
+        class={`${pole.replace('min-h-11', 'min-h-24')} resize-y`}
+        id={`${idPrefix}-wiadomosc`}
+        name="wiadomosc"
+        rows="3"
+        maxlength="2000"
+        placeholder="W czym mogę pomóc? Możesz zostawić puste."></textarea>
     </div>
 
     <div class="flex items-start gap-3">
