@@ -2,6 +2,9 @@
 import { Image } from 'astro:assets';
 import Sekcja from './Sekcja.astro';
 import { WLASCICIEL } from '../config';
+
+import { myPhone } from '../config';
+
 ---
 
 <Sekcja numer="08" id="kim-jestem" tytul="Kto odbierze, kiedy zadzwonisz">
@@ -33,7 +36,7 @@ import { WLASCICIEL } from '../config';
 
     <div class="max-w-[56ch]">
       <p class="font-display text-h3">{WLASCICIEL.imie}</p>
-      <p class="maszynowa mt-1.5 text-notatka">{WLASCICIEL.rola}</p>
+      <p class="maszynowa mt-1.5 text-notatka">{myPhone}</p>
 
       <p class="mt-5 text-centrala-80">{WLASCICIEL.bio}</p>
 
