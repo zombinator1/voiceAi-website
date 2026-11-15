@@ -5,11 +5,12 @@ import ZywaRozmowa from './ZywaRozmowa.astro';
 /* Przebieg ilustracyjny — pokazuje, CO robi agent, nie udaje realnej rozmowy.
    Gdy w configu pojawi się prawdziwy TRANSKRYPT, zastępuje ten przykład. */
 const przykladowyPrzebieg = [
-  { mowca: 'dzwoniacy', tekst: 'Dzień dobry, chciałbym zgłosić pilną sprawę.' },
-  { mowca: 'agent', tekst: 'Oczywiście. Zbiorę szczegóły i przekażę je właściwej osobie.' },
-  { mowca: 'dzwoniacy', tekst: 'Pękła rura pod zlewem, woda leci na podłogę.' },
-  { mowca: 'agent', tekst: 'Rozumiem, to pilne. Pod jaki adres ma przyjechać ekipa?' },
-  { mowca: 'dzwoniacy', tekst: 'Kwiatowa 12, Poznań.' },
+  { mowca: 'agent', tekst: 'Dzień dobry, w czym mogę pomóc?' },
+  { mowca: 'dzwoniacy', tekst: 'Chciałbym zlecić podłączenie i ustawienie miękkości/twardości wody.' },
+  { mowca: 'agent', tekst: 'Oczywiście. Pod jaki adres mamy przyjechać?' },
+  { mowca: 'dzwoniacy', tekst: 'Kwiatowa 12, Kraków.' },
+  { mowca: 'agent', tekst: 'Jaki to model urządzenia?' },
+  { mowca: 'dzwoniacy', tekst: 'WATER TECHNIC 123' },
   { mowca: 'agent', tekst: 'Dziękuję. Zgłoszenie przekazuję od razu, a na koniec wyślę podsumowanie, żeby nic nie umknęło.' },
 ] as const;
 
