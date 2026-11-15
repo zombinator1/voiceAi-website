@@ -1,0 +1,80 @@
+---
+import Sekcja from './Sekcja.astro';
+import { PRZYKLADY } from '../config';
+
+/** Wyciąga ID filmu z dowolnej postaci linku YouTube. */
+const idFilmu =
+  PRZYKLADY.wideoYoutube.match(
+    /(?:youtu\.be\/|v=|shorts\/|embed\/)([\w-]{11})/,
+  )?.[1] ?? '';
+
+const { nagranie } = PRZYKLADY;
+---
+
+<Sekcja numer="03" id="przyklady" tytul="Posłuchaj, jak agent prowadzi rozmowę">
+  <p class="max-w-[58ch] text-centrala-80">
+    Dwie prawdziwe rozmowy z agentem, bez montażu i poprawek.
+  </p>
+
+  <div class="mt-10 grid gap-8 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] lg:items-start">
+    <figure>
+      <figcaption class="maszynowa text-notatka">01 / Obsługa kalendarza</figcaption>
+
+      <div class="mt-4 aspect-video w-full border border-linia bg-centrala">
+        {
+          idFilmu ? (
+            /* Fasada: YouTube ładuje się dopiero po kliknięciu —
+               wcześniej przeglądarka nie łączy się z Google. */
+            <button
+              type="button"
+              data-yt={idFilmu}
+              class="flex size-full flex-col items-center justify-center gap-4 text-arkusz hover:bg-centrala-80 transition"
+            >
+              <span
+                aria-hidden="true"
+                class="flex size-16 items-center justify-center bg-sluchawka shadow-[4px_4px_0_0_var(--color-arkusz)]"
+              >
+                <span class="ml-1 size-0 border-y-[10px] border-l-[16px] border-y-transparent border-l-arkusz" />
+              </span>
+              <span class="maszynowa">Odtwórz film</span>
+              <span class="max-w-[36ch] px-6 text-center text-meta text-arkusz/60">
+                Po kliknięciu film załaduje się z YouTube.
+              </span>
+            </button>
+          ) : (
+            <p class="flex size-full items-center justify-center p-6 text-center font-mono text-[0.875rem] text-arkusz/60">
+              {'{{FILM — wklej link do PRZYKLADY.wideoYoutube w src/config.ts}}'}
+            </p>
+          )
+        }
+      </div>
+    </figure>
+
+    <figure>
+      <figcaption class="maszynowa text-notatka">02 / Przyjęcie zgłoszenia serwisowego</figcaption>
+
+      <div class="mt-4 border border-linia bg-arkusz-glebszy p-5 sm:p-6">
+        <div class="flex items-baseline justify-between gap-4">
+          <p class="font-600">{nagranie.opis}</p>
+          <p class="maszynowa shrink-0 text-notatka tabular-nums">{nagranie.dlugosc}</p>
+        </div>
+        <audio class="mt-5 w-full" controls preload="none" src={nagranie.plik}>
+          <a class="underline underline-offset-4" href={nagranie.plik}>Pobierz nagranie (MP3)</a>
+        </audio>
+      </div>
+    </figure>
+  </div>
+</Sekcja>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('button[data-yt]').forEach((przycisk) => {
+    przycisk.addEventListener('click', () => {
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube-nocookie.com/embed/${przycisk.dataset.yt}?autoplay=1&rel=0`;
+      iframe.title = 'Film: jak działa agent głosowy';
+      iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      iframe.className = 'size-full';
+      przycisk.replaceWith(iframe);
+    });
+  });
+</script>

@@ -46,5 +46,19 @@ export type LiniaTranskryptu = {
 
 export const TRANSKRYPT: LiniaTranskryptu[] = [];
 
+/**
+ * Przykłady działania agenta — sekcja „Posłuchaj, jak to brzmi”.
+ * Pusty `wideoYoutube` = w miejscu filmu widnieje placeholder.
+ * Wklej zwykły link z YouTube (watch?v=…, youtu.be/…, shorts/…).
+ */
+export const PRZYKLADY = {
+  wideoYoutube: 'https://www.youtube.com/watch?v=MCE8xs0CNR4',
+  nagranie: {
+    plik: '/nagrania/specjalisci-od-wody.mp3',
+    opis: 'Rozmowa z agentem firmy instalacyjnej',
+    dlugosc: '1:39',
+  },
+} as const;
+
 /** Meta Pixel — wklej ID, żeby aktywować skrypt (ładuje się dopiero po zgodzie). */
 export const META_PIXEL_ID = '';
