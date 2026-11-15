@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   output: 'static',
-  site: 'https://example.netlify.app',
+  site: 'https://zabekdigital.pl',
   vite: {
     plugins: [tailwindcss()],
     server: {

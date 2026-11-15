@@ -177,10 +177,30 @@ const slupki = Array.from({ length: 40 }, (_, i) => ({
     const podsumowanie = scena.querySelector<HTMLElement>('[data-podsumowanie]')!;
     const etykieta = kto.textContent;
 
-    const czekaj = (ms: number) => new Promise((r) => setTimeout(r, ms));
     const dwa = (n: number) => String(n).padStart(2, '0');
 
     let start = 0;
+
+    /* Karta w tle: scena stoi, zegar nie ucieka, bateria nie znika.
+       `czekaj` nie wraca, dopóki karta nie jest znów widoczna. */
+    let schowanoO = 0;
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) schowanoO = performance.now();
+      else if (schowanoO) {
+        start += performance.now() - schowanoO;
+        schowanoO = 0;
+      }
+    });
+    const widoczna = () =>
+      document.hidden
+        ? new Promise<void>((r) =>
+            document.addEventListener('visibilitychange', () => r(), { once: true }),
+          )
+        : Promise.resolve();
+    const czekaj = async (ms: number) => {
+      await new Promise((r) => setTimeout(r, ms));
+      await widoczna();
+    };
     let interwal: ReturnType<typeof setInterval> | undefined;
     const tik = () => {
       const s = Math.floor((performance.now() - start) / 1000);

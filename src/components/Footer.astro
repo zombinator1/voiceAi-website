@@ -1,64 +1,50 @@
 ---
 import { myPhone, myPhoneHref, FIRMA } from '../config';
 const rok = new Date().getFullYear();
+
+const odnosnik =
+  'inline-flex min-h-11 items-center text-centrala-80 underline decoration-linia-mocna underline-offset-4 transition hover:text-centrala hover:decoration-centrala';
 ---
 
-<footer class="border-t border-linia bg-arkusz-glebszy py-10 sm:py-14">
+<footer class="border-t border-linia bg-arkusz-glebszy py-12 sm:py-16">
   <div class="arkusz-kolumna">
-    <div class="grid gap-8 sm:grid-cols-2 sm:gap-12">
+    {/* ta sama siatka 5/7 co w sekcjach */}
+    <div class="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-x-16 xl:gap-x-24">
       <div>
-        <p class="font-sans text-[1.0625rem] font-600 tracking-[-0.01em]">
-          {FIRMA.nazwa}
+        <p class="font-display text-[1.5rem] leading-tight tracking-[-0.01em]">{FIRMA.nazwa}</p>
+        <p class="mt-3 max-w-[34ch] text-meta text-notatka">
+          Agenci głosowi AI, którzy odbierają telefony w małych firmach.
         </p>
-        <!-- Kolumna etykiet dopasowuje się do najdłuższej z nich (`auto`),
-             więc wartości startują równo bez zgadywania szerokości.
-             Poniżej `xs` etykieta ląduje nad wartością — „telefon osobisty"
-             i adres e-mail nie mieszczą się obok siebie na wąskim telefonie. -->
-        <dl class="mt-2 grid gap-x-3 xs:grid-cols-[auto_1fr] xs:items-center">
-          <dt class="maszynowa text-notatka xs:whitespace-nowrap">e-mail</dt>
-          <dd class="font-mono text-[0.875rem]">
-            <a class="inline-flex min-h-11 items-center underline underline-offset-2 hover:text-sluchawka" href={`mailto:${FIRMA.email}`}>
-              {FIRMA.email}
-            </a>
-          </dd>
-          <dt class="maszynowa text-notatka xs:whitespace-nowrap">telefon osobisty</dt>
-          <dd class="font-mono text-[0.875rem] tabular-nums">
-            <a class="inline-flex min-h-11 items-center underline underline-offset-2 hover:text-sluchawka" href={`tel:${myPhoneHref}`}>
-              {myPhone}
-            </a>
-          </dd>
-        </dl>
       </div>
 
-      <nav aria-label="Stopka" class="sm:justify-self-end">
-        <ul class="space-y-1">
-          <li>
-            <a class="inline-flex min-h-11 items-center underline underline-offset-2 hover:text-sluchawka" href="/rodo">
-              Polityka prywatności
-            </a>
-          </li>
-          <li>
-            <a class="inline-flex min-h-11 items-center underline underline-offset-2 hover:text-sluchawka" href="/#oferta">Cennik</a>
-          </li>
-          <li>
-            <a class="inline-flex min-h-11 items-center underline underline-offset-2 hover:text-sluchawka" href="/#faq">
-              Pytania i odpowiedzi
-            </a>
-          </li>
-          <li>
-            <button
-              type="button"
-              data-cookies-otworz
-              class="inline-flex min-h-11 items-center underline underline-offset-2 hover:text-sluchawka"
-            >
-              Ustawienia cookies
-            </button>
-          </li>
-        </ul>
-      </nav>
+      <div class="grid gap-10 sm:grid-cols-2">
+        <dl>
+          <dt class="maszynowa text-notatka">Kontakt bezpośredni</dt>
+          <dd class="mt-3 flex flex-col">
+            <a class={odnosnik} href={`mailto:${FIRMA.email}`}>{FIRMA.email}</a>
+            <a class={`${odnosnik} tabular-nums`} href={`tel:${myPhoneHref}`}>{myPhone}</a>
+          </dd>
+          <dt class="maszynowa mt-6 text-notatka">NIP</dt>
+          <dd class="mt-1 font-mono text-meta tabular-nums text-centrala-80">{FIRMA.nip}</dd>
+        </dl>
+
+        <nav aria-label="Stopka">
+          <p class="maszynowa text-notatka">Na stronie</p>
+          <ul class="mt-3 flex flex-col">
+            <li><a class={odnosnik} href="/#przyklady">Posłuchaj rozmowy</a></li>
+            <li><a class={odnosnik} href="/#jak-to-dziala">Wdrożenie</a></li>
+            <li><a class={odnosnik} href="/#oferta">Cennik</a></li>
+            <li><a class={odnosnik} href="/#faq">Pytania i odpowiedzi</a></li>
+            <li><a class={odnosnik} href="/rodo">Polityka prywatności</a></li>
+            <li>
+              <button type="button" data-cookies-otworz class={odnosnik}>Ustawienia cookies</button>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
 
-    <p class="maszynowa mt-10 border-t border-linia pt-6 text-notatka">
+    <p class="maszynowa mt-12 border-t border-linia-mocna/50 pt-6 text-notatka">
       © {rok} {FIRMA.nazwa}
     </p>
   </div>

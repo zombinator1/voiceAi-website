@@ -25,7 +25,7 @@ export const myPhoneHref = doHref(myPhone);
 
 /** Właściciel — sekcja „Kim jestem”. */
 export const WLASCICIEL = {
-  imie: 'BARTŁOMIEJ ZĄBEK',
+  imie: 'Bartłomiej Ząbek',
   rola: 'Założyciel',
   /**
    * Portret z `src/assets` — importowany, nie jako ścieżka tekstowa.

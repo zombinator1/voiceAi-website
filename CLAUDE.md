@@ -48,3 +48,4 @@ Kierunek: **„luksusowy papier”**. Jasna, wydawnicza strona z jedną ciemną 
 
 ## Open items
 
+- **Obraz OG** (`public/og.jpg`, 1200×630): generowany z `src/og/szablon.html` przez `node src/og/zrzut.mjs file://$PWD/src/og/szablon.html 1200 630 og.png`, potem konwersja do JPEG (PIL, quality 84). Przegeneruj po zmianie numeru demo albo nagłówka hero.

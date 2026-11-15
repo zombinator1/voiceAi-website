@@ -13,13 +13,50 @@ import BezRyzyka from '../components/08-BezRyzyka.astro';
 import Faq from '../components/09-Faq.astro';
 import KimJestem from '../components/10-KimJestem.astro';
 import CtaKoncowe from '../components/11-CtaKoncowe.astro';
-import { FIRMA } from '../config';
+import { FIRMA, telefonAiHref, WLASCICIEL } from '../config';
+
+/* Dane strukturalne dla Google: firma + usługa. Tylko to, co jest już
+   publicznie na stronie — bez adresu, bez wymyślonych ocen. */
+const daneStrukturalne = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'ProfessionalService',
+      '@id': `${Astro.site}#firma`,
+      name: FIRMA.nazwa,
+      url: Astro.site?.href,
+      email: FIRMA.email,
+      telephone: telefonAiHref,
+      founder: { '@type': 'Person', name: WLASCICIEL.imie },
+      areaServed: { '@type': 'Country', name: 'Polska' },
+      address: { '@type': 'PostalAddress', addressLocality: 'Warszawa', addressCountry: 'PL' },
+      description:
+        'Wdrażanie agentów głosowych AI, które odbierają telefony w małych firmach: klinikach, warsztatach, kancelariach, firmach instalacyjnych i salonach.',
+    },
+    {
+      '@type': 'Service',
+      name: 'Agent głosowy AI odbierający telefony',
+      serviceType: 'Automatyczna obsługa połączeń telefonicznych',
+      provider: { '@id': `${Astro.site}#firma` },
+      areaServed: { '@type': 'Country', name: 'Polska' },
+      description:
+        'Agent odbiera połączenia 24/7, odpowiada z bazy wiedzy firmy, zbiera dane kontaktowe i wysyła podsumowanie rozmowy e-mailem. Uruchomienie przez przekierowanie połączeń, bez zmiany operatora.',
+      offers: {
+        '@type': 'Offer',
+        price: '290',
+        priceCurrency: 'PLN',
+        description: 'Abonament miesięczny, bez opłaty wdrożeniowej (program pilotażowy).',
+      },
+    },
+  ],
+};
 ---
 
 <Base
   tytul={`${FIRMA.nazwa} — agent głosowy AI, który odbiera telefony w Twojej firmie`}
   opis="Agent głosowy AI odbiera telefony, których nie możesz odebrać: odpowiada na pytania klientów, zbiera kontakt i wysyła podsumowanie rozmowy mailem. Zadzwoń pod numer demo i posłuchaj."
 >
+  <script is:inline type="application/ld+json" slot="head" set:html={JSON.stringify(daneStrukturalne)} />
   <Hero />
   <Opinia />
   <Problem />
