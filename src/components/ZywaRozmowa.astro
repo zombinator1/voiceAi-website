@@ -1,0 +1,244 @@
+---
+/* Scena hero: podgląd trwającego połączenia. Transkrypt pisze się linijka
+   po linijce, fala głosu pulsuje po stronie tego, kto mówi, zegar liczy.
+   Bez JS (i przy prefers-reduced-motion) widać od razu całą rozmowę. */
+import type { LiniaTranskryptu } from '../config';
+
+interface Props {
+  linie: readonly LiniaTranskryptu[];
+  etykieta: string;
+}
+
+const { linie, etykieta } = Astro.props;
+
+/* Amplitudy słupków fali — nieregularne, ale deterministyczne. */
+const slupki = Array.from({ length: 40 }, (_, i) => ({
+  i,
+  amp: (0.3 + 0.7 * Math.abs(Math.sin(i * 0.7) * Math.cos(i * 0.31))).toFixed(2),
+}));
+---
+
+<aside
+  data-zywa
+  aria-label="Podgląd przykładowej rozmowy z agentem głosowym"
+  class="na-ciemnym relative overflow-hidden rounded-[3px] bg-noc text-arkusz shadow-scena"
+>
+  {/* delikatne światło z góry — scena, nie płaska plansza */}
+  <div
+    aria-hidden="true"
+    class="pointer-events-none absolute inset-x-0 top-0 h-56 bg-[radial-gradient(60%_100%_at_50%_0%,rgb(63_207_142/0.12),transparent_70%)]"
+  >
+  </div>
+
+  <div
+    class="relative flex items-center justify-between gap-4 border-b border-arkusz/10 px-5 py-4 sm:px-6"
+  >
+    <p class="maszynowa flex items-center gap-2.5 text-arkusz/60">
+      <span class="relative flex size-2" aria-hidden="true">
+        <span
+          class="absolute inline-flex size-full animate-ping rounded-full bg-sluchawka-swiatlo opacity-60"
+        ></span>
+        <span class="relative inline-flex size-2 rounded-full bg-sluchawka-swiatlo"></span>
+      </span>
+      <span data-stan>połączenie trwa</span>
+    </p>
+    <p class="font-mono text-meta tabular-nums text-arkusz/60" data-zegar>00:00</p>
+  </div>
+
+  <div class="relative px-5 pt-6 sm:px-6">
+    <div class="fala flex h-12 items-center justify-center gap-[3px]" aria-hidden="true">
+      {slupki.map((s) => <span style={`--i:${s.i};--amp:${s.amp}`} />)}
+    </div>
+    <p class="maszynowa mt-3 text-center text-[0.6875rem] text-arkusz/45" data-kto>
+      {etykieta}
+    </p>
+  </div>
+
+  <ol
+    class="transkrypt relative flex h-[16rem] flex-col justify-end gap-3 overflow-hidden px-5 pb-6 pt-5 sm:h-[17rem] sm:px-6"
+  >
+    {
+      linie.map((l) => (
+        <li
+          data-mowca={l.mowca}
+          class:list={[
+            'linia max-w-[88%] rounded-[3px] px-4 py-3 text-[0.9375rem] leading-relaxed',
+            l.mowca === 'agent'
+              ? 'self-start border border-arkusz/12 bg-arkusz/[0.06] text-arkusz'
+              : 'self-end border border-sluchawka-swiatlo/30 bg-sluchawka/25 text-arkusz',
+          ]}
+        >
+          <span class="maszynowa mb-1 block text-[0.625rem] text-arkusz/50">
+            {l.mowca === 'agent' ? 'asystent AI' : 'dzwoniący'}
+          </span>
+          <span data-tekst>{l.tekst}</span>
+        </li>
+      ))
+    }
+  </ol>
+
+  <div
+    data-podsumowanie
+    class="podsumowanie relative flex items-center gap-3 border-t border-arkusz/10 px-5 py-4 text-meta sm:px-6"
+  >
+    <span
+      aria-hidden="true"
+      class="flex size-7 shrink-0 items-center justify-center rounded-full border border-arkusz/15 text-arkusz/70"
+    >
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 6h16v12H4z" /><path d="m4 7 8 6 8-6" />
+      </svg>
+    </span>
+    <span class="text-arkusz/75">Podsumowanie rozmowy trafia na Twój e-mail</span>
+    <span class="znacznik maszynowa ml-auto text-sluchawka-swiatlo">wysłane</span>
+  </div>
+</aside>
+
+<style>
+  /* --- Fala głosu ------------------------------------------------------- */
+  .fala span {
+    width: 3px;
+    height: 100%;
+    border-radius: 2px;
+    background: currentColor;
+    color: rgb(243 241 236 / 0.18);
+    transform: scaleY(0.1);
+    transition:
+      transform 0.35s ease,
+      color 0.4s ease;
+  }
+  [data-mowca='agent'] .fala span {
+    color: var(--color-sluchawka-swiatlo);
+    animation: fala 1.15s ease-in-out infinite;
+    animation-delay: calc(var(--i) * -0.085s);
+  }
+  [data-mowca='dzwoniacy'] .fala span {
+    color: rgb(243 241 236 / 0.8);
+    animation: fala 1.35s ease-in-out infinite;
+    animation-delay: calc(var(--i) * -0.065s);
+  }
+  @keyframes fala {
+    0%,
+    100% {
+      transform: scaleY(0.12);
+    }
+    35% {
+      transform: scaleY(var(--amp));
+    }
+    65% {
+      transform: scaleY(calc(var(--amp) * 0.45));
+    }
+  }
+
+  /* --- Linijki transkryptu ----------------------------------------------- */
+  /* Starsze dymki rozpływają się ku górze zamiast urywać na krawędzi. */
+  .transkrypt {
+    mask-image: linear-gradient(to bottom, transparent 0, #000 4.5rem);
+  }
+  .linia.pojawia {
+    animation: pojawia 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  @keyframes pojawia {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* --- Stopka: „wysłane" zapala się na końcu ---------------------------- */
+  .podsumowanie {
+    transition: background-color 0.5s ease;
+  }
+  .znacznik {
+    display: none;
+  }
+  .podsumowanie[data-stan='wyslane'] {
+    background-color: rgb(63 207 142 / 0.08);
+  }
+  .podsumowanie[data-stan='wyslane'] .znacznik {
+    display: inline;
+  }
+</style>
+
+<script>
+  const scena = document.querySelector<HTMLElement>('[data-zywa]');
+  const bezRuchu = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (scena && !bezRuchu) {
+    const linie = [...scena.querySelectorAll<HTMLLIElement>('li[data-mowca]')];
+    const teksty = linie.map((l) => l.querySelector('[data-tekst]')!.textContent ?? '');
+    const zegar = scena.querySelector('[data-zegar]')!;
+    const stan = scena.querySelector('[data-stan]')!;
+    const kto = scena.querySelector('[data-kto]')!;
+    const podsumowanie = scena.querySelector<HTMLElement>('[data-podsumowanie]')!;
+    const etykieta = kto.textContent;
+
+    const czekaj = (ms: number) => new Promise((r) => setTimeout(r, ms));
+    const dwa = (n: number) => String(n).padStart(2, '0');
+
+    let start = 0;
+    let interwal: ReturnType<typeof setInterval> | undefined;
+    const tik = () => {
+      const s = Math.floor((performance.now() - start) / 1000);
+      zegar.textContent = `${dwa(Math.floor(s / 60))}:${dwa(s % 60)}`;
+    };
+
+    async function petla() {
+      for (;;) {
+        /* reset sceny */
+        linie.forEach((l) => {
+          l.hidden = true;
+          l.classList.remove('pojawia');
+          l.querySelector('[data-tekst]')!.textContent = '';
+        });
+        delete podsumowanie.dataset.stan;
+        delete scena!.dataset.mowca;
+        stan.textContent = 'połączenie trwa';
+        kto.textContent = etykieta;
+        start = performance.now();
+        zegar.textContent = '00:00';
+        interwal = setInterval(tik, 250);
+        await czekaj(900);
+
+        for (let i = 0; i < linie.length; i++) {
+          const l = linie[i];
+          const mowca = l.dataset.mowca!;
+          const pole = l.querySelector('[data-tekst]')!;
+          scena!.dataset.mowca = mowca;
+          kto.textContent = mowca === 'agent' ? 'mówi asystent' : 'mówi dzwoniący';
+          l.hidden = false;
+          l.classList.add('pojawia');
+          for (let c = 1; c <= teksty[i].length; c++) {
+            pole.textContent = teksty[i].slice(0, c);
+            await czekaj(mowca === 'agent' ? 24 : 32);
+          }
+          delete scena!.dataset.mowca;
+          kto.textContent = '…';
+          await czekaj(700);
+        }
+
+        clearInterval(interwal);
+        stan.textContent = 'rozmowa zakończona';
+        kto.textContent = 'podsumowanie wysłane';
+        podsumowanie.dataset.stan = 'wyslane';
+        await czekaj(5000);
+      }
+    }
+
+    /* Start dopiero, gdy scena jest na ekranie — nie animujemy w próżnię. */
+    const obserwator = new IntersectionObserver(
+      (wpisy) => {
+        if (wpisy[0].isIntersecting) {
+          obserwator.disconnect();
+          petla();
+        }
+      },
+      { threshold: 0.35 },
+    );
+    obserwator.observe(scena);
+  }
+</script>

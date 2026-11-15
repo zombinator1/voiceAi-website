@@ -1,168 +1,82 @@
 ---
-import { telefonAi,TRANSKRYPT } from "../config";
+import { telefonAi, telefonAiHref, TRANSKRYPT } from '../config';
+import ZywaRozmowa from './ZywaRozmowa.astro';
 
+/* Przebieg ilustracyjny — pokazuje, CO robi agent, nie udaje realnej rozmowy.
+   Gdy w configu pojawi się prawdziwy TRANSKRYPT, zastępuje ten przykład. */
 const przykladowyPrzebieg = [
-  { mowca: "dzwoniący", tekst: "Dzień dobry, chciałbym zgłosić pilną sprawę." },
-  {
-    mowca: "agent",
-    tekst: "Oczywiście. Zbiorę szczegóły i przekażę je właściwej osobie.",
-  },
-  {
-    mowca: "agent",
-    tekst: "Na koniec wyślę podsumowanie, żeby nic nie umknęło.",
-  },
+  { mowca: 'dzwoniacy', tekst: 'Dzień dobry, chciałbym zgłosić pilną sprawę.' },
+  { mowca: 'agent', tekst: 'Oczywiście. Zbiorę szczegóły i przekażę je właściwej osobie.' },
+  { mowca: 'dzwoniacy', tekst: 'Pękła rura pod zlewem, woda leci na podłogę.' },
+  { mowca: 'agent', tekst: 'Rozumiem, to pilne. Pod jaki adres ma przyjechać ekipa?' },
+  { mowca: 'dzwoniacy', tekst: 'Kwiatowa 12, Poznań.' },
+  { mowca: 'agent', tekst: 'Dziękuję. Zgłoszenie przekazuję od razu, a na koniec wyślę podsumowanie, żeby nic nie umknęło.' },
 ] as const;
 
-const przebiegRozmowy =
-  TRANSKRYPT.length > 0 ? TRANSKRYPT.slice(0, 3) : przykladowyPrzebieg;
+const przebiegRozmowy = TRANSKRYPT.length > 0 ? TRANSKRYPT.slice(0, 6) : przykladowyPrzebieg;
 const etykietaRozmowy =
-  TRANSKRYPT.length > 0
-    ? "Fragment rozmowy z dema"
-    : "Przykładowy przebieg rozmowy";
+  TRANSKRYPT.length > 0 ? 'fragment rozmowy z dema' : 'przykładowy przebieg rozmowy';
 ---
 
-<section class="relative overflow-hidden border-b border-linia bg-arkusz">
+<section class="relative overflow-hidden border-b border-linia">
+  {/* światło na papierze: lewa góra jaśniejsza, nic więcej */}
   <div
     aria-hidden="true"
-    class="pointer-events-none absolute inset-0 opacity-45"
+    class="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_60%_at_18%_0%,rgb(255_255_255/0.65),transparent_70%)]"
   >
-    <div class="absolute inset-x-0 top-0 h-px bg-linia"></div>
-    <div
-      class="absolute -right-40 top-[-12rem] size-[34rem] rounded-full border border-linia"
-    >
-    </div>
-    <div
-      class="absolute -right-20 top-[-4rem] size-[20rem] rounded-full border border-linia"
-    >
-    </div>
   </div>
 
   <div
-    class="arkusz-kolumna relative grid gap-10 py-12 sm:gap-14 sm:py-20 lg:grid-cols-[minmax(0,0.88fr)_minmax(30rem,1.12fr)] lg:items-center lg:gap-16 lg:py-24"
+    class="arkusz-kolumna relative grid gap-12 py-12 sm:py-16 lg:grid-cols-[minmax(0,1.08fr)_minmax(26rem,0.92fr)] lg:items-center lg:gap-16 lg:py-20"
   >
-    <div class="max-w-[39rem]">
+    <div class="max-w-[44rem]">
       <p class="maszynowa flex items-center gap-3 text-notatka">
-        <span class="inline-block size-2 bg-nieodebrane"></span>
+        <span class="inline-block size-1.5 rounded-full bg-nieodebrane"></span>
         01 — telefon bez odpowiedzi to utracony klient
       </p>
 
-      <h1 class="mt-5 text-h1 max-w-[13ch] sm:mt-6">
-        Chcesz aby każde połączenie zostało odebrane?
+      <h1 class="mt-6 text-h1 max-w-[18ch] sm:mt-7">
+        Chcesz aby <em class="italic">każde</em> połączenie zostało odebrane?
       </h1>
 
-      <p class="mt-6 max-w-[48ch] text-lead text-centrala-80">
+      <p class="mt-7 max-w-[46ch] text-lead text-centrala-80">
         Asystent AI odbiera połączenia, zbiera zgłoszenie i wysyła Ci gotowe
-        podsumowanie — gdy jesteś u klienta, po godzinach albo masz
-        zajętą linię.
+        podsumowanie — gdy jesteś u klienta, po godzinach albo masz zajętą linię.
       </p>
 
-      <div class="mt-8 border-y border-linia py-4 sm:mt-10">
-        <p class="maszynowa text-notatka">
-          Bez zmiany numeru <span class="mx-2 text-linia">/</span> zgodne z rodo
-        </p>
-      </div>
-
-      <div class="mt-8">
-        <div class="group inline-flex min-h-14 w-full max-w-[31rem] flex-col items-start justify-center gap-1 bg-sluchawka px-5 py-3.5 text-arkusz shadow-[6px_6px_0_0_var(--color-centrala)] transition hover:-translate-y-0.5 hover:bg-sluchawka-ciemna hover:shadow-[8px_8px_0_0_var(--color-centrala)] sm:px-6">
-          <span class="maszynowa text-arkusz"
-            >Umów się poprzez mojego asystenta AI</span
-          >
-          <span
-            class="font-mono text-lg font-500 tracking-[0.03em] tabular-nums sm:text-xl"
-          >
-            {telefonAi}
+      <div class="mt-10 sm:mt-12">
+        <a
+          href={`tel:${telefonAiHref}`}
+          class="group flex w-full max-w-[30rem] items-center justify-between gap-6 rounded-[3px] bg-sluchawka px-6 py-5 text-arkusz shadow-kartka transition hover:bg-sluchawka-ciemna"
+        >
+          <span class="flex flex-col gap-1.5">
+            <span class="maszynowa text-[0.6875rem] text-arkusz/70">
+              Umów się poprzez mojego asystenta AI
+            </span>
+            <span class="font-mono text-xl font-500 tracking-[0.02em] tabular-nums sm:text-2xl">
+              {telefonAi}
+            </span>
           </span>
-        </div>
-        <p class="mt-5 text-meta text-centrala-80">
-          Wolisz najpierw napisać? <a
-            class="font-600 text-centrala underline decoration-centrala/40 underline-offset-4 hover:decoration-centrala"
-            href="#kontakt">Zostaw numer, oddzwonię osobiście.</a
+          <span
+            aria-hidden="true"
+            class="flex size-10 shrink-0 items-center justify-center rounded-full border border-arkusz/30 transition group-hover:translate-x-0.5 group-hover:border-arkusz/60"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14" /><path d="m13 6 6 6-6 6" />
+            </svg>
+          </span>
+        </a>
+
+        <p class="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-meta text-centrala-80">
+          <span class="maszynowa text-notatka">bez zmiany numeru · zgodne z rodo</span>
+          <a
+            class="font-500 text-centrala underline decoration-linia-mocna underline-offset-4 transition hover:decoration-centrala"
+            href="#kontakt">Wolisz napisać? Zostaw numer, oddzwonię.</a
           >
         </p>
       </div>
     </div>
 
-    <aside
-      class="relative overflow-hidden border border-centrala bg-centrala p-4 text-arkusz shadow-[10px_10px_0_0_var(--color-linia)] sm:p-6 lg:p-7"
-      aria-label="Demonstracja działania agenta głosowego"
-    >
-      <div
-        aria-hidden="true"
-        class="pointer-events-none absolute -right-20 -top-20 size-64 rounded-full border border-arkusz/10"
-      >
-      </div>
-      <div
-        aria-hidden="true"
-        class="pointer-events-none absolute -bottom-28 -left-24 size-72 rounded-full border border-arkusz/10"
-      >
-      </div>
-
-      <div
-        class="relative flex items-start justify-between gap-5 border-b border-arkusz/20 pb-5"
-      >
-        <div>
-          <!-- <p class="maszynowa flex items-center gap-2 text-arkusz/55">
-            <span class="relative flex size-2" aria-hidden="true">
-              <span class="absolute inline-flex size-full animate-ping rounded-full bg-sluchawka opacity-75 motion-reduce:hidden"></span>
-              <span class="relative inline-flex size-2 rounded-full bg-sluchawka"></span>
-            </span>
-            agent gotowy
-          </p> -->
-          <p class="mt-2 font-display text-h3 font-700 text-arkusz">
-            Rozmowa, która nie czeka.
-          </p>
-        </div>
-        <!-- <span class="maszynowa shrink-0 border border-arkusz/20 px-2 py-1 text-arkusz/55">demo 24/7</span> -->
-      </div>
-
-      <div
-        class="relative mt-6 rounded-sm border border-arkusz/20 bg-arkusz/5 p-4 sm:p-5"
-      >
-        <div class="flex items-center justify-between gap-4">
-          <p class="maszynowa text-arkusz/55">{etykietaRozmowy}</p>
-          <span class="font-mono text-meta tabular-nums text-arkusz/55"
-            >00:47</span
-          >
-        </div>
-
-        <dl class="mt-6 space-y-4">
-          {
-            przebiegRozmowy.map((linia, index) => (
-              <div
-                class:list={[
-                  "max-w-[92%] border p-3.5 font-mono text-[0.8125rem] leading-relaxed sm:text-sm",
-                  linia.mowca === "agent"
-                    ? "border-arkusz/20 bg-arkusz/10 text-arkusz"
-                    : "ml-auto border-sluchawka/65 bg-sluchawka/15 text-arkusz/90",
-                  index === 1 && "sm:translate-x-3",
-                ]}
-              >
-                <dt class="maszynowa mb-1.5 text-[0.625rem] text-arkusz/50">
-                  {linia.mowca === "agent" ? "asystent AI" : "dzwoniący"}
-                </dt>
-                <dd>{linia.tekst}</dd>
-              </div>
-            ))
-          }
-        </dl>
-      </div>
-
-      <div
-        class="relative mt-5 grid gap-3 border-t border-arkusz/20 pt-5 sm:grid-cols-3"
-      >
-        <div>
-          <p class="maszynowa text-arkusz/45">01</p>
-          <p class="mt-1 text-meta text-arkusz/85">odbiera i przedstawia się</p>
-        </div>
-        <div>
-          <p class="maszynowa text-arkusz/45">02</p>
-          <p class="mt-1 text-meta text-arkusz/85">zbiera sprawę i kontakt</p>
-        </div>
-        <div>
-          <p class="maszynowa text-arkusz/45">03</p>
-          <p class="mt-1 text-meta text-arkusz/85">wysyła podsumowanie</p>
-        </div>
-      </div>
-    </aside>
+    <ZywaRozmowa linie={przebiegRozmowy} etykieta={etykietaRozmowy} />
   </div>
 </section>

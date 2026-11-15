@@ -2,40 +2,60 @@
 
 @theme {
   /* --- Paleta ---------------------------------------------------------
-     centrala     atrament: tekst i ciemne pasy
-     arkusz       papier: tło strony (chłodne, nie kremowe)
-     linia        linie tabel i obramowania
-     notatka      metadane, znaczniki czasu, tekst drugiego planu
-     sluchawka    zieleń przycisku „odbierz" — WYŁĄCZNIE tel: i submit
-     nieodebrane  czerwień nieodebranego — WYŁĄCZNIE sekcja Problem
+     centrala        atrament: tekst i ciemne pasy
+     noc             najgłębsza ciemność: „sceny" (hero, przebieg, CTA)
+     arkusz          papier: tło strony (ciepły, nie kremowy)
+     arkusz-jasny    kartka leżąca NA papierze — jaśniejsza, uniesiona
+     arkusz-glebszy  wgłębienie w papierze — pasy, tła tabel
+     linia           linie tabel i obramowania
+     linia-mocna     obramowanie, które ma być widoczne (fokus, aktywne)
+     notatka         metadane, znaczniki czasu, tekst drugiego planu
+     sluchawka       zieleń przycisku „odbierz" — WYŁĄCZNIE tel: i submit
+     sluchawka-swiatlo  ta sama zieleń na ciemnym tle (wskaźniki, fala)
+     nieodebrane     czerwień nieodebranego — WYŁĄCZNIE sekcja Problem
   */
-  --color-centrala: #16212b;
-  --color-centrala-80: #3a4550;
-  --color-arkusz: #f1f2f0;
-  --color-arkusz-glebszy: #e7e8e5;
-  --color-linia: #d4d7d3;
-  --color-notatka: #626962;
-  --color-sluchawka: #12704a;
-  --color-sluchawka-ciemna: #0d5738;
-  --color-nieodebrane: #b62e26;
+  --color-centrala: #171c22;
+  --color-centrala-80: #3e444b;
+  --color-noc: #0f1316;
+  --color-arkusz: #f3f1ec;
+  --color-arkusz-jasny: #faf9f6;
+  --color-arkusz-glebszy: #e9e6df;
+  --color-linia: #d9d4ca;
+  --color-linia-mocna: #b7b0a3;
+  --color-notatka: #6b6a62;
+  --color-sluchawka: #136b47;
+  --color-sluchawka-ciemna: #0e5236;
+  --color-sluchawka-swiatlo: #3fcf8e;
+  --color-nieodebrane: #b2362c;
 
-  --font-display: var(--font-archivo);
-  --font-sans: var(--font-plex-sans);
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-geist);
   --font-mono: var(--font-plex-mono);
 
-  /* --- Skala typograficzna (płynna, od 360px) ------------------------- */
-  --text-h1: clamp(2rem, 7.5vw, 3.75rem);
-  --text-h1--line-height: 1.04;
-  --text-h2: clamp(1.625rem, 5vw, 2.5rem);
-  --text-h2--line-height: 1.1;
-  --text-h3: clamp(1.125rem, 2.6vw, 1.375rem);
-  --text-h3--line-height: 1.25;
+  /* --- Skala typograficzna (płynna, od 360px) -------------------------
+     Nagłówki są szeryfowe i jednowagowe, więc hierarchię robi rozmiar. */
+  --text-h1: clamp(2.625rem, 6.4vw, 4.25rem);
+  --text-h1--line-height: 0.98;
+  --text-h2: clamp(2rem, 5.2vw, 3.25rem);
+  --text-h2--line-height: 1.04;
+  --text-h3: clamp(1.1875rem, 2.4vw, 1.375rem);
+  --text-h3--line-height: 1.3;
   --text-lead: clamp(1.0625rem, 2.4vw, 1.3125rem);
   --text-lead--line-height: 1.55;
   --text-body: 1.0625rem;
   --text-body--line-height: 1.7;
   --text-meta: 0.8125rem;
   --text-meta--line-height: 1.5;
+
+  /* --- Cienie: miękkie, warstwowe. Kartka leży na papierze,
+         scena unosi się nad nim. Żadnych twardych offsetów. ----------- */
+  --shadow-kartka:
+    0 1px 2px rgb(23 28 34 / 0.05),
+    0 10px 28px -10px rgb(23 28 34 / 0.14);
+  --shadow-scena:
+    0 1px 0 rgb(255 255 255 / 0.04) inset,
+    0 30px 70px -24px rgb(15 19 22 / 0.5),
+    0 12px 24px -12px rgb(15 19 22 / 0.3);
 
   --breakpoint-xs: 26rem;
 }
@@ -48,6 +68,7 @@
   }
 
   body {
+    position: relative;
     background-color: var(--color-arkusz);
     color: var(--color-centrala);
     font-family: var(--font-sans);
@@ -58,6 +79,17 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  /* Ziarno papieru. Jedna kafelka szumu, 6% krycia, nad wszystkim,
+     nieklikalne. Na ciemnych scenach daje lekką „filmowość". */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
   @media (min-width: 40rem) {
     body {
       padding-bottom: 0;
@@ -65,11 +97,17 @@
   }
 
   h1,
-  h2,
-  h3 {
+  h2 {
     font-family: var(--font-display);
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  h3 {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    letter-spacing: -0.015em;
     text-wrap: balance;
   }
 
@@ -94,7 +132,7 @@
     border-radius: 1px;
   }
 
-  /* Nic na tej stronie nie musi się ruszać. */
+  /* Ruch jest tylko w hero. Kto go nie chce, dostaje stan końcowy. */
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
@@ -113,7 +151,7 @@
   /* Kolumna papieru — jedna szerokość na całej stronie. */
   .arkusz-kolumna {
     width: 100%;
-    max-width: 72rem;
+    max-width: 74rem;
     margin-inline: auto;
     padding-inline: 1.25rem;
   }
@@ -141,14 +179,14 @@
 
   /* Odstęp międzysekcyjny. */
   .sekcja {
-    padding-block: clamp(3rem, 6.5vw, 5rem);
+    padding-block: clamp(3.5rem, 7.5vw, 6.5rem);
   }
 
   /* Numer demo skaluje się do szerokości SWOJEJ kolumny, nie do viewportu —
      inaczej łamie się na dwie linie w układzie dwukolumnowym.
      Wymaga `@container` na rodzicu. */
   .numer-demo {
-    font-size: clamp(2.25rem, 13.5cqi, 4.5rem);
+    font-size: clamp(2.25rem, 10.5cqi, 4.25rem);
     line-height: 0.95;
   }
 }

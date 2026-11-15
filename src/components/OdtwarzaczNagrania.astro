@@ -1,0 +1,154 @@
+---
+/* Odtwarzacz nagrania z prawdziwym kształtem fali.
+   Szczyty głośności są policzone raz, przy buildzie (src/fala-nagrania.json),
+   więc przeglądarka nie dekoduje audio — rysuje 96 słupków i tyle.
+   Bez JS zostaje zwykły <audio controls>. */
+import szczyty from '../fala-nagrania.json';
+
+interface Props {
+  plik: string;
+  opis: string;
+  dlugosc: string;
+}
+
+const { plik, opis, dlugosc } = Astro.props;
+---
+
+<div data-odtwarzacz class="na-jasnym">
+  <div class="flex items-center gap-5">
+    <button
+      type="button"
+      data-graj
+      aria-label="Odtwórz nagranie"
+      class="flex size-14 shrink-0 items-center justify-center rounded-full bg-sluchawka text-arkusz shadow-kartka transition hover:bg-sluchawka-ciemna"
+    >
+      <svg data-ikona="graj" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M8 5.5v13l11-6.5z" />
+      </svg>
+      <svg data-ikona="pauza" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden>
+        <path d="M7 5h4v14H7zM13 5h4v14h-4z" />
+      </svg>
+    </button>
+
+    <div class="min-w-0 flex-1">
+      <p class="font-600 text-centrala">{opis}</p>
+      <p class="maszynowa mt-1 text-notatka tabular-nums">
+        <span data-czas>0:00</span>
+        <span class="mx-1.5 text-linia-mocna">/</span>
+        {dlugosc}
+      </p>
+    </div>
+  </div>
+
+  <div
+    data-fala
+    role="slider"
+    tabindex="0"
+    aria-label="Pozycja w nagraniu"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    aria-valuenow="0"
+    class="fala-nagrania mt-6 flex h-16 cursor-pointer items-center gap-[2px] rounded-[2px] focus-visible:outline-offset-6"
+  >
+    {szczyty.map((p) => <span style={`--h:${Math.max(p, 0.06)}`} />)}
+  </div>
+
+  <audio preload="none" src={plik} controls class="mt-5 w-full" data-audio>
+    <a class="underline underline-offset-4" href={plik}>Pobierz nagranie (MP3)</a>
+  </audio>
+</div>
+
+<style>
+  .fala-nagrania span {
+    flex: 1 1 0;
+    height: calc(var(--h) * 100%);
+    min-height: 3px;
+    border-radius: 1px;
+    background: var(--color-linia-mocna);
+    transition: background-color 0.15s ease;
+  }
+  .fala-nagrania span.grana {
+    background: var(--color-sluchawka);
+  }
+  .fala-nagrania:hover span:not(.grana) {
+    background: color-mix(in oklab, var(--color-linia-mocna), var(--color-centrala) 25%);
+  }
+  /* Z JS natywne kontrolki znikają — zostają tylko dla czytników i bez skryptów. */
+  [data-odtwarzacz].gotowy audio {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-odtwarzacz]').forEach((box) => {
+    const audio = box.querySelector<HTMLAudioElement>('[data-audio]')!;
+    const przycisk = box.querySelector<HTMLButtonElement>('[data-graj]')!;
+    const ikonaGraj = box.querySelector<SVGElement>('[data-ikona="graj"]')!;
+    const ikonaPauza = box.querySelector<SVGElement>('[data-ikona="pauza"]')!;
+    const czas = box.querySelector<HTMLElement>('[data-czas]')!;
+    const fala = box.querySelector<HTMLElement>('[data-fala]')!;
+    const slupki = [...fala.children] as HTMLElement[];
+
+    box.classList.add('gotowy');
+
+    const format = (s: number) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
+
+    let ostatni = -1;
+    const rysuj = () => {
+      const d = audio.duration || 0;
+      const u = d ? audio.currentTime / d : 0;
+      const n = Math.floor(u * slupki.length);
+      if (n !== ostatni) {
+        slupki.forEach((s, i) => s.classList.toggle('grana', i < n));
+        ostatni = n;
+        fala.setAttribute('aria-valuenow', String(Math.round(u * 100)));
+      }
+      czas.textContent = format(audio.currentTime);
+    };
+
+    const ustawIkony = (gra: boolean) => {
+      ikonaGraj.hidden = gra;
+      ikonaPauza.hidden = !gra;
+      przycisk.setAttribute('aria-label', gra ? 'Zatrzymaj nagranie' : 'Odtwórz nagranie');
+    };
+
+    przycisk.addEventListener('click', () => (audio.paused ? audio.play() : audio.pause()));
+    audio.addEventListener('play', () => ustawIkony(true));
+    audio.addEventListener('pause', () => ustawIkony(false));
+    audio.addEventListener('ended', () => {
+      ustawIkony(false);
+      audio.currentTime = 0;
+      rysuj();
+    });
+    audio.addEventListener('timeupdate', rysuj);
+
+    const przewin = (ulamek: number) => {
+      const start = () => {
+        audio.currentTime = Math.max(0, Math.min(1, ulamek)) * audio.duration;
+        rysuj();
+      };
+      if (audio.duration) start();
+      else audio.addEventListener('loadedmetadata', start, { once: true });
+      if (audio.paused) audio.play();
+    };
+
+    fala.addEventListener('click', (e) => {
+      const r = fala.getBoundingClientRect();
+      przewin((e.clientX - r.left) / r.width);
+    });
+    fala.addEventListener('keydown', (e) => {
+      const d = audio.duration || 0;
+      if (!d) return;
+      if (e.key === 'ArrowRight') przewin((audio.currentTime + 5) / d);
+      else if (e.key === 'ArrowLeft') przewin((audio.currentTime - 5) / d);
+      else if (e.key === ' ' || e.key === 'Enter') {
+        e.preventDefault();
+        audio.paused ? audio.play() : audio.pause();
+      }
+    });
+  });
+</script>

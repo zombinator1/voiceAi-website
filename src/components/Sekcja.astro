@@ -1,42 +1,71 @@
 ---
+/* Rama sekcji. Dwa układy:
+   boczny  — numer i tytuł w lewej kolumnie (przyklejone przy przewijaniu),
+             treść w prawej. Domyślny; wypełnia szerokość strony.
+   pelny   — tytuł nad treścią, treść na całą szerokość (diagramy, siatki). */
 interface Props {
   numer: string;
   tytul: string;
   id?: string;
   /** Ciemny pas — używany oszczędnie, do zmiany rytmu strony. */
   ciemna?: boolean;
+  uklad?: 'boczny' | 'pelny';
   class?: string;
 }
 
-const { numer, tytul, id, ciemna = false, class: klasa = '' } = Astro.props;
+const {
+  numer,
+  tytul,
+  id,
+  ciemna = false,
+  uklad = 'boczny',
+  class: klasa = '',
+} = Astro.props;
 ---
 
 <section
   id={id}
-  class:list={[
-    'sekcja',
-    ciemna ? 'na-ciemnym bg-centrala text-arkusz' : '',
-    klasa,
-  ]}
+  class:list={['sekcja', ciemna ? 'na-ciemnym bg-centrala text-arkusz' : '', klasa]}
 >
   <div class="arkusz-kolumna">
-    <div class="lg:grid lg:grid-cols-[7rem_minmax(0,1fr)] lg:gap-x-12">
-      <div class="mb-5 flex items-center gap-3 lg:mb-0 lg:block lg:pt-3">
-        <span class:list={['maszynowa', ciemna ? 'text-arkusz/55' : 'text-notatka']}>
-          {numer}
-        </span>
-        <span
+    <div
+      class:list={[
+        uklad === 'boczny'
+          ? 'lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-x-16 xl:gap-x-24'
+          : '',
+      ]}
+    >
+      <header class:list={[uklad === 'boczny' ? 'lg:sticky lg:top-24 lg:self-start' : '']}>
+        <p class="flex items-center gap-3">
+          <span class:list={['maszynowa', ciemna ? 'text-arkusz/50' : 'text-notatka']}>
+            {numer}
+          </span>
+          <span class:list={['h-px w-8', ciemna ? 'bg-arkusz/25' : 'bg-linia-mocna']}></span>
+        </p>
+        <h2
           class:list={[
-            'h-px w-8 lg:mt-3 lg:block lg:w-10',
-            ciemna ? 'bg-arkusz/25' : 'bg-linia',
-          ]}></span>
-      </div>
+            'mt-5 text-h2',
+            uklad === 'boczny' ? 'max-w-[16ch]' : 'max-w-[22ch]',
+          ]}
+        >
+          {tytul}
+        </h2>
+        {
+          Astro.slots.has('wstep') && (
+            <div
+              class:list={[
+                'mt-5 max-w-[44ch] text-lead',
+                ciemna ? 'text-arkusz/75' : 'text-centrala-80',
+              ]}
+            >
+              <slot name="wstep" />
+            </div>
+          )
+        }
+      </header>
 
-      <div>
-        <h2 class="text-h2 max-w-[22ch]">{tytul}</h2>
-        <div class="mt-6 sm:mt-8">
-          <slot />
-        </div>
+      <div class:list={[uklad === 'boczny' ? 'mt-10 lg:mt-2' : 'mt-10 sm:mt-12']}>
+        <slot />
       </div>
     </div>
   </div>

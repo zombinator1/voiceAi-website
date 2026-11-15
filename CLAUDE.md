@@ -30,6 +30,17 @@ npm run preview
 
 
 ## Design rules
+Kierunek: **„luksusowy papier”**. Jasna, wydawnicza strona z jedną ciemną sceną w hero i jedną na końcu. Nie robimy ciemnych gradientów, szkła ani fioletów „AI startup”.
+
+- **Fonty**: `Fraunces` (h1, h2, duże liczby, numer demo; waga 400/500, kursywa do akcentów), `Geist` (tekst, h3, przyciski), `IBM Plex Mono` (klasa `.maszynowa`: etykiety, numeracja, znaczniki czasu). Nic mniejszego od h2 nie jest szeryfowe.
+- **Powierzchnie**: trzy poziomy papieru: `arkusz-glebszy` (pasy), `arkusz` (tło), `arkusz-jasny` (kartka leżąca na papierze, zawsze z `shadow-kartka`). Ciemne sceny: `noc` z `shadow-scena`. Cienie tylko miękkie, z tokenów; żadnych twardych offsetów.
+- **Kształty**: `rounded-[3px]` na kartkach, przyciskach i polach. Okrągłe są tylko kropki statusu i ikonowe przyciski play/strzałka.
+- **Układ sekcji** (`Sekcja.astro`): domyślnie `boczny` (numer + tytuł w lewej kolumnie 5/12, przyklejone; treść w prawej 7/12). `pelny` dla szerokiej treści (diagramy, siatki). Hero i CTA końcowe mają własne układy w tej samej siatce.
+- **Zieleń** `sluchawka` wyłącznie na `tel:` i submit; na ciemnym tle jej odpowiednik to `sluchawka-swiatlo` (wskaźniki, fala, hover). `nieodebrane` wyłącznie w sekcji Problem i kropce w hero.
+- **Ruch**: tylko w hero (`ZywaRozmowa.astro`) i w odtwarzaczu; wszystko respektuje `prefers-reduced-motion` i działa bez JS (pokazuje stan końcowy).
+- **Media**: poster filmu i fala nagrania są lokalne (`src/assets/poster-kalendarz.jpg`, `src/fala-nagrania.json`), żeby przeglądarka nie łączyła się z Google/YouTube przed kliknięciem. Nowe nagranie = przelicz falę: `ffmpeg -i plik.mp3 -ac 1 -ar 8000 -f s16le - | python3` (96 szczytów RMS, znormalizowane 0..1).
+- **Zrzuty do oceny**: `npm run build && npx astro preview --port 4399`, potem headless Chrome (narzędzie do zrzutów w scratchpadzie sesji); folder `.zrzuty/` jest w `.gitignore`.
+- **Node**: projekt wymaga Node ≥ 20 (`nvm use 24`); systemowy Node 10 nie zbuduje Astro.
 
 
 ## Working agreements

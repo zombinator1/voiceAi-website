@@ -42,7 +42,7 @@ const pytania = [
     {
       pytania.map((q) => (
         <details class="group border-t border-linia">
-          <summary class="flex cursor-pointer list-none items-start justify-between gap-5 py-5 font-display text-[1.0625rem] font-600 leading-snug tracking-[-0.01em]">
+          <summary class="flex cursor-pointer list-none items-start justify-between gap-5 py-5 font-sans text-[1.0625rem] font-600 leading-snug tracking-[-0.01em]">
             <span>{q.p}</span>
             <span class="znak mt-0.5 shrink-0 font-mono text-xl leading-none text-notatka" aria-hidden="true" />
           </summary>
@@ -57,7 +57,7 @@ const pytania = [
   </div>
 
   {/* granica kompetencji agenta — wprost, nie drobnym drukiem */}
-  <div class="mt-10 max-w-[64ch] border-l-4 border-centrala bg-arkusz-glebszy p-5 sm:p-6">
+  <div class="mt-10 max-w-[64ch] rounded-[3px] border border-linia bg-arkusz-jasny p-5 shadow-kartka sm:p-6">
     <p class="maszynowa text-notatka">Czego agent nie robi</p>
     <p class="mt-3">
       Agent nie diagnozuje, nie doradza specjalistycznie i nie zastępuje eksperta.

@@ -2,31 +2,45 @@
 import { Image } from 'astro:assets';
 import { OPINIA } from '../config';
 
-/* Treść tnie się na trzy części, żeby pogrubić jedno zdanie bez HTML w configu. */
+/* Treść tnie się na trzy części, żeby wyróżnić jedno zdanie bez HTML w configu. */
 const [przed, po] = OPINIA.tresc.split(OPINIA.wyroznienie);
 ---
 
 <section aria-label="Opinia klienta" class="border-b border-linia bg-arkusz-glebszy">
-  <figure class="arkusz-kolumna py-10 sm:py-12 lg:grid lg:grid-cols-[7rem_minmax(0,1fr)] lg:gap-x-12">
-    <p class="maszynowa mb-5 text-notatka lg:mb-0 lg:pt-1.5">Opinia klienta</p>
+  <figure
+    class="arkusz-kolumna py-14 sm:py-16 lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-x-16 lg:py-20 xl:gap-x-24"
+  >
+    <div class="mb-8 flex items-center gap-3 lg:mb-0 lg:block">
+      <p class="maszynowa text-notatka">Opinia klienta</p>
+      <span class="h-px w-8 bg-linia-mocna lg:mt-3 lg:block"></span>
+    </div>
 
-    <div class="max-w-[68ch]">
-      <blockquote class="text-lead text-centrala-80">
+    <div class="relative">
+      {/* Otwierający cudzysłów jako duży znak typograficzny, nie część zdania. */}
+      <span
+        aria-hidden="true"
+        class="pointer-events-none absolute -top-20 right-full mr-4 hidden select-none font-display text-[9rem] leading-none text-linia-mocna/70 lg:block"
+      >
+        „
+      </span>
+
+      <blockquote class="relative font-display text-[clamp(1.375rem,2.6vw,1.875rem)] leading-[1.35] text-centrala-80 italic">
         <p>
-          „{przed}<strong class="font-600 text-centrala">{OPINIA.wyroznienie}</strong>{po}”
+          {przed}<span class="not-italic text-centrala">{OPINIA.wyroznienie}</span>{po}
         </p>
       </blockquote>
 
-      <figcaption class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3 border-t border-linia pt-5">
+      <figcaption class="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3 border-t border-linia-mocna/50 pt-6">
         <Image
           src={OPINIA.logo}
           alt={`Logo ${OPINIA.firma}`}
-          height={32}
+          height={36}
           densities={[1, 2]}
-          class="h-8 w-auto"
+          class="h-9 w-auto"
         />
         <p class="text-meta">
-          <span class="font-600">{OPINIA.autor}</span>, {OPINIA.firma}
+          <span class="font-600 text-centrala">{OPINIA.autor}</span>
+          <span class="text-notatka">, {OPINIA.firma}</span>
         </p>
       </figcaption>
     </div>

@@ -8,7 +8,7 @@ import { META_PIXEL_ID } from '../config';
   role="dialog"
   aria-modal="false"
   aria-labelledby="baner-cookies-tytul"
-  class="fixed inset-x-0 bottom-[calc(3.5rem+env(safe-area-inset-bottom))] z-60 border-t border-linia bg-arkusz sm:bottom-0"
+  class="fixed inset-x-0 bottom-[calc(3.5rem+env(safe-area-inset-bottom))] z-60 border-t border-linia bg-arkusz/95 shadow-[0_-12px_32px_-16px_rgb(15_19_22/0.35)] backdrop-blur-md sm:bottom-0"
 >
   <div class="arkusz-kolumna flex flex-col gap-4 py-4 lg:flex-row lg:items-center lg:justify-between lg:gap-8 lg:py-5">
     <div class="max-w-[62ch]">
@@ -27,14 +27,14 @@ import { META_PIXEL_ID } from '../config';
       <button
         type="button"
         data-cookies="nie"
-        class="min-h-11 border border-centrala px-5 py-2.5 font-display text-[0.9375rem] font-600 hover:bg-centrala hover:text-arkusz"
+        class="min-h-11 rounded-[3px] border border-centrala px-5 py-2.5 font-sans text-[0.9375rem] font-500 hover:bg-centrala hover:text-arkusz"
       >
         Tylko niezbędne
       </button>
       <button
         type="button"
         data-cookies="tak"
-        class="min-h-11 bg-sluchawka px-5 py-2.5 font-display text-[0.9375rem] font-600 text-arkusz hover:bg-sluchawka-ciemna"
+        class="min-h-11 rounded-[3px] bg-sluchawka px-5 py-2.5 font-sans text-[0.9375rem] font-500 text-arkusz hover:bg-sluchawka-ciemna"
       >
         Zgadzam się
       </button>
