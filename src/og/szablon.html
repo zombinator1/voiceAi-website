@@ -1,0 +1,44 @@
+<!doctype html><html lang="pl"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Geist:wght@400;500&family=IBM+Plex+Mono:wght@500&display=block" rel="stylesheet">
+<style>
+  html,body{margin:0;width:1200px;height:630px;overflow:hidden}
+  body{background:#f3f1ec;color:#171c22;font-family:Geist,sans-serif;position:relative}
+  .swiatlo{position:absolute;inset:0;background:radial-gradient(70% 60% at 18% 0%,rgba(255,255,255,.7),transparent 70%)}
+  .ziarno{position:absolute;inset:0;opacity:.9;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .k{position:absolute;left:80px;top:72px;right:80px;bottom:72px}
+  .mono{font-family:'IBM Plex Mono',monospace;font-weight:500;letter-spacing:.08em;text-transform:uppercase;font-size:17px;color:#6b6a62;display:flex;align-items:center;gap:12px}
+  .mono i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#b2362c}
+  h1{font-family:Fraunces,serif;font-weight:400;font-size:84px;line-height:1;letter-spacing:-.015em;margin:34px 0 0;max-width:720px}
+  h1 em{font-style:italic}
+  .cta{position:absolute;left:0;bottom:0;display:flex;flex-direction:column;gap:8px;background:#136b47;color:#f3f1ec;padding:22px 30px;border-radius:3px;box-shadow:0 10px 28px -10px rgba(23,28,34,.3)}
+  .cta .mono{color:rgba(243,241,236,.7);font-size:14px}
+  .cta b{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:34px;letter-spacing:.02em}
+  .scena{position:absolute;right:0;top:110px;width:340px;height:300px;background:#0f1316;border-radius:3px;box-shadow:0 30px 70px -24px rgba(15,19,22,.5);color:#f3f1ec;overflow:hidden}
+  .scena .pas{display:flex;justify-content:space-between;padding:16px 20px;border-bottom:1px solid rgba(243,241,236,.1)}
+  .scena .pas .mono{font-size:12px;color:rgba(243,241,236,.6)}
+  .scena .pas .mono i{background:#3fcf8e}
+  .fala{display:flex;gap:3px;align-items:center;justify-content:center;height:60px;margin-top:22px}
+  .fala s{display:block;width:3px;border-radius:2px;background:#3fcf8e}
+  .dymek{margin:26px 20px 0;border-radius:3px;padding:12px 14px;font-size:14px;line-height:1.4}
+  .d1{background:rgba(243,241,236,.06);border:1px solid rgba(243,241,236,.12);margin-right:60px}
+  .d2{background:rgba(19,107,71,.25);border:1px solid rgba(63,207,142,.3);margin-left:60px}
+  .dymek small{display:block;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:rgba(243,241,236,.5);margin-bottom:4px}
+  .marka{position:absolute;right:0;bottom:0;font-size:17px;color:#6b6a62}
+</style></head><body>
+<div class="swiatlo"></div><div class="ziarno"></div>
+<div class="k">
+  <p class="mono"><i></i>telefon bez odpowiedzi to utracony klient</p>
+  <h1>Chcesz aby <em>każde</em> połączenie zostało odebrane?</h1>
+  <div class="cta"><span class="mono">Zadzwoń do asystenta AI</span><b>+48 221 811 286</b></div>
+  <div class="scena">
+    <div class="pas"><span class="mono"><i></i>połączenie trwa</span><span class="mono">00:47</span></div>
+    <div class="fala"></div>
+    <div class="dymek d1"><small>asystent AI</small>Dzień dobry, w czym mogę pomóc?</div>
+    <div class="dymek d2"><small>dzwoniący</small>Chciałbym zgłosić pilną sprawę.</div>
+  </div>
+  <p class="marka">zabekdigital.pl</p>
+</div>
+<script>
+  const f=document.querySelector('.fala');for(let i=0;i<40;i++){const s=document.createElement('s');s.style.height=(6+54*Math.abs(Math.sin(i*.7)*Math.cos(i*.31)))+'px';f.appendChild(s)}
+</script>
+</body></html>

@@ -1,0 +1,81 @@
+---
+import Sekcja from './Sekcja.astro';
+
+const kroki = [
+  {
+    numer: '1',
+    tytul: 'Rozmawiamy',
+    tresc: ['Dowiaduję się więcej o Twojej firmie:'],
+    lista: [
+      'w jakim celu najczęściej dzwonią klienci, np. zgłoszenie serwisowe, umówienie wizyty',
+      'jakie najczęściej zadają pytania',
+    ],
+    poLiscie: ['Pokazuję wersję demo.'],
+  },
+  {
+    numer: '2',
+    tytul: 'Podpisujemy umowę',
+    tresc: [
+      'Umowa powierzenia danych osobowych i o świadczeniu usług.',
+      'Dokument przygotował profesjonalista, z kancelarii Creativa Legal.'
+    ],
+  },
+  {
+    numer: '3',
+    tytul: 'Buduję agenta',
+    tresc: [
+      'Powstaje baza wiedzy, scenariusz rozmowy i automatyzacja pod Twoją firmę.',
+    ],
+  },
+    {
+    numer: '4',
+    tytul: 'Dwa tygodnie darmowego okresu próbnego',
+    tresc: [
+      'Masz gwarancję, że zapłacisz za produkt, który spełnia Twoje oczekiwania.'
+    ],
+  }
+];
+---
+
+<Sekcja numer="04" id="jak-to-dziala" tytul="Proces trwa do dwóch tygodni">
+  <ol class="max-w-[64ch]">
+    {
+      kroki.map((k, i) => (
+        <li
+          class:list={[
+            'grid gap-x-6 gap-y-3 py-7 sm:grid-cols-[3.5rem_minmax(0,1fr)] sm:py-9',
+            i > 0 ? 'border-t border-linia' : 'pt-0',
+          ]}
+        >
+          <span
+            class="font-display text-[2.25rem] font-400 leading-none tabular-nums text-notatka/80 sm:text-[3rem]"
+            aria-hidden="true"
+          >
+            {k.numer}
+          </span>
+          <div>
+            <h3 class="text-h3">{k.tytul}</h3>
+            <div class="mt-3 space-y-3 text-centrala-80">
+              {k.tresc.map((p) => (
+                <p>{p}</p>
+              ))}
+              {k.lista && (
+                <ul class="space-y-2">
+                  {k.lista.map((punkt) => (
+                    <li class="flex gap-2.5">
+                      <span class="text-notatka" aria-hidden="true">—</span>
+                      <span>{punkt}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {k.poLiscie?.map((p) => (
+                <p>{p}</p>
+              ))}
+            </div>
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+</Sekcja>

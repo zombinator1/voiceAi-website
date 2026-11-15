@@ -18,7 +18,7 @@ const sytuacje = [
   },
     {
     gdy: 'Twój numer jest zajęty',
-    skutek: 'Akurat rozmawiasz, połączenie jest odrzucone zamiast przekierowane.',
+    skutek: 'Akurat rozmawiasz, nie masz zasięgu, wyłączony telefon — połączenie jest odrzucone zamiast przekierowane.',
   },
 ];
 
@@ -36,7 +36,7 @@ const wiersze = [
     {
       sytuacje.map((s) => (
         <div class="grid gap-x-6 gap-y-1.5 border-t border-linia py-5 sm:grid-cols-[minmax(0,17rem)_minmax(0,1fr)] sm:py-6">
-          <dt class="font-display text-[1.0625rem] font-600 leading-snug tracking-[-0.01em]">
+          <dt class="font-sans text-[1.0625rem] font-600 leading-snug tracking-[-0.01em]">
             {s.gdy}
           </dt>
           <dd class="flex gap-2.5 text-centrala-80">
@@ -50,12 +50,12 @@ const wiersze = [
     }
   </dl>
 
-  <h1 class="mt-10 max-w-[60ch] font-500 sm:mt-12">
+  <!-- <h1 class="mt-10 max-w-[60ch] font-500 sm:mt-12">
     Ile tracisz?
-  </h1>
+  </h1> -->
 
   {/* Rachunek bez ani jednej liczby ode mnie — wpisujesz swoje. */}
-  <div class="mt-6 max-w-lg border border-linia bg-arkusz-glebszy p-5 sm:p-7">
+  <!-- <div class="mt-6 max-w-lg border border-linia bg-arkusz-glebszy p-5 sm:p-7">
     <dl class="space-y-4">
       {
         wiersze.map((w) => (
@@ -79,5 +79,5 @@ const wiersze = [
         <span class="h-6 w-16 shrink-0 border-b-2 border-nieodebrane sm:w-20"></span>
       </div>
     </div>
-  </div>
+  </div> -->
 </Sekcja>

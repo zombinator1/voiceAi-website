@@ -1,25 +1,66 @@
 ---
 import Base from '../layouts/Base.astro';
-import Hero from '../components/Hero.astro';
-import Problem from '../components/Problem.astro';
+import Hero from '../components/01-Hero.astro';
+import Opinia from '../components/02-Opinia.astro';
+import Problem from '../components/03-Problem.astro';
 import DlaKogo from '../components/DlaKogo.astro';
-import DreamOutcome from '../components/DreamOutcome.astro';
-import JakToDziala from '../components/JakToDziala.astro';
+import Przyklady from '../components/04-Przyklady.astro';
+import DreamOutcome from '../components/05-DreamOutcome.astro';
+import JakToDziala from '../components/06-JakToDziala.astro';
 import Proof from '../components/Proof.astro';
-import Oferta from '../components/Oferta.astro';
-import BezRyzyka from '../components/BezRyzyka.astro';
-import Faq from '../components/Faq.astro';
-import KimJestem from '../components/KimJestem.astro';
-import CtaKoncowe from '../components/CtaKoncowe.astro';
-import { FIRMA } from '../config';
+import Oferta from '../components/07-Oferta.astro';
+import BezRyzyka from '../components/08-BezRyzyka.astro';
+import Faq from '../components/09-Faq.astro';
+import KimJestem from '../components/10-KimJestem.astro';
+import CtaKoncowe from '../components/11-CtaKoncowe.astro';
+import { FIRMA, telefonAiHref, WLASCICIEL } from '../config';
+
+/* Dane strukturalne dla Google: firma + usługa. Tylko to, co jest już
+   publicznie na stronie — bez adresu, bez wymyślonych ocen. */
+const daneStrukturalne = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'ProfessionalService',
+      '@id': `${Astro.site}#firma`,
+      name: FIRMA.nazwa,
+      url: Astro.site?.href,
+      email: FIRMA.email,
+      telephone: telefonAiHref,
+      founder: { '@type': 'Person', name: WLASCICIEL.imie },
+      areaServed: { '@type': 'Country', name: 'Polska' },
+      address: { '@type': 'PostalAddress', addressLocality: 'Warszawa', addressCountry: 'PL' },
+      description:
+        'Wdrażanie agentów głosowych AI, które odbierają telefony w małych firmach: klinikach, warsztatach, kancelariach, firmach instalacyjnych i salonach.',
+    },
+    {
+      '@type': 'Service',
+      name: 'Agent głosowy AI odbierający telefony',
+      serviceType: 'Automatyczna obsługa połączeń telefonicznych',
+      provider: { '@id': `${Astro.site}#firma` },
+      areaServed: { '@type': 'Country', name: 'Polska' },
+      description:
+        'Agent odbiera połączenia 24/7, odpowiada z bazy wiedzy firmy, zbiera dane kontaktowe i wysyła podsumowanie rozmowy e-mailem. Uruchomienie przez przekierowanie połączeń, bez zmiany operatora.',
+      offers: {
+        '@type': 'Offer',
+        price: '290',
+        priceCurrency: 'PLN',
+        description: 'Abonament miesięczny, bez opłaty wdrożeniowej (program pilotażowy).',
+      },
+    },
+  ],
+};
 ---
 
 <Base
   tytul={`${FIRMA.nazwa} — agent głosowy AI, który odbiera telefony w Twojej firmie`}
   opis="Agent głosowy AI odbiera telefony, których nie możesz odebrać: odpowiada na pytania klientów, zbiera kontakt i wysyła podsumowanie rozmowy mailem. Zadzwoń pod numer demo i posłuchaj."
 >
+  <script is:inline type="application/ld+json" slot="head" set:html={JSON.stringify(daneStrukturalne)} />
   <Hero />
+  <Opinia />
   <Problem />
+  <Przyklady />
   <DreamOutcome />
   <!-- <DlaKogo /> -->
   <JakToDziala />

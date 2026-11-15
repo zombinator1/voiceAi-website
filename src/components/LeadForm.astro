@@ -15,13 +15,13 @@ interface Props {
 const { idPrefix, zrodlo, tytul, opis } = Astro.props;
 
 const pole =
-  'mt-1.5 block w-full min-h-11 border border-linia bg-arkusz px-3.5 py-2.5 text-body text-centrala placeholder:text-notatka focus:border-centrala focus:outline-none';
+  'mt-1.5 block w-full min-h-11 rounded-[3px] border border-linia bg-arkusz px-3.5 py-2.5 text-body text-centrala placeholder:text-notatka transition focus:border-centrala focus:outline-none';
 const etykieta = 'maszynowa text-notatka';
 ---
 
 {/* `na-jasnym` przywraca ciemny kolor tekstu i obrysu focusu,
     kiedy kartka leży w ciemnej sekcji */}
-<div class="na-jasnym border border-linia bg-arkusz p-5 text-centrala sm:p-7">
+<div class="na-jasnym rounded-[3px] bg-arkusz-jasny p-5 text-centrala shadow-scena sm:p-7">
   <h3 class="text-h3">{tytul}</h3>
   <p class="mt-2 text-meta text-centrala-80">{opis}</p>
 
@@ -95,7 +95,7 @@ const etykieta = 'maszynowa text-notatka';
     </div>
 
     <button
-      class="min-h-12 w-full bg-sluchawka px-6 py-3 font-display text-base font-600 tracking-[-0.01em] text-arkusz hover:bg-sluchawka-ciemna"
+      class="min-h-12 w-full rounded-[3px] bg-sluchawka px-6 py-3 font-sans text-base font-500 tracking-[-0.01em] text-arkusz shadow-kartka transition hover:bg-sluchawka-ciemna"
       type="submit"
     >
       Oddzwońcie do mnie

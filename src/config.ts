@@ -4,6 +4,7 @@
  */
 
 import profilowe from './assets/profilowe.jpg';
+import logoSpecjalisciOdWody from './assets/specjalisci-od-wody-logo.png';
 
 export const FIRMA = {
   nazwa: 'ZDigital Bartłomiej Ząbek',
@@ -24,7 +25,7 @@ export const myPhoneHref = doHref(myPhone);
 
 /** Właściciel — sekcja „Kim jestem”. */
 export const WLASCICIEL = {
-  imie: 'BARTŁOMIEJ ZĄBEK',
+  imie: 'Bartłomiej Ząbek',
   rola: 'Założyciel',
   /**
    * Portret z `src/assets` — importowany, nie jako ścieżka tekstowa.
@@ -45,6 +46,33 @@ export type LiniaTranskryptu = {
 };
 
 export const TRANSKRYPT: LiniaTranskryptu[] = [];
+
+/**
+ * Przykłady działania agenta — sekcja „Posłuchaj, jak to brzmi”.
+ * Pusty `wideoYoutube` = w miejscu filmu widnieje placeholder.
+ * Wklej zwykły link z YouTube (watch?v=…, youtu.be/…, shorts/…).
+ */
+export const PRZYKLADY = {
+  wideoYoutube: 'https://www.youtube.com/watch?v=MCE8xs0CNR4',
+  nagranie: {
+    plik: '/nagrania/specjalisci-od-wody.mp3',
+    opis: 'Rozmowa z agentem firmy instalacyjnej',
+    dlugosc: '1:39',
+  },
+} as const;
+
+/**
+ * Rekomendacja klienta — pas pod hero. Treść 1:1 od klienta, zgoda na publikację jest.
+ * `wyroznienie` musi być dosłownym fragmentem `tresc` — tylko on dostaje pogrubienie.
+ */
+export const OPINIA = {
+  tresc:
+    'Dzięki voicebotowi nasi klienci mają pewność, że ich telefon nie pozostanie bez odpowiedzi. Otrzymują SMS z potwierdzeniem kontaktu i informacją, że oddzwonimy. Dla nas największą zaletą jest to, że nawet gdy nie możemy odebrać telefonu, wiemy już, z jaką sprawą dzwoni klient. Dzięki temu oddzwaniamy przygotowani, często z konkretnym rozwiązaniem, zamiast zaczynać rozmowę od zera.',
+  wyroznienie: 'nawet gdy nie możemy odebrać telefonu, wiemy już, z jaką sprawą dzwoni klient',
+  autor: 'Adrian',
+  firma: 'Specjaliści od Wody',
+  logo: logoSpecjalisciOdWody,
+} as const;
 
 /** Meta Pixel — wklej ID, żeby aktywować skrypt (ładuje się dopiero po zgodzie). */
 export const META_PIXEL_ID = '';

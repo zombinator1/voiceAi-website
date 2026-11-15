@@ -1,25 +1,42 @@
 ---
-import { telefonAi,FIRMA } from '../config';
+import { FIRMA } from '../config';
 ---
 
-<header
-  class="sticky top-0 z-50 border-b border-linia bg-arkusz"
->
+<header class="sticky top-0 z-50 border-b border-linia/80 bg-arkusz/85 backdrop-blur-md">
   <div class="arkusz-kolumna flex h-14 items-center justify-between gap-4 sm:h-16">
     <a
       href="/"
-      class="flex min-h-11 items-center font-display text-[0.9375rem] font-700 tracking-[-0.01em] text-centrala sm:text-base"
+      class="flex min-h-11 items-center font-sans text-[0.9375rem] font-600 tracking-[-0.01em] text-centrala sm:text-base"
     >
       {FIRMA.nazwa}
     </a>
 
-    <div class="group flex min-h-11 items-center gap-2.5 px-1 sm:gap-3 transition">
-      <span class="maszynowa hidden text-notatka xs:inline">numer demo</span>
-      <span
-        class="inline-block bg-sluchawka px-3 py-2 font-mono text-[0.9375rem] font-500 tracking-[0.02em] text-arkusz group-hover:bg-sluchawka-ciemna sm:px-4 sm:text-base"
+    <nav class="flex items-center gap-1 sm:gap-3" aria-label="Sekcje strony">
+      <a
+        href="#przyklady"
+        class="hidden min-h-11 items-center px-2 text-[0.9375rem] text-centrala-80 transition hover:text-centrala md:flex"
       >
-        {telefonAi}
-      </span>
-    </div>
+        <span class="lg:hidden">Posłuchaj rozmowy</span>
+        <span class="hidden lg:inline">Posłuchaj, jak agent prowadzi rozmowę</span>
+      </a>
+      <a
+        href="#jak-to-dziala"
+        class="hidden min-h-11 items-center px-2 text-[0.9375rem] text-centrala-80 transition hover:text-centrala md:flex"
+      >
+        Wdrożenie
+      </a>
+      <a
+        href="#oferta"
+        class="hidden min-h-11 items-center px-2 text-[0.9375rem] text-centrala-80 transition hover:text-centrala sm:flex"
+      >
+        Cennik
+      </a>
+      <a
+        href="#kontakt"
+        class="ml-1 inline-flex min-h-10 items-center rounded-[3px] bg-centrala px-4 text-[0.9375rem] font-500 text-arkusz transition hover:bg-noc"
+      >
+        Kontakt
+      </a>
+    </nav>
   </div>
 </header>

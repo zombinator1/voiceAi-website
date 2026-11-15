@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   output: 'static',
-  site: 'https://example.netlify.app',
+  site: 'https://zabekdigital.pl',
   vite: {
     plugins: [tailwindcss()],
     server: {
@@ -13,22 +13,25 @@ export default defineConfig({
     },
   },
   fonts: [
+    /* Nagłówki: szeryf wydawniczy, ciepły. Jedna waga + kursywa wystarczą. */
     {
       provider: fontProviders.google(),
-      name: 'Archivo',
-      cssVariable: '--font-archivo',
-      weights: [500, 600, 700],
-      styles: ['normal'],
+      name: 'Fraunces',
+      cssVariable: '--font-fraunces',
+      weights: [400, 500],
+      styles: ['normal', 'italic'],
       subsets: ['latin', 'latin-ext'],
     },
+    /* Tekst i interfejs. */
     {
       provider: fontProviders.google(),
-      name: 'IBM Plex Sans',
-      cssVariable: '--font-plex-sans',
+      name: 'Geist',
+      cssVariable: '--font-geist',
       weights: [400, 500, 600],
       styles: ['normal'],
       subsets: ['latin', 'latin-ext'],
     },
+    /* Etykiety maszynowe, numery, znaczniki czasu. */
     {
       provider: fontProviders.google(),
       name: 'IBM Plex Mono',

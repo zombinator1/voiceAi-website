@@ -1,0 +1,93 @@
+---
+import { Image } from 'astro:assets';
+import Sekcja from './Sekcja.astro';
+import OdtwarzaczNagrania from './OdtwarzaczNagrania.astro';
+import { PRZYKLADY } from '../config';
+import poster from '../assets/poster-kalendarz.jpg';
+
+/** Wyciąga ID filmu z dowolnej postaci linku YouTube. */
+const idFilmu =
+  PRZYKLADY.wideoYoutube.match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([\w-]{11})/)?.[1] ?? '';
+
+const { nagranie } = PRZYKLADY;
+---
+
+<Sekcja numer="02" id="przyklady" uklad="pelny" tytul="Posłuchaj, jak agent prowadzi rozmowę">
+  <p slot="wstep">Przykładowe rozmowy z agentem</p>
+
+  <div class="grid gap-6 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:items-stretch lg:gap-8">
+    {/* 01 — film */}
+    <figure class="flex flex-col">
+      <figcaption class="maszynowa text-notatka">01 / Obsługa kalendarza</figcaption>
+
+      <div class="relative mt-4 aspect-video w-full overflow-hidden rounded-[3px] bg-noc shadow-scena">
+        {
+          idFilmu ? (
+            /* Fasada: YouTube ładuje się dopiero po kliknięciu —
+               poster jest lokalny, więc wcześniej przeglądarka nie łączy się z Google. */
+            <button
+              type="button"
+              data-yt={idFilmu}
+              aria-label="Odtwórz film: obsługa kalendarza"
+              class="group absolute inset-0 flex items-end text-left"
+            >
+              <Image
+                src={poster}
+                alt=""
+                widths={[640, 960, 1280]}
+                sizes="(min-width: 64rem) 50vw, 100vw"
+                format="webp"
+                quality={70}
+                loading="lazy"
+                class="absolute inset-0 size-full scale-[1.12] object-cover opacity-60 saturate-[0.7] transition duration-700 group-hover:scale-[1.14] group-hover:opacity-75"
+              />
+              <div
+                aria-hidden="true"
+                class="absolute inset-0 bg-[linear-gradient(to_top,rgb(15_19_22/0.95)_0%,rgb(15_19_22/0.45)_45%,rgb(15_19_22/0.15)_100%)]"
+              />
+              <div class="relative flex w-full items-end justify-between gap-6 p-5 sm:p-7">
+                <div class="na-ciemnym">
+                  <p class="maszynowa text-arkusz/60">film</p>
+                  <p class="mt-2 text-h3 font-600 text-arkusz">Odtwórz film</p>
+                  <p class="mt-1 text-meta text-arkusz/60">Po kliknięciu film załaduje się z YouTube.</p>
+                </div>
+                <span
+                  aria-hidden="true"
+                  class="flex size-14 shrink-0 items-center justify-center rounded-full bg-arkusz text-centrala shadow-kartka transition group-hover:scale-105 sm:size-16"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z" /></svg>
+                </span>
+              </div>
+            </button>
+          ) : (
+            <p class="flex size-full items-center justify-center p-6 text-center font-mono text-[0.875rem] text-arkusz/60">
+              {'{{FILM — wklej link do PRZYKLADY.wideoYoutube w src/config.ts}}'}
+            </p>
+          )
+        }
+      </div>
+    </figure>
+
+    {/* 02 — nagranie */}
+    <figure class="flex flex-col">
+      <figcaption class="maszynowa text-notatka">02 / Przyjęcie zgłoszenia serwisowego</figcaption>
+
+      <div class="mt-4 flex flex-1 flex-col justify-center rounded-[3px] border border-linia bg-arkusz-jasny p-5 shadow-kartka sm:p-7">
+        <OdtwarzaczNagrania plik={nagranie.plik} opis={nagranie.opis} dlugosc={nagranie.dlugosc} />
+      </div>
+    </figure>
+  </div>
+</Sekcja>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('button[data-yt]').forEach((przycisk) => {
+    przycisk.addEventListener('click', () => {
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube-nocookie.com/embed/${przycisk.dataset.yt}?autoplay=1&rel=0`;
+      iframe.title = 'Film: jak działa agent głosowy';
+      iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      iframe.className = 'absolute inset-0 size-full';
+      przycisk.replaceWith(iframe);
+    });
+  });
+</script>

@@ -5,7 +5,7 @@ const pytania = [
   {
     p: 'Błędy?',
     o: [
-      'Zdarzają sie błędy z niedokładnym transkryptem rozmowy, np. zamiast "Śrem" zanotuje "7".',
+      'Zdarzają się błędy z niedokładnym transkryptem rozmowy, np. zamiast "Śrem" zanotuje "7".',
     ],
   },
   {
@@ -23,7 +23,7 @@ const pytania = [
     ],
   },
     {
-    p: 'Co z nieporządanymi numerami telefonów?',
+    p: 'Co z niepożądanymi numerami telefonów?',
     o: [
       'Jestem w stanie zablokować połączenia od konkretnych numerów, np od konkurencji.'
     ],
@@ -31,14 +31,7 @@ const pytania = [
   {
     p: 'Czy muszę zmieniać operatora albo centralę telefoniczną?',
     o: [
-      'Nie. Zostajesz przy swoim numerze, operatorze i aparatach. Ustawiasz jedno przekierowanie, najczęściej warunkowe — wchodzi dopiero wtedy, gdy nie odbierzesz. Cofniesz je w minutę.',
-    ],
-  },
-  {
-    p: 'Co z RODO i nagrywaniem rozmów?',
-    o: [
-      'Agent po odebraniu telefonu wypełnia obowiązek informacyjny związany z RODO i z AI Act. Przed uruchomieniem podpisuję umowę powierzenia przetwarzania danych osobowych.',
-      'Konsultowałem to z kancelarią a Legal.'
+       'Od strony technicznej nic nie musisz robić. Jedynie ustawić przekierowanie warunkowe ze swojego telefonu, na numer Asystenta, co zajmuje 2 minuty.',
     ],
   }
 ];
@@ -49,7 +42,7 @@ const pytania = [
     {
       pytania.map((q) => (
         <details class="group border-t border-linia">
-          <summary class="flex cursor-pointer list-none items-start justify-between gap-5 py-5 font-display text-[1.0625rem] font-600 leading-snug tracking-[-0.01em]">
+          <summary class="flex cursor-pointer list-none items-start justify-between gap-5 py-5 font-sans text-[1.0625rem] font-600 leading-snug tracking-[-0.01em]">
             <span>{q.p}</span>
             <span class="znak mt-0.5 shrink-0 font-mono text-xl leading-none text-notatka" aria-hidden="true" />
           </summary>
@@ -64,7 +57,7 @@ const pytania = [
   </div>
 
   {/* granica kompetencji agenta — wprost, nie drobnym drukiem */}
-  <div class="mt-10 max-w-[64ch] border-l-4 border-centrala bg-arkusz-glebszy p-5 sm:p-6">
+  <div class="mt-10 max-w-[64ch] rounded-[3px] border border-linia bg-arkusz-jasny p-5 shadow-kartka sm:p-6">
     <p class="maszynowa text-notatka">Czego agent nie robi</p>
     <p class="mt-3">
       Agent nie diagnozuje, nie doradza specjalistycznie i nie zastępuje eksperta.

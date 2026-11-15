@@ -1,0 +1,59 @@
+---
+import { telefonAi, telefonAiHref } from '../config';
+import LeadForm from './LeadForm.astro';
+---
+
+<section id="kontakt" class="na-ciemnym sekcja relative overflow-hidden bg-noc text-arkusz">
+  {/* to samo światło co w scenie hero — klamra kompozycyjna */}
+  <div
+    aria-hidden="true"
+    class="pointer-events-none absolute inset-x-0 top-0 h-80 bg-[radial-gradient(50%_100%_at_30%_0%,rgb(63_207_142/0.10),transparent_70%)]"
+  >
+  </div>
+
+  <div class="arkusz-kolumna relative lg:grid lg:grid-cols-[minmax(0,6fr)_minmax(0,6fr)] lg:gap-x-16 xl:gap-x-24">
+    <div class="@container">
+      <p class="flex items-center gap-3">
+        <span class="maszynowa text-arkusz/50">09</span>
+        <span class="h-px w-8 bg-arkusz/25"></span>
+      </p>
+      <h2 class="mt-5 text-h2 max-w-[14ch]">Zadzwoń albo zostaw numer</h2>
+
+      <p class="mt-6 max-w-[46ch] text-lead text-arkusz/75">
+        Pierwsza droga zajmuje minutę i od razu wiesz, o czym mówię. Druga jest dla tych, którzy
+        właśnie pracują i nie mogą teraz rozmawiać.
+      </p>
+
+      <a
+        href={`tel:${telefonAiHref}`}
+        class="group mt-10 block rounded-[3px] border border-arkusz/15 bg-arkusz/[0.04] px-6 py-7 transition hover:border-sluchawka-swiatlo/60 hover:bg-arkusz/[0.07] sm:px-8"
+      >
+        <span class="maszynowa flex items-center gap-2.5 text-arkusz/60">
+          <span class="relative flex size-2" aria-hidden="true">
+            <span class="absolute inline-flex size-full animate-ping rounded-full bg-sluchawka-swiatlo opacity-60"></span>
+            <span class="relative inline-flex size-2 rounded-full bg-sluchawka-swiatlo"></span>
+          </span>
+          numer do mojego asystenta AI
+        </span>
+        <span
+          class="numer-demo mt-4 block font-display tracking-[-0.02em] tabular-nums text-arkusz transition group-hover:text-sluchawka-swiatlo"
+        >
+          {telefonAi}
+        </span>
+        <span class="mt-4 block max-w-[44ch] text-meta text-arkusz/60">
+          Zadzwoń o dowolnej porze. Jeśli agent poradzi sobie z Twoimi pytaniami, poradzi sobie z
+          pytaniami Twoich klientów.
+        </span>
+      </a>
+    </div>
+
+    <div class="mt-12 lg:mt-0">
+      <LeadForm
+        idPrefix="cta"
+        zrodlo="cta-koncowe"
+        tytul="Zostaw numer, oddzwonię"
+        opis="Imię i telefon wystarczą. Oddzwaniam w godzinach pracy — bez skryptu sprzedażowego."
+      />
+    </div>
+  </div>
+</section>
