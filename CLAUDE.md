@@ -22,7 +22,7 @@ npm run preview
 ## Where things are
 - `src/config.ts`: **the only place** for company data, phone numbers, owner bio, transcript, Meta Pixel ID. Never hardcode these in components.
   - `telefonAi` = demo agent number, used by every CTA. `myPhone` = private number, footer only, never in agent CTAs.
-- `src/pages/index.astro`: section order. Each section is its own component in `src/components/` (Polish names: `Problem`, `DlaKogo`, `JakToDziala`, `Oferta`, `BezRyzyka`, `Faq`, `KimJestem`, ...). `Sekcja.astro` is the shared section frame.
+- `src/pages/index.astro`: section order. Each section is its own component in `src/components/`, file names prefixed with their position on the page (`01-Hero.astro`, `02-Opinia.astro`, ...). When adding, removing or reordering sections, renumber the files to match. Unnumbered files are shared pieces (`Header`, `Footer`, `Sekcja`, `LeadForm`, ...) or sections currently switched off (`DlaKogo`, `Proof`). `Sekcja.astro` is the shared section frame.
 - `src/styles/global.css`: palette tokens and type scale. Use tokens (`centrala`, `arkusz`, `linia`, `notatka`, `sluchawka`, `nieodebrane`), never raw hex.
 - Forms: `LeadForm.astro` posts natively (no JS) to `/api/kontakt` → `netlify/functions/kontakt.mjs` sends mail via Lettermint. Env: `LETTERMINT_TOKEN`, `LETTERMINT_FROM`, `KONTAKT_ODBIORCA` (set in Netlify, never committed). The README section on Netlify Forms is outdated.
 - `src/pages/rodo*`: privacy policy pages.
