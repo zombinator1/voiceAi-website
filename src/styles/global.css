@@ -43,6 +43,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 4rem; /* sticky header */
     -webkit-text-size-adjust: 100%;
   }
 
