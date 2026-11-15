@@ -1,0 +1,34 @@
+---
+import { Image } from 'astro:assets';
+import { OPINIA } from '../config';
+
+/* Treść tnie się na trzy części, żeby pogrubić jedno zdanie bez HTML w configu. */
+const [przed, po] = OPINIA.tresc.split(OPINIA.wyroznienie);
+---
+
+<section aria-label="Opinia klienta" class="border-b border-linia bg-arkusz-glebszy">
+  <figure class="arkusz-kolumna py-10 sm:py-12 lg:grid lg:grid-cols-[7rem_minmax(0,1fr)] lg:gap-x-12">
+    <p class="maszynowa mb-5 text-notatka lg:mb-0 lg:pt-1.5">Opinia klienta</p>
+
+    <div class="max-w-[68ch]">
+      <blockquote class="text-lead text-centrala-80">
+        <p>
+          „{przed}<strong class="font-600 text-centrala">{OPINIA.wyroznienie}</strong>{po}”
+        </p>
+      </blockquote>
+
+      <figcaption class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3 border-t border-linia pt-5">
+        <Image
+          src={OPINIA.logo}
+          alt={`Logo ${OPINIA.firma}`}
+          height={32}
+          densities={[1, 2]}
+          class="h-8 w-auto"
+        />
+        <p class="text-meta">
+          <span class="font-600">{OPINIA.autor}</span>, {OPINIA.firma}
+        </p>
+      </figcaption>
+    </div>
+  </figure>
+</section>

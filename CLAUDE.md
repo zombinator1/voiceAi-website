@@ -5,7 +5,7 @@ zabekdigital (Bartłomiej Ząbek, sole founder, programmer) builds and deploys *
 
 - Problem we sell against: a missed call = a client who calls the competitor. They can't afford a full-time receptionist.
 - Product: the agent answers 24/7, answers from the firm's knowledge base, collects contact details, emails a call summary. Setup = call forwarding, no operator or PBX change, reversible, live within 2 weeks.
-- **Stage: just starting, no clients yet.** Never invent testimonials, logos, client counts, statistics or studies. The proof is the live demo agent on `telefonAi`.
+- **Stage: just starting, one client so far: Specjaliści od Wody (Adrian).** His real testimonial (`OPINIA` in `src/config.ts`, published with consent) and the call recording are the only social proof. Never invent other testimonials, logos, client counts, statistics or studies. The other proof is the live demo agent on `telefonAi`.
 - This repo is the landing page; its job is to get the visitor to **call the demo number** or **leave their number**.
 
 Original brief with the full section-by-section reasoning: `prompt-claude-code.md`. Sales deck: `Każdy_wartościowy_telefon_powinien_dostać_odpowiedź.pptx`.

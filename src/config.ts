@@ -4,6 +4,7 @@
  */
 
 import profilowe from './assets/profilowe.jpg';
+import logoSpecjalisciOdWody from './assets/specjalisci-od-wody-logo.png';
 
 export const FIRMA = {
   nazwa: 'ZDigital Bartłomiej Ząbek',
@@ -58,6 +59,19 @@ export const PRZYKLADY = {
     opis: 'Rozmowa z agentem firmy instalacyjnej',
     dlugosc: '1:39',
   },
+} as const;
+
+/**
+ * Rekomendacja klienta — pas pod hero. Treść 1:1 od klienta, zgoda na publikację jest.
+ * `wyroznienie` musi być dosłownym fragmentem `tresc` — tylko on dostaje pogrubienie.
+ */
+export const OPINIA = {
+  tresc:
+    'Dzięki voicebotowi nasi klienci mają pewność, że ich telefon nie pozostanie bez odpowiedzi. Otrzymują SMS z potwierdzeniem kontaktu i informacją, że oddzwonimy. Dla nas największą zaletą jest to, że nawet gdy nie możemy odebrać telefonu, wiemy już, z jaką sprawą dzwoni klient. Dzięki temu oddzwaniamy przygotowani, często z konkretnym rozwiązaniem, zamiast zaczynać rozmowę od zera.',
+  wyroznienie: 'nawet gdy nie możemy odebrać telefonu, wiemy już, z jaką sprawą dzwoni klient',
+  autor: 'Adrian',
+  firma: 'Specjaliści od Wody',
+  logo: logoSpecjalisciOdWody,
 } as const;
 
 /** Meta Pixel — wklej ID, żeby aktywować skrypt (ładuje się dopiero po zgodzie). */
